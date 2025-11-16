@@ -51,6 +51,9 @@ const localeMap = {
 	id: {
 		wip: true,
 	},
+	ru: {
+		wip: false,
+	},
 	zh: {
 		regionId: 'CN',
 		wip: true,

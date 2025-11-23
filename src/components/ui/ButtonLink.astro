@@ -3,7 +3,7 @@ import { type Icon as IconType } from '@lucide/astro';
 import type { ComponentProps } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
 import Icon from './Icon.astro';
-import Link from './Link.astro';
+import LinkWrapper from './LinkWrapper.astro';
 
 /**
  * Props for a navigation button with an optional icon.
@@ -12,7 +12,10 @@ import Link from './Link.astro';
  * @property label - Optional text label
  */
 interface Props
-	extends WithChildren<false, Omit<ComponentProps<typeof Link>, 'children'>> {
+	extends WithChildren<
+		false,
+		Omit<ComponentProps<typeof LinkWrapper>, 'children'>
+	> {
 	icon?: typeof IconType;
 	label?: string;
 }
@@ -20,10 +23,10 @@ interface Props
 const { icon, label, ...restProps } = Astro.props;
 ---
 
-<Link {...restProps}>
+<LinkWrapper {...restProps}>
 	{icon && <Icon {icon} />}
 	<slot>{label}</slot>
-</Link>
+</LinkWrapper>
 
 <style>
 	a {

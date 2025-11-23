@@ -1,80 +1,24 @@
 ---
-import { isExternalUrl } from '@utils/index.ts';
-import type { HTMLAttributes } from 'astro/types';
-import { assert } from 'radashi';
-import type { WithChildren } from '../../types.ts';
-
-type AnchorAttributes = HTMLAttributes<'a'>;
+import type { ComponentProps } from 'astro/types';
+import LinkWrapper from './LinkWrapper.astro';
 
 /**
- * Base props for the anchor component, excluding href and title.
+ * Props forwarded to the underlying `LinkWrapper` component.
  *
- * @property tooltip - Optional tooltip text (mapped to title attribute)
+ * Slot content is rendered as the link’s children.
  */
-interface BaseProps
-	extends WithChildren<true, Omit<AnchorAttributes, 'href' | 'title'>> {
-	tooltip?: AnchorAttributes['title'];
-}
-
-/**
- * Public props interface for an anchor link with automatic external link detection.
- *
- * @property to - The URL or path to link to
- */
-interface Props extends BaseProps {
-	to: string;
-}
-
-/**
- * Internal props allowing both 'to' and 'href' for Markdoc compatibility.
- *
- * @property to - The URL or path to link to (preferred)
- * @property href - Alternative to 'to' for Markdoc rendering
- */
-interface InternalProps extends BaseProps {
-	to?: string;
-	href?: string;
-}
+type Props = ComponentProps<typeof LinkWrapper>;
 
 const props: Props = Astro.props;
-const internalProps: InternalProps = props;
-
-let { rel, to, href, tooltip, ...restProps } = internalProps;
-
-// Use `href` instead of `to` when rendered via Markdoc
-href ??= to;
-
-const relsSet = new Set(rel?.split(' '));
-
-assert(href, "one of 'href' or 'to' attributes must be provided to Link");
-
-if (isExternalUrl(href)) {
-	relsSet.add('external');
-}
-
-rel = [...relsSet].join(' ');
 ---
 
 <!-- This must be on the same line to prevent whitespace from being inserted -->
-<a {href} {rel} title={tooltip} aria-label={tooltip} {...restProps}><slot /></a>
+<LinkWrapper {...props}><slot /></LinkWrapper>
 
 <style>
-	a {
-		text-decoration: none;
-		transition-duration: var(--d-md);
-
-		&:hover {
-			opacity: var(--o-md);
-		}
-
-		&:active {
-			opacity: 1;
-		}
-
-		&:not(:has(img, svg)) {
-			padding-block-end: var(--b-md);
-			color: var(--p);
-			border-block-end: var(--b-md) solid var(--p);
-		}
+	a:not(:has(picture, img, svg)) {
+		padding-block-end: var(--b-md);
+		color: var(--p);
+		border-block-end: var(--b-md) solid var(--p);
 	}
 </style>

@@ -1,5 +1,5 @@
 ---
-import Link from '@components/ui/Link.astro';
+import LinkWrapper from '@components/ui/LinkWrapper.astro';
 import { CLASS } from '@config/class.ts';
 import { SITE } from '@config/site.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
@@ -22,7 +22,7 @@ const props = Astro.props;
 ---
 
 <header {...props}>
-	<Link
+	<LinkWrapper
 		to={getRelativeLocaleUrl(currentLocaleId)}
 		aria-label={msg.header.label}
 		hreflang={currentLocaleId}
@@ -31,7 +31,7 @@ const props = Astro.props;
 		<h1 class={CLASS.visuallyHidden}>
 			{SITE.title}
 		</h1>
-	</Link>
+	</LinkWrapper>
 	<p>
 		{msg.site.description}
 	</p>

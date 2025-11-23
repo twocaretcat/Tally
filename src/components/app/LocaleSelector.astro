@@ -1,10 +1,10 @@
 ---
-import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
-import Label from '@components/ui/Label.astro';
+import LinkWrapper from '@components/ui/LinkWrapper.astro';
 import { LOCALE } from '@config/locale.ts';
 import { getLocale, getLocaleInfo, getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { WithChildren } from '../../types.ts';
 
 /**
@@ -18,7 +18,12 @@ const currentLocaleId = getLocale(Astro);
 const msg = getLocaleMessages(currentLocaleId).locales;
 ---
 
-<InputGroup id={LOCALE.id} title={msg.title}>
+<InputGroup
+	id={LOCALE.id}
+	title={msg.title}
+	role="radiogroup"
+	aria-required="true"
+>
 	{
 		entriesOf(LOCALE.map)
 			.map(([id, config]) => ({
@@ -27,47 +32,76 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 				info: getLocaleInfo(id, config.regionId),
 			}))
 			.sort((a, b) =>
-				a.info.languageName.localeCompare(b.info.languageName, currentLocaleId)
+				a.info.languageName.localeCompare(b.info.languageName, currentLocaleId),
 			)
 			.map(({ id, config, info }) => {
 				const { wip, rtl } = config;
 				const { flag, languageName, regionName } = info;
 
 				return (
-					<Label>
-						<HiddenInput
-							type="radio"
-							name={LOCALE.id}
-							checked={id === currentLocaleId}
-							{id}
-						/>
+					<LinkWrapper
+						to={getRelativeLocaleUrl(id)}
+						role="radio"
+						aria-checked={id === currentLocaleId}
+						{id}
+					>
 						{flag}
 						<bdo dir={rtl ? 'rtl' : 'ltr'}>{languageName}</bdo>
 						{regionName && `(${regionName})`}
 						{wip && ' 🚧'}
-					</Label>
+					</LinkWrapper>
 				);
 			})
 	}
 </InputGroup>
 
+<style>
+	a {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: var(--p-xs);
+		flex-basis: calc(50% - 2 * var(--p-sm));
+		flex-grow: 1;
+		padding: var(--p-sm);
+		background-color: var(--bg-1);
+		color: var(--fg);
+		text-align: center;
+		white-space: nowrap;
+		cursor: pointer;
+
+		&:active {
+			opacity: 1;
+		}
+
+		&[aria-checked='true'] {
+			font-weight: var(--f-bolder);
+			background-color: var(--bg-3);
+			box-shadow: var(--s-box-md);
+			opacity: 1;
+			box-shadow: var(--s-box-md);
+			z-index: 1;
+
+			&::before {
+				content: '✓ ';
+				font-weight: var(--f-bolder);
+			}
+		}
+	}
+</style>
+
 <script>
 	import { LOCALE } from '@config/locale.ts';
-	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
-	import { getRelativeLocaleUrl } from 'astro/virtual-modules/i18n.js';
-	import { mapEntries } from 'radashi';
+	import { getDefinedElementById, keysOf } from '@utils/index.ts';
 
-	const localeRadioMap = mapEntries(LOCALE.map, (localeId) => [
-		localeId,
-		getDefinedElementById<HTMLInputElement>(localeId),
-	]);
+	const anchors = keysOf(LOCALE.map).map(
+		getDefinedElementById<HTMLAnchorElement>,
+	);
 
-	// Update theme when a theme radio input is changed
-	for (const [id, radio] of entriesOf(localeRadioMap)) {
-		radio.addEventListener(
-			'change',
-			() =>
-				(window.location.href = `${getRelativeLocaleUrl(id)}${location.search}`)
-		);
+	for (const anchor of anchors) {
+		anchor.addEventListener('click', () => (anchor.href += location.search), {
+			once: true,
+		});
 	}
 </script>

@@ -17,7 +17,12 @@ type Props = WithChildren<false>;
 const msg = getLocaleMessages(Astro).themes;
 ---
 
-<InputGroup id={THEME.id} title={msg.title}>
+<InputGroup
+	id={THEME.id}
+	title={msg.title}
+	role="radiogroup"
+	aria-required="true"
+>
 	{
 		entriesOf(THEME.map).map(([id, { wip }]) => (
 			<Label data-theme={id}>

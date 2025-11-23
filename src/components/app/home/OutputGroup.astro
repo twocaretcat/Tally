@@ -1,5 +1,5 @@
 ---
-import Form from '@components/ui/Form.astro';
+import IoGroup from '@components/ui/IoGroup.astro';
 import { OUTPUT } from '@config/output.ts';
 import { wKey } from '@utils/index.ts';
 import LabelledOutput from './LabelledOutput.astro';
@@ -14,9 +14,9 @@ type Props = (typeof OUTPUT)[keyof typeof OUTPUT];
 const { id, fields } = Astro.props;
 ---
 
-<Form {...wKey(id, 'output', 'form')}>
+<IoGroup {...wKey(id, 'output', 'group')}>
 	{fields.map((fieldId) => <LabelledOutput id={fieldId} />)}
-</Form>
+</IoGroup>
 
 <style>
 	form {

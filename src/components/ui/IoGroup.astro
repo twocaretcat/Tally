@@ -4,18 +4,18 @@ import type { WithChildren } from '../../types.ts';
 import Card from './Card.astro';
 
 /**
- * Props for a styled form container with interactive label hover effects.
+ * Props for a styled input/output container with interactive label hover effects.
  */
-type Props = WithChildren<true, HTMLAttributes<'form'>>;
+type Props = WithChildren<true, HTMLAttributes<'div'>>;
 
 const props = Astro.props;
 ---
 
 <!-- This must be on the same line to prevent whitespace from being inserted -->
-<Card as="form" {...props}><slot /></Card>
+<Card {...props}><slot /></Card>
 
 <style>
-	form {
+	div {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;

@@ -1,32 +1,30 @@
 ---
 import { wKey } from '@utils/index.ts';
 import type { ComponentProps } from 'astro/types';
-import Form from './Form.astro';
+import IoGroup from './IoGroup.astro';
 
 /**
- * Props for a grouped set of related inputs (ex. radio buttons or checkboxes).
+ * Props for a grouped set of related inputs (ex. radio buttons, checkboxes, etc.).
  *
  * @property title - The heading text for the input group
  */
-interface Props extends ComponentProps<typeof Form> {
+interface Props extends ComponentProps<typeof IoGroup> {
 	title: Capitalize<string>;
 }
 
-const { id, name, title, ...restProps } = Astro.props;
+const { id, title, ...restProps } = Astro.props;
 
-const computedId = id ?? name;
+const headerId = `${id}-header` as const;
 ---
 
-<hgroup {...wKey(computedId, 'hgroup')}>
-	<h3 {...wKey(computedId, 'h3')}>
-		{title}
-	</h3>
-	<Form
+<hgroup {...wKey(id, 'hgroup')}>
+	<h3 {...wKey(id, 'h3')} id={headerId}>{title}</h3>
+	<IoGroup
 		{...restProps}
-		{...wKey(computedId, 'form')}
-		id={computedId}
-		name={computedId}
+		{...wKey(id, 'group')}
+		aria-labelledby={headerId}
+		{id}
 	>
 		<slot />
-	</Form>
+	</IoGroup>
 </hgroup>

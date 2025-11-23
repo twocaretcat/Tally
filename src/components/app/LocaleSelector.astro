@@ -18,7 +18,12 @@ const currentLocaleId = getLocale(Astro);
 const msg = getLocaleMessages(currentLocaleId).locales;
 ---
 
-<InputGroup id={LOCALE.id} title={msg.title}>
+<InputGroup
+	id={LOCALE.id}
+	title={msg.title}
+	role="radiogroup"
+	aria-required="true"
+>
 	{
 		entriesOf(LOCALE.map)
 			.map(([id, config]) => ({
@@ -27,7 +32,7 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 				info: getLocaleInfo(id, config.regionId),
 			}))
 			.sort((a, b) =>
-				a.info.languageName.localeCompare(b.info.languageName, currentLocaleId)
+				a.info.languageName.localeCompare(b.info.languageName, currentLocaleId),
 			)
 			.map(({ id, config, info }) => {
 				const { wip, rtl } = config;
@@ -67,7 +72,7 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 		radio.addEventListener(
 			'change',
 			() =>
-				(window.location.href = `${getRelativeLocaleUrl(id)}${location.search}`)
+				(window.location.href = `${getRelativeLocaleUrl(id)}${location.search}`),
 		);
 	}
 </script>

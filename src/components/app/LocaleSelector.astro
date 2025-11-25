@@ -6,6 +6,7 @@ import { getLocale, getLocaleInfo, getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { WithChildren } from '../../types.ts';
+import Button from './Button.astro';
 
 /**
  * Props for the locale selector component.
@@ -39,57 +40,23 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 				const { flag, languageName, regionName } = info;
 
 				return (
-					<LinkWrapper
-						to={getRelativeLocaleUrl(id)}
-						role="radio"
-						aria-checked={id === currentLocaleId}
-						{id}
-					>
-						{flag}
-						<bdo dir={rtl ? 'rtl' : 'ltr'}>{languageName}</bdo>
-						{regionName && `(${regionName})`}
-						{wip && ' 🚧'}
+					<LinkWrapper to={getRelativeLocaleUrl(id)} {id}>
+						<Button
+							as="div"
+							role="radio"
+							aria-checked={id === currentLocaleId}
+							showEnabledIcon
+						>
+							{flag}
+							<bdo dir={rtl ? 'rtl' : 'ltr'}>{languageName}</bdo>
+							{regionName && `(${regionName})`}
+							{wip && ' 🚧'}
+						</Button>
 					</LinkWrapper>
 				);
 			})
 	}
 </InputGroup>
-
-<style>
-	a {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		gap: var(--p-xs);
-		flex-basis: calc(50% - 2 * var(--p-sm));
-		flex-grow: 1;
-		padding: var(--p-sm);
-		background-color: var(--bg-1);
-		color: var(--fg);
-		text-align: center;
-		white-space: nowrap;
-		cursor: pointer;
-
-		&:active {
-			opacity: 1;
-		}
-
-		&[aria-checked='true'] {
-			font-weight: var(--f-bolder);
-			background-color: var(--bg-3);
-			box-shadow: var(--s-box-md);
-			opacity: 1;
-			box-shadow: var(--s-box-md);
-			z-index: 1;
-
-			&::before {
-				content: '✓ ';
-				font-weight: var(--f-bolder);
-			}
-		}
-	}
-</style>
 
 <script>
 	import { LOCALE } from '@config/locale.ts';

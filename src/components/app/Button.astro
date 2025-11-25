@@ -1,0 +1,105 @@
+---
+import Icon from '@components/ui/Icon.astro';
+import { Check, X } from '@lucide/astro';
+import type { HTMLTag, Polymorphic } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for a multi-purpose button component.
+ *
+ * Supports polymorphic rendering through the `as` prop, optional
+ * display of enabled/disabled state icons, and custom children via
+ * named and default slots.
+ */
+type Props<Tag extends HTMLTag = HTMLTag> = WithChildren<
+	true,
+	Polymorphic<{
+		as: Tag;
+		showEnabledIcon?: boolean;
+		showDisabledIcon?: boolean;
+	}>
+>;
+
+const {
+	as: Tag = 'button',
+	showEnabledIcon = false,
+	showDisabledIcon = false,
+	...restProps
+} = Astro.props;
+---
+
+<Tag {...restProps} class="button">
+	<slot name="input" />
+	{showEnabledIcon && <Icon icon={Check} role="presentation" />}
+	{showDisabledIcon && <Icon icon={X} role="presentation" />}
+	<span>
+		<slot />
+	</span>
+</Tag>
+
+<style>
+	.button {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: var(--p-sm);
+		flex-grow: 1;
+		padding: var(--p-sm);
+		color: var(--fg);
+		white-space: nowrap;
+		cursor: pointer;
+		transition-duration: var(--d-md);
+
+		background-color: var(--bg-2);
+		box-shadow: initial;
+		z-index: 1;
+
+		&:has(input:checked),
+		&[aria-checked='true'],
+		&:hover {
+			background-color: var(--bg-3);
+			box-shadow: var(--s-box-md);
+			z-index: initial;
+
+			> .lucide-check {
+				display: initial;
+			}
+
+			> .lucide-x {
+				display: none;
+			}
+		}
+
+		&:has(input:not(:checked)),
+		&[aria-checked='false'],
+		&:active {
+			background-color: var(--bg-1);
+			box-shadow: initial;
+			z-index: initial;
+
+			> .lucide-check {
+				display: none;
+			}
+
+			> .lucide-x {
+				display: initial;
+			}
+		}
+	}
+
+	span {
+		display: inline-flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--p-xs);
+	}
+
+	.lucide-check {
+		display: none;
+	}
+
+	.lucide-x {
+		display: none;
+	}
+</style>

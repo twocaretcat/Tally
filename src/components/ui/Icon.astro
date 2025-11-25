@@ -5,20 +5,39 @@ import { type IconProps, type Icon as IconType } from '@lucide/astro';
  * Props for rendering a Lucide icon component.
  *
  * @property icon - The Lucide icon component to render
+ * @property tooltip - Optional tooltip text to display on hover
  */
 interface Props extends IconProps {
 	icon: typeof IconType;
+	tooltip?: Capitalize<string>;
 }
 
-const { icon: IconComponent, ...restProps } = Astro.props;
+const { icon: IconComponent, tooltip, ...restProps } = Astro.props;
 ---
 
-<IconComponent aria-hidden="true" {...restProps} />
+{
+	() => {
+		const iconComponent = (
+			<IconComponent role="graphics-symbol" {...restProps} />
+		);
+
+		return tooltip ? (
+			<span title={tooltip}>{iconComponent}</span>
+		) : (
+			iconComponent
+		);
+	}
+}
 
 <style>
+	span {
+		display: contents;
+	}
+
 	/* Match the icon size to the font size of the parent element */
 	svg {
 		width: 1em;
 		height: 1em;
+		vertical-align: middle;
 	}
 </style>

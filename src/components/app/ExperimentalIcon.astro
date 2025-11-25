@@ -1,0 +1,26 @@
+---
+import Icon from '@components/ui/Icon.astro';
+import { getLocaleMessages } from '@i18n/index.ts';
+import { FlaskConical } from '@lucide/astro';
+import type { ComponentProps } from 'astro/types';
+
+/**
+ * Props for rendering an experimental feature icon component.
+ *
+ * Inherits all properties accepted by the base `Icon` component,
+ * except for `icon`, which is fixed.
+ */
+type Props = Omit<ComponentProps<typeof Icon>, 'icon'>;
+
+const msg = getLocaleMessages(Astro).icon.experimental.label;
+
+const props = Astro.props;
+---
+
+<Icon icon={FlaskConical} tooltip={msg} {...props} />
+
+<style>
+	svg {
+		stroke: var(--w);
+	}
+</style>

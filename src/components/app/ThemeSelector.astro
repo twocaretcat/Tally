@@ -6,6 +6,8 @@ import { getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
+import ExperimentalIcon from './ExperimentalIcon.astro';
+import SponsorIcon from './SponsorIcon.astro';
 
 /**
  * Props for the theme selector component.
@@ -24,7 +26,7 @@ const msg = getLocaleMessages(Astro).themes;
 	aria-required="true"
 >
 	{
-		entriesOf(THEME.map).map(([id, { wip }]) => (
+		entriesOf(THEME.map).map(([id, { wip, sponsor }]) => (
 			<Button as="label" data-theme={id} showEnabledIcon>
 				<HiddenInput
 					slot="input"
@@ -34,7 +36,8 @@ const msg = getLocaleMessages(Astro).themes;
 					{id}
 				/>
 				{msg.map[id].label}
-				{wip && ' 🚧'}
+				{sponsor && <SponsorIcon />}
+				{wip && <ExperimentalIcon />}
 			</Button>
 		))
 	}

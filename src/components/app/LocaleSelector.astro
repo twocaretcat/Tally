@@ -7,6 +7,7 @@ import { entriesOf } from '@utils/index.ts';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
+import ExperimentalIcon from './ExperimentalIcon.astro';
 
 /**
  * Props for the locale selector component.
@@ -50,7 +51,7 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 							{flag}
 							<bdo dir={rtl ? 'rtl' : 'ltr'}>{languageName}</bdo>
 							{regionName && `(${regionName})`}
-							{wip && ' 🚧'}
+							{wip && <ExperimentalIcon />}
 						</Button>
 					</LinkWrapper>
 				);

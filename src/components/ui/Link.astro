@@ -16,9 +16,21 @@ const props: Props = Astro.props;
 <LinkWrapper {...props}><slot /></LinkWrapper>
 
 <style>
-	a:not(:has(picture, img, svg)) {
-		padding-block-end: var(--b-md);
-		color: var(--p);
-		border-block-end: var(--b-md) solid var(--p);
+	a {
+		transition-duration: var(--d-md);
+
+		&:hover {
+			opacity: var(--o-md);
+		}
+
+		&:active {
+			opacity: 1;
+		}
+
+		&:not(:has(picture, img, svg)) {
+			padding-block-end: var(--b-md);
+			color: var(--p);
+			border-block-end: var(--b-md) solid var(--p);
+		}
 	}
 </style>

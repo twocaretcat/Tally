@@ -1,4 +1,5 @@
 ---
+import Button from '@components/app/Button.astro';
 import { type Icon as IconType } from '@lucide/astro';
 import type { ComponentProps } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
@@ -24,23 +25,8 @@ const { icon, label, ...restProps } = Astro.props;
 ---
 
 <LinkWrapper {...restProps}>
-	{icon && <Icon {icon} />}
-	<slot>{label}</slot>
+	<Button as="div">
+		{icon && <Icon {icon} />}
+		{label}
+	</Button>
 </LinkWrapper>
-
-<style>
-	a {
-		display: inline-flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		gap: var(--p-xs);
-		flex-grow: 1;
-		padding: var(--p-sm);
-		background-color: var(--bg-2);
-		color: var(--fg);
-		text-align: center;
-		white-space: nowrap;
-		cursor: pointer;
-	}
-</style>

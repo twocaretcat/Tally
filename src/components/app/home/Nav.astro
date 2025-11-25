@@ -1,6 +1,6 @@
 ---
 import ButtonLink from '@components/ui/ButtonLink.astro';
-import Card from '@components/ui/Card.astro';
+import IoGroup from '@components/ui/IoGroup.astro';
 import { SITE } from '@config/site.ts';
 import { getLocaleMessages } from '@i18n/index.ts';
 import {
@@ -24,7 +24,7 @@ const msg = getLocaleMessages(Astro).nav;
 const props = Astro.props;
 ---
 
-<Card as="nav" {...props}>
+<IoGroup as="nav" {...props}>
 	<ButtonLink
 		to={SITE.url.github}
 		label={msg.viewSource.label}
@@ -52,14 +52,14 @@ const props = Astro.props;
 		tooltip={msg.moreProjects.tooltip}
 		rel="author me"
 	/>
-</Card>
+</IoGroup>
 
 <style>
 	nav {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-between;
 		view-transition-name: nav;
+
+		> * {
+			flex-basis: calc(25% - 2 * var(--p-sm));
+		}
 	}
 </style>

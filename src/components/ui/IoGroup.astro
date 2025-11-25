@@ -1,12 +1,12 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { ComponentProps } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
 import Card from './Card.astro';
 
 /**
  * Props for a styled input/output container with interactive label hover effects.
  */
-type Props = WithChildren<true, HTMLAttributes<'div'>>;
+type Props = WithChildren<true, ComponentProps<typeof Card>>;
 
 const props = Astro.props;
 ---
@@ -15,25 +15,27 @@ const props = Astro.props;
 <Card {...props}><slot /></Card>
 
 <style>
-	div {
+	.card {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		background-color: var(--bg-1);
 
 		&:hover {
-			> label {
-				transition-duration: var(--d-md);
+			transition-duration: var(--d-md);
 
-				&:has(> input) {
-					opacity: var(--o-md);
-				}
+			> * {
+				opacity: var(--o-md);
 
-				&:has(> input:hover) {
+				&:hover {
 					opacity: 1;
-					box-shadow: var(--s-box-md);
 				}
 			}
+		}
+
+		> * {
+			flex-grow: 1;
 		}
 	}
 </style>

@@ -1,5 +1,4 @@
 ---
-import Label from '@components/ui/Label.astro';
 import Output from '@components/ui/Output.astro';
 import type { OutputId } from '@config/output.ts';
 import { getLocaleMessages } from '@i18n/index.ts';
@@ -21,14 +20,17 @@ const msg = getLocaleMessages(Astro).output;
 const label = msg.map[id].label;
 ---
 
-<Label aria-live="polite" aria-atomic="true" {...wKey(id, 'label')}>
+<label aria-live="polite" aria-atomic="true" {...wKey(id, 'label')}>
 	{label}
 	<Output {id} />
-</Label>
+</label>
 
 <style>
 	label {
+		display: flex;
 		flex-direction: column;
+		align-items: center;
+		gap: var(--p-xs);
 		flex: 1;
 		padding: var(--p-md);
 		background-color: var(--bg-2);

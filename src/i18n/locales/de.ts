@@ -29,6 +29,17 @@ const messages: LocaleMessages = {
 			'online-tool',
 		],
 	},
+	icon: {
+		license: {
+			label: 'Lizenz',
+		},
+		sponsorOnly: {
+			label: 'Nur für Unterstützer',
+		},
+		experimental: {
+			label: 'Experimentell',
+		},
+	},
 	alert: {
 		note: {
 			title: 'Hinweis',

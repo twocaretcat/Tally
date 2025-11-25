@@ -1,11 +1,13 @@
 ---
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
-import Label from '@components/ui/Label.astro';
 import { THEME } from '@config/theme.ts';
 import { getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
+import Button from './Button.astro';
+import ExperimentalIcon from './ExperimentalIcon.astro';
+import SponsorIcon from './SponsorIcon.astro';
 
 /**
  * Props for the theme selector component.
@@ -14,6 +16,7 @@ import type { WithChildren } from '../../types.ts';
  */
 type Props = WithChildren<false>;
 
+const type = 'radio' as const;
 const msg = getLocaleMessages(Astro).themes;
 ---
 
@@ -24,17 +27,19 @@ const msg = getLocaleMessages(Astro).themes;
 	aria-required="true"
 >
 	{
-		entriesOf(THEME.map).map(([id, { wip }]) => (
-			<Label data-theme={id}>
+		entriesOf(THEME.map).map(([id, { wip, sponsor }]) => (
+			<Button as="label" data-theme={id} {type}>
 				<HiddenInput
-					type="radio"
+					slot="input"
 					name={THEME.id}
 					checked={id === THEME.default.id}
 					{id}
+					{type}
 				/>
 				{msg.map[id].label}
-				{wip && ' 🚧'}
-			</Label>
+				{sponsor && <SponsorIcon />}
+				{wip && <ExperimentalIcon />}
+			</Button>
 		))
 	}
 </InputGroup>

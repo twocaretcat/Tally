@@ -1,11 +1,11 @@
 ---
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
-import Label from '@components/ui/Label.astro';
 import { OPTION } from '@config/option.ts';
 import { getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
+import Button from './Button.astro';
 
 /**
  * Props for the options selector component.
@@ -14,21 +14,23 @@ import type { WithChildren } from '../../types.ts';
  */
 type Props = WithChildren<false>;
 
+const type = 'checkbox' as const;
 const msg = getLocaleMessages(Astro).options;
 ---
 
-<InputGroup id={OPTION.id} title={msg.title}>
+<InputGroup id={OPTION.id} title={msg.title} role="group">
 	{
 		entriesOf(OPTION.map).map(([id, optionConfig]) => (
-			<Label>
+			<Button as="label" {type}>
 				<HiddenInput
-					type="checkbox"
+					slot="input"
 					name={OPTION.id}
 					checked={optionConfig.default}
 					{id}
+					{type}
 				/>
 				{msg.map[id].label}
-			</Label>
+			</Button>
 		))
 	}
 </InputGroup>

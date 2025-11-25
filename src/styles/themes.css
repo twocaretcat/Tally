@@ -4,6 +4,7 @@
    --bg-2 : Secondary background color (medium elevation)
    --fg   : Foreground (text/content) color
    --p    : Primary accent color
+	 --w    : Warning accent color
 	 --e    : Error accent color
    --s-mix: Shadow mix percentage for blending effects
 */
@@ -15,17 +16,19 @@
 	--l-bg-2: oklch(98.5% 0 0); /* Neutral 50 */
 	--l-fg: oklch(14.5% 0 0); /* Neutral 950 */
 	--l-p: oklch(45.7% 0.24 277.023); /* Indigo 700 */
+	--l-w: oklch(55.5% 0.163 48.998); /* Amber 700 */
 	--l-e: oklch(50.5% 0.213 27.518); /* Red 700 */
 	--l-s-mix: 30%;
 }
 
 /* Auto (dark) theme / Dark theme */
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-[data-theme='auto'], [data-theme='dark'] {
+[data-theme]{
 	--bg-1: oklch(20.5% 0 0); /* Neutral 900 */
 	--bg-2: oklch(26.9% 0 0); /* Neutral 800 */
 	--fg: oklch(98.5% 0 0); /* Neutral 50 */
 	--p: oklch(70.7% 0.165 254.624); /* Blue 400 */
+	--w: oklch(82.8% 0.189 84.429); /* Amber 400 */
 	--e: oklch(70.4% 0.191 22.216); /* Red 400 */
 	--s-mix: 100%;
 }
@@ -38,6 +41,7 @@
 		--bg-2: var(--l-bg-2);
 		--fg: var(--l-fg);
 		--p: var(--l-p);
+		--w: var(--l-w);
 		--e: var(--l-e);
 		--s-mix: var(--l-s-mix);
 	}
@@ -49,6 +53,7 @@
 	--bg-2: var(--l-bg-2);
 	--fg: var(--l-fg);
 	--p: var(--l-p);
+	--w: var(--l-w);
 	--e: var(--l-e);
 	--s-mix: var(--l-s-mix);
 }
@@ -59,8 +64,8 @@
 	--bg-2: oklch(22% 0.04 330);
 	--fg: oklch(90% 0.08 340);
 	--p: oklch(0.64 0.21 22.89);
+	--w: oklch(82% 0.18 75);
 	--e: oklch(60% 0.24 30);
-	--s-mix: 100%;
 }
 
 /* OG teal theme */
@@ -69,6 +74,7 @@
 	--bg-2: oklch(58% 0.07 185);
 	--fg: oklch(100% 0 0);
 	--p: oklch(85% 0.085 30);
+	--w: oklch(85% 0.18 80);
 	--e: oklch(65% 0.19 25);
 	--s-mix: var(--l-s-mix);
 }
@@ -79,10 +85,9 @@
 	--bg-2: oklch(0 0 0);
 	--fg: oklch(92.2% 0 0); /* Neutral 200 */
 	--p: oklch(92.2% 0 0); /* Neutral 200 */
-	--e: oklch(70.4% 0.191 22.216);
 	--s-mix: 0%;
 
-	textarea, form, nav {
+	.card {
 		border: var(--b-md) solid var(--p);
 	}
 }
@@ -93,8 +98,8 @@
 	--bg-2: oklch(32.1% 0.053 219.6); /* base02 */
 	--fg: oklch(71.8% 0.017 198); /* base0 */
 	--p: oklch(63.1% 0.166 50.4); /* orange */
+	--w: oklch(63.1% 0.129 86.4); /* yellow */
 	--e: oklch(63.1% 0.221 21.6); /* red */
-	--s-mix: 100%;
 }
 
 /* Colors from OKSolar (https://meat.io/oksolar) (CC0) */
@@ -103,6 +108,7 @@
 	--bg-2: oklch(97.35% 0.026 90.1); /* base3 */
 	--fg: oklch(54.4% 0.017 219.6); /* base00 */
 	--p: oklch(63.1% 0.221 21.6); /* red */
+	--w: oklch(63.1% 0.129 86.4); /* yellow */
 	--e: oklch(63.1% 0.221 21.6); /* red */
 	--s-mix: var(--l-s-mix);
 }
@@ -113,8 +119,8 @@
 	--bg-2: #3c3836; /* dark1 */
 	--fg: #ebdbb2; /* light1 */
 	--p: #fe8019; /* bright_orange */
+	--w: #fabd2f; /* bright_yellow */
 	--e: #fb4934; /* bright_red */
-	--s-mix: 100%;
 }
 
 /* Colors from https://github.com/morhetz/gruvbox (MIT) */
@@ -123,6 +129,7 @@
 	--bg-2: #fbf1c7; /* light0 */
 	--fg: #3c3836; /* dark1 */
 	--p: #af3a03; /* faded_orange */
+	--w: #b57614; /* faded_yellow */
 	--e: #9d0006; /* faded_red */
 	--s-mix: var(--l-s-mix);
 }
@@ -133,8 +140,8 @@
 	--bg-2: #181825; /* Mantle */
 	--fg: #cdd6f4; /* Text */
 	--p: #89b4fa; /* Blue */
+	--w: #f9e2af; /* Yellow */
 	--e: #f38ba8; /* Red */
-	--s-mix: 100%;
 }
 
 /* Colors from https://catppuccin.com/palette/#flavor-latte (MIT) */
@@ -143,6 +150,7 @@
 	--bg-2: #e6e9ef; /* Mantle */
 	--fg: #4c4f69; /* Text */
 	--p: #7287fd; /* Lavender */
+	--w: #df8e1d; /* Yellow */
 	--e: #d20f39; /* Red */
 	--s-mix: var(--l-s-mix);
 }
@@ -153,8 +161,8 @@
 	--bg-2: #21222C; /* Background Dark */
 	--fg: #F8F8F2; /* Foreground */
 	--p: #BD93F9; /* Purple */
+	--w: #F1FA8C; /* Yellow */
 	--e: #FF5555; /* Red */
-	--s-mix: 100%;
 }
 
 /* Colors from https://www.nordtheme.com/docs/colors-and-palettes (MIT) */
@@ -163,6 +171,6 @@
 	--bg-2: #3b4252; /* nord1 */
 	--fg: #eceff4; /* nord6 */
 	--p: #88c0d0; /* nord8 */
+	--w: #ebcb8b; /* nord13 */
 	--e: #bf616a; /* nord11 */
-	--s-mix: 100%;
 }

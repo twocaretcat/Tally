@@ -17,9 +17,3 @@ const { id, fields } = Astro.props;
 <IoGroup {...wKey(id, 'output', 'group')}>
 	{fields.map((fieldId) => <LabelledOutput id={fieldId} />)}
 </IoGroup>
-
-<style>
-	form {
-		background-color: var(--bg-2);
-	}
-</style>

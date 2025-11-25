@@ -2,15 +2,15 @@
  * Union type of all valid locale IDs.
  */
 export type LocaleId =
+	| 'ar'
+	| 'de'
 	| 'en'
 	| 'es'
 	| 'fr'
-	| 'it'
-	| 'de'
 	| 'id'
+	| 'it'
 	| 'ru'
-	| 'zh'
-	| 'ar';
+	| 'zh';
 
 /**
  * A two-letter uppercase region code (e.g., 'US', 'ES', 'MX').
@@ -51,6 +51,14 @@ type LocaleConfig = {
 };
 
 const localeMap: LocaleMap = {
+	ar: {
+		wip: true,
+		rtl: true,
+	},
+	de: {
+		wip: true,
+		rtl: false,
+	},
 	en: {
 		wip: false,
 		rtl: false,
@@ -63,15 +71,11 @@ const localeMap: LocaleMap = {
 		wip: true,
 		rtl: false,
 	},
-	it: {
-		wip: true,
-		rtl: false,
-	},
-	de: {
-		wip: true,
-		rtl: false,
-	},
 	id: {
+		wip: true,
+		rtl: false,
+	},
+	it: {
 		wip: true,
 		rtl: false,
 	},
@@ -83,10 +87,6 @@ const localeMap: LocaleMap = {
 		regionId: 'CN',
 		wip: true,
 		rtl: false,
-	},
-	ar: {
-		wip: true,
-		rtl: true,
 	},
 };
 

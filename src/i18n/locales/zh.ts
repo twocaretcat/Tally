@@ -28,6 +28,17 @@ const messages: LocaleMessages = {
 			'在线工具',
 		],
 	},
+	icon: {
+		license: {
+			label: '许可证',
+		},
+		sponsorOnly: {
+			label: '仅限赞助者',
+		},
+		experimental: {
+			label: '实验性',
+		},
+	},
 	alert: {
 		note: {
 			title: '备注',

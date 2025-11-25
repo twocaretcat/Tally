@@ -40,6 +40,17 @@ const messages: LocaleMessages = {
 			'أداة على الإنترنت',
 		],
 	},
+	icon: {
+		license: {
+			label: 'ترخيص',
+		},
+		sponsorOnly: {
+			label: 'للداعمين فقط',
+		},
+		experimental: {
+			label: 'تجريبي',
+		},
+	},
 	alert: {
 		note: {
 			// Title for alerts of type 'note'
@@ -211,4 +222,3 @@ const messages: LocaleMessages = {
 } as const satisfies LocaleMessages;
 
 export default messages;
-

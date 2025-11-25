@@ -3,41 +3,48 @@ import type { OutputId } from '@config/output.ts';
 import type { ThemeId } from '@config/theme.ts';
 
 /**
+ * An object containing a capitalized title string.
+ */
+type WithTitle = {
+	title: Capitalize<string>;
+};
+
+/**
+ * An object containing a capitalized label string.
+ */
+type WithLabel = {
+	label: Capitalize<string>;
+};
+
+/**
  * Localized strings for a button link component.
  *
  * @property label - The visible button text
  * @property tooltip - The tooltip text shown on hover
  */
-type ButtonLink = {
-	label: Capitalize<string>;
+interface ButtonLink extends WithLabel {
 	tooltip: Capitalize<string>;
-};
+}
 
 /**
  * A map of output IDs to their localized labels.
  */
 type OutputMap = {
-	[id in OutputId]: {
-		label: string;
-	};
+	[id in OutputId]: WithLabel;
 };
 
 /**
  * A map of option IDs to their localized labels.
  */
 type OptionMap = {
-	[id in OptionId]: {
-		label: string;
-	};
+	[id in OptionId]: WithLabel;
 };
 
 /**
  * A map of theme IDs to their localized labels.
  */
 type ThemeMap = {
-	[id in ThemeId]: {
-		label: string;
-	};
+	[id in ThemeId]: WithLabel;
 };
 
 /**
@@ -47,27 +54,24 @@ type ThemeMap = {
  * navigation items, footer content, and configuration options.
  */
 export type LocaleMessages = {
-	site: {
-		title: Capitalize<string>;
+	site: WithTitle & {
 		description: Capitalize<string>;
 		longDescription: Capitalize<string>;
 		features: Capitalize<string>[];
 		requirements: Capitalize<string>;
 		keywords: string[];
 	};
+	icon: {
+		license: WithLabel;
+		sponsorOnly: WithLabel;
+		experimental: WithLabel;
+	};
 	alert: {
-		note: {
-			title: Capitalize<string>;
-		};
-		error: {
-			title: Capitalize<string>;
-		};
+		note: WithTitle;
+		error: WithTitle;
 	};
-	header: {
-		label: Capitalize<string>;
-	};
-	input: {
-		label: Capitalize<string>;
+	header: WithLabel;
+	input: WithLabel & {
 		placeholder: Capitalize<string>;
 		largeInputWarning: {
 			message: Capitalize<string>;
@@ -83,15 +87,11 @@ export type LocaleMessages = {
 		sponsor: ButtonLink;
 		moreProjects: ButtonLink;
 	};
-	locales: {
-		title: Capitalize<string>;
-	};
-	options: {
-		title: Capitalize<string>;
+	locales: WithTitle;
+	options: WithTitle & {
 		map: OptionMap;
 	};
-	themes: {
-		title: Capitalize<string>;
+	themes: WithTitle & {
 		map: ThemeMap;
 	};
 };

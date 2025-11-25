@@ -33,6 +33,17 @@ const messages: LocaleMessages = {
 			'alat daring',
 		],
 	},
+	icon: {
+		license: {
+			label: 'Lisensi',
+		},
+		sponsorOnly: {
+			label: 'Hanya untuk sponsor',
+		},
+		experimental: {
+			label: 'Eksperimental',
+		},
+	},
 	alert: {
 		note: {
 			title: 'Catatan',

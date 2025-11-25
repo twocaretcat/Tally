@@ -42,6 +42,20 @@ const messages: LocaleMessages = {
 			'online tool',
 		],
 	},
+	icon: {
+		license: {
+			// Accessible label for license icon
+			label: 'License',
+		},
+		sponsorOnly: {
+			// Accessible label for sponsor-only feature icon
+			label: 'Sponsor-only',
+		},
+		experimental: {
+			// Accessible label for experimental feature icon
+			label: 'Experimental',
+		},
+	},
 	alert: {
 		note: {
 			// Title for alerts of type 'note'

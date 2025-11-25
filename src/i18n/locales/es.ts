@@ -33,6 +33,17 @@ const messages: LocaleMessages = {
 			'herramienta en línea',
 		],
 	},
+	icon: {
+		license: {
+			label: 'Licencia',
+		},
+		sponsorOnly: {
+			label: 'Solo para patrocinadores',
+		},
+		experimental: {
+			label: 'Experimental',
+		},
+	},
 	alert: {
 		note: {
 			title: 'Nota',

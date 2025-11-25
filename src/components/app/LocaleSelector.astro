@@ -16,6 +16,7 @@ import ExperimentalIcon from './ExperimentalIcon.astro';
  */
 type Props = WithChildren<false>;
 
+const type = 'radio' as const;
 const currentLocaleId = getLocale(Astro);
 const msg = getLocaleMessages(currentLocaleId).locales;
 ---
@@ -44,9 +45,9 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 					<LinkWrapper to={getRelativeLocaleUrl(id)} {id}>
 						<Button
 							as="div"
-							role="radio"
+							role={type}
 							aria-checked={id === currentLocaleId}
-							showEnabledIcon
+							{type}
 						>
 							{flag}
 							<bdo dir={rtl ? 'rtl' : 'ltr'}>{languageName}</bdo>

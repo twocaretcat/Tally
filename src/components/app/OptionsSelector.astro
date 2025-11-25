@@ -14,19 +14,20 @@ import Button from './Button.astro';
  */
 type Props = WithChildren<false>;
 
+const type = 'checkbox' as const;
 const msg = getLocaleMessages(Astro).options;
 ---
 
 <InputGroup id={OPTION.id} title={msg.title} role="group">
 	{
 		entriesOf(OPTION.map).map(([id, optionConfig]) => (
-			<Button as="label" showEnabledIcon showDisabledIcon>
+			<Button as="label" {type}>
 				<HiddenInput
 					slot="input"
-					type="checkbox"
 					name={OPTION.id}
 					checked={optionConfig.default}
 					{id}
+					{type}
 				/>
 				{msg.map[id].label}
 			</Button>

@@ -5,27 +5,39 @@ import type { HTMLTag, Polymorphic } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
 
 /**
- * Props for a multi-purpose button component.
+ * Props for a multi-functional button component.
  *
- * Supports polymorphic rendering through the `as` prop, optional
- * display of enabled/disabled state icons, and custom children via
- * named and default slots.
+ * Renders a standard button by default.
+ * When a `type` is provided (`radio` or `checkbox`), the component
+ * displays the corresponding selection icons and applies the
+ * appropriate interactive styles.
+ *
+ * An input element may be passed into the `input` named slot.
+ * When present, its checked state controls the button's visual state.
+ * If no input is provided, the component falls back to using the
+ * `aria-checked` attribute to determine styling.
+ *
+ * @template Tag - The HTML tag to render as.
+ *
+ * @property as - The underlying HTML tag to render. Defaults to `"button"`.
+ * @property type - Enables selectable behavior.
+ * Can be `"radio"` or `"checkbox"`. When set, checkmark and/or
+ * cross icons are rendered automatically.
+ * @property children - Default slot content used as the button label.
  */
+
 type Props<Tag extends HTMLTag = HTMLTag> = WithChildren<
 	true,
 	Polymorphic<{
 		as: Tag;
-		showEnabledIcon?: boolean;
-		showDisabledIcon?: boolean;
+		type?: 'radio' | 'checkbox';
 	}>
 >;
 
-const {
-	as: Tag = 'button',
-	showEnabledIcon = false,
-	showDisabledIcon = false,
-	...restProps
-} = Astro.props;
+const { as: Tag = 'button', type, ...restProps } = Astro.props;
+
+const showDisabledIcon = type === 'checkbox';
+const showEnabledIcon = showDisabledIcon || type === 'radio';
 ---
 
 <Tag {...restProps} class="button">

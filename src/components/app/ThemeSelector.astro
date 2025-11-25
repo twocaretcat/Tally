@@ -16,6 +16,7 @@ import SponsorIcon from './SponsorIcon.astro';
  */
 type Props = WithChildren<false>;
 
+const type = 'radio' as const;
 const msg = getLocaleMessages(Astro).themes;
 ---
 
@@ -27,13 +28,13 @@ const msg = getLocaleMessages(Astro).themes;
 >
 	{
 		entriesOf(THEME.map).map(([id, { wip, sponsor }]) => (
-			<Button as="label" data-theme={id} showEnabledIcon>
+			<Button as="label" data-theme={id} {type}>
 				<HiddenInput
 					slot="input"
-					type="radio"
 					name={THEME.id}
 					checked={id === THEME.default.id}
 					{id}
+					{type}
 				/>
 				{msg.map[id].label}
 				{sponsor && <SponsorIcon />}

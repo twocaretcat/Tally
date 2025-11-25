@@ -1,5 +1,6 @@
 ---
 import type { HTMLTag, Polymorphic } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for a polymorphic card container with rounded corners and shadow.
@@ -7,18 +8,21 @@ import type { HTMLTag, Polymorphic } from 'astro/types';
  * @typeParam Tag - The HTML element type to render as (default: 'div')
  * @property as - The HTML element type to render as (default: 'div')
  */
-type Props<Tag extends HTMLTag> = Polymorphic<{
-	as: Tag;
-}>;
+type Props<Tag extends HTMLTag = HTMLTag> = WithChildren<
+	true,
+	Polymorphic<{
+		as: Tag;
+	}>
+>;
 
 const { as: Tag = 'div', ...restProps } = Astro.props;
 ---
 
 <!-- This must be on the same line to prevent whitespace from being inserted -->
-<Tag {...restProps}><slot /></Tag>
+<Tag {...restProps} class="card"><slot /></Tag>
 
 <style>
-	* {
+	.card {
 		border-radius: var(--r-md);
 		box-shadow: var(--s-box-md);
 		overflow: hidden;

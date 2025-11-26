@@ -1,16 +1,16 @@
 name: 🚀 Build and Deploy
-
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-
+  pull_request:
+    branches:
+      - main
 permissions:
   contents: read
   pages: write
   id-token: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,8 +26,8 @@ jobs:
         uses: withastro/action@v4
         with:
           node-version: 24
-
   deploy:
+    if: github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
     environment:

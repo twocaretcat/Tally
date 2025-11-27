@@ -12,11 +12,10 @@ import LinkWrapper from './LinkWrapper.astro';
  * @property icon - Optional Lucide icon component to display before the label
  * @property label - Optional text label
  */
-interface Props
-	extends WithChildren<
-		false,
-		Omit<ComponentProps<typeof LinkWrapper>, 'children'>
-	> {
+interface Props extends WithChildren<
+	false,
+	Omit<ComponentProps<typeof LinkWrapper>, 'children'>
+> {
 	icon?: typeof IconType;
 	label?: string;
 }

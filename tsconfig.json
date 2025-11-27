@@ -11,7 +11,7 @@
 			"@images/*": ["./src/images/*"],
 			"@layouts/*": ["./src/layouts/*"],
 			"@stores/*": ["./src/stores/*"],
-			"@utils/*": ["./src/utils/*"],
+			"@utils/*": ["./src/utils/*"]
 		}
 	}
 }

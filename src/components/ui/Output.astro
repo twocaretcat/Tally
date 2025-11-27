@@ -13,8 +13,10 @@ import type { WithChildren } from '../../types.ts';
  *
  * @property id - The output field ID (e.g., 'words', 'characters')
  */
-interface Props
-	extends WithChildren<false, Omit<HTMLAttributes<'output'>, 'id'>> {
+interface Props extends WithChildren<
+	false,
+	Omit<HTMLAttributes<'output'>, 'id'>
+> {
 	id: OutputId;
 }
 

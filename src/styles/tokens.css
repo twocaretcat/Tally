@@ -39,22 +39,13 @@
 	--d-md: 0.125s;
 
 	/* Ternary background color (high elevation) */
-	--bg-3: color-mix(
-		in oklch,
-		var(--bg-2),
-		var(--fg) var(--mix-sm)
-	);
+	--bg-3: color-mix(in oklch, var(--bg-2), var(--fg) var(--mix-sm));
 
 	/* Shadow color */
-	--s: color-mix(
-		in oklch,
-		oklch(0 0 0 / 0.25) var(--s-mix),
-		transparent
-	);
+	--s: color-mix(in oklch, oklch(0 0 0 / 0.25) var(--s-mix), transparent);
 
 	/* Shadows from Tailwind CSS 4 */
-	--s-box-md:
-		0 1px 3px 0 var(--s), 0 1px 2px -1px var(--s);
+	--s-box-md: 0 1px 3px 0 var(--s), 0 1px 2px -1px var(--s);
 	--s-box-lg: 0 20px 25px -5px var(--s), 0 8px 10px -6px var(--s);
 	--s-drop-md: drop-shadow(0 1px 0.3px var(--s))
 		drop-shadow(0 1px 0.2px var(--s));

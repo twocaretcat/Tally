@@ -23,9 +23,5 @@ h6 {
 }
 
 ::selection {
-	background-color: color-mix(
-		in oklch,
-		var(--p),
-		transparent var(--mix-lg)
-	);;
+	background-color: color-mix(in oklch, var(--p), transparent var(--mix-lg));
 }

@@ -11,8 +11,10 @@ type AnchorAttributes = HTMLAttributes<'a'>;
  *
  * @property tooltip - Optional tooltip text (mapped to title attribute)
  */
-interface BaseProps
-	extends WithChildren<true, Omit<AnchorAttributes, 'href' | 'title'>> {
+interface BaseProps extends WithChildren<
+	true,
+	Omit<AnchorAttributes, 'href' | 'title'>
+> {
 	tooltip?: AnchorAttributes['title'];
 }
 

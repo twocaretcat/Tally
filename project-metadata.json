@@ -4,12 +4,7 @@
 	"tagline": "Word Counter",
 	"background": "An online word counter, created in order to get more familiar with using CSS grid layouts, text parsing, and cookie handling in JavaScript. The site runs entirely client-side for privacy and has over 2000 organic monthly visits.",
 	"logoPath": "src/images/logo.svg",
-	"technologies": [
-		"Astro",
-		"AVA",
-		"Nanostores",
-		"Puppeteer"
-	],
+	"technologies": ["Astro", "AVA", "Nanostores", "Puppeteer"],
 	"category": "App",
 	"subcategory": "Web",
 	"schema": {

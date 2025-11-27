@@ -23,7 +23,7 @@
 
 /* Auto (dark) theme / Dark theme */
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-[data-theme]{
+[data-theme] {
 	--bg-1: oklch(20.5% 0 0); /* Neutral 900 */
 	--bg-2: oklch(26.9% 0 0); /* Neutral 800 */
 	--fg: oklch(98.5% 0 0); /* Neutral 50 */
@@ -157,12 +157,12 @@
 
 /* Colors from https://draculatheme.com/spec#color-palette (MIT) */
 [data-theme='dracula'] {
-	--bg-1: #191A21; /* Background Darker */
-	--bg-2: #21222C; /* Background Dark */
-	--fg: #F8F8F2; /* Foreground */
-	--p: #BD93F9; /* Purple */
-	--w: #F1FA8C; /* Yellow */
-	--e: #FF5555; /* Red */
+	--bg-1: #191a21; /* Background Darker */
+	--bg-2: #21222c; /* Background Dark */
+	--fg: #f8f8f2; /* Foreground */
+	--p: #bd93f9; /* Purple */
+	--w: #f1fa8c; /* Yellow */
+	--e: #ff5555; /* Red */
 }
 
 /* Colors from https://www.nordtheme.com/docs/colors-and-palettes (MIT) */

@@ -1,9 +1,10 @@
-import { mapEntries } from 'radashi';
+import type { Config } from '@twocaretcat/astro-snapshot';
+import { mapEntries, objectify } from 'radashi';
 import { LOCALE } from './config/locale.ts';
+import { SCREENSHOT } from './config/screenshot.ts';
 import { SITE } from './config/site.ts';
 import { SOCIAL_PREVIEW } from './config/social-preview.ts';
-import { keysOf } from './utils/index.ts';
-import type { Config } from '@twocaretcat/astro-snapshot';
+import { buildPagePath, keysOf } from './utils/index.ts';
 
 /**
  * Configuration for the Astro Snapshot integration.
@@ -11,19 +12,32 @@ import type { Config } from '@twocaretcat/astro-snapshot';
  * Defines which pages to screenshot and their output settings for social media previews.
  */
 export const ASTRO_SNAPSHOT_CONFIG: Config = {
-	pages: mapEntries(LOCALE.map, (localeId) => [
-		`/${localeId}/${SOCIAL_PREVIEW.id}` as const,
-		keysOf(SOCIAL_PREVIEW.map).map((socialPreviewId) => {
-			const { width, height } = SOCIAL_PREVIEW.map[socialPreviewId];
+	pages: {
+		...mapEntries(LOCALE.map, (localeId) => [
+			`/${localeId}/${SOCIAL_PREVIEW.id}` as const,
+			keysOf(SOCIAL_PREVIEW.map).map((socialPreviewId) => {
+				const { width, height } = SOCIAL_PREVIEW.map[socialPreviewId];
 
-			return {
-				outputPath:
-					`${SITE.srcDir}/images/${SOCIAL_PREVIEW.id}/${localeId}/${socialPreviewId}.png` as const,
-				width,
-				height,
-			};
-		}),
-	]),
+				return {
+					outputPath:
+						`${SITE.srcDir}/images/${SOCIAL_PREVIEW.id}/${localeId}/${socialPreviewId}.png` as const,
+					width,
+					height,
+				};
+			}),
+		]),
+		...objectify(
+			SCREENSHOT.list,
+			({ theme, input }) => buildPagePath(SITE.basePath, theme, input),
+			({ theme }) => [
+				{
+					outputPath: `${SCREENSHOT.outDir}${theme}.png` as const,
+					width: SCREENSHOT.width,
+					height: SCREENSHOT.height,
+				},
+			],
+		),
+	},
 } as const;
 
 const localIds = keysOf(LOCALE.map);

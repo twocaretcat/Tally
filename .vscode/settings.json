@@ -6,7 +6,7 @@
 		"**/node_modules": true,
 		"**/bun.lock": true
 	},
-	"prettier.documentSelectors": ["**/*.astro"],
+	"prettier.documentSelectors": ["**/*.astro", "**/*.svg"],
 	"[astro]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},

@@ -7,12 +7,19 @@ const config = {
 	useTabs: true,
 	tabWidth: 2,
 	singleQuote: true,
+	xmlWhitespaceSensitivity: 'ignore',
 	plugins: ['prettier-plugin-astro', 'prettier-plugin-astro-organize-imports'],
 	overrides: [
 		{
 			files: '*.astro',
 			options: {
 				parser: 'astro',
+			},
+		},
+		{
+			files: '*.svg',
+			options: {
+				parser: 'html',
 			},
 		},
 	],

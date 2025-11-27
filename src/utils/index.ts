@@ -1,6 +1,8 @@
 // This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
 import { assert, tryit, type Result } from 'radashi';
+import { INPUT } from '../config/input.ts';
 import { SITE } from '../config/site.ts';
+import { THEME, type ThemeId } from '../config/theme.ts';
 import type { HttpsUrl } from '../types.ts';
 
 /**
@@ -121,4 +123,16 @@ export function parseBoolean(value: string): Result<boolean, Error> {
  */
 export function decodeQueryParam(param: string) {
 	return decodeURIComponent(param.replaceAll('+', ' '));
+}
+
+/**
+ * Generates a absolute page path with theme and input text query parameters.
+ *
+ * @param basePath - The base path for the page
+ * @param theme - The theme ID to apply in the preview
+ * @param input - The input text to display in the preview
+ * @returns A fully constructed path with query parameters
+ */
+export function buildPagePath(basePath: string, theme: ThemeId, input: string) {
+	return `${basePath}?${THEME.id}=${theme}&${INPUT.id}=${encodeURIComponent(input)}` as const;
 }

@@ -1,14 +1,13 @@
 ---
 import ButtonLink from '@components/ui/ButtonLink.astro';
 import Card from '@components/ui/Card.astro';
-import { INPUT } from '@config/input.ts';
 import { LOCALE } from '@config/locale.ts';
+import { SCREENSHOT } from '@config/screenshot.ts';
 import { SITE } from '@config/site.ts';
-import { type ThemeId, THEME } from '@config/theme.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { Link } from '@lucide/astro';
-import { keysOf } from '@utils/index.ts';
+import { buildPagePath, keysOf } from '@utils/index.ts';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { WithChildren } from '../../types.ts';
 
@@ -17,17 +16,6 @@ import type { WithChildren } from '../../types.ts';
  */
 type Props = WithChildren<false>;
 
-/**
- * Generates an iframe URL with theme and placeholder text query parameters.
- *
- * @param themeId - The theme ID to apply in the preview
- * @returns A relative URL with query parameters for theme and input text
- */
-function getIframePath(themeId: ThemeId) {
-	return `${basePath}?${THEME.id}=${themeId}&${INPUT.id}=${msg.input.placeholder}`;
-}
-
-const themeIds: ThemeId[] = ['light', 'dark', 'teal'] as const;
 // Hardcoded because these strings don't need to be translated (this page is not indexed)
 const pageMsg = {
 	title: 'Social preview',
@@ -38,6 +26,9 @@ const currentLocaleId = getLocale(Astro);
 const msg = getLocaleMessages(currentLocaleId);
 const label = new URL(SITE.url.base).host;
 const basePath = getRelativeLocaleUrl(currentLocaleId);
+const pagePaths = SCREENSHOT.list
+	.slice(0, 3)
+	.map(({ theme }) => buildPagePath(basePath, theme, msg.input.placeholder));
 
 /**
  * Generates static paths for all supported locales.
@@ -62,10 +53,10 @@ export function getStaticPaths() {
 		</header>
 		<section>
 			{
-				themeIds.map((themeId) => (
+				pagePaths.map((src) => (
 					<figure>
 						{/* the scrolling attribute is deprecated, but this is by far the easiest way to hide scrollbars in an iframe */}
-						<iframe scrolling="no" src={getIframePath(themeId)} />
+						<iframe scrolling="no" {src} />
 					</figure>
 				))
 			}

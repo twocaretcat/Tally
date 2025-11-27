@@ -23,9 +23,8 @@
 	--f-2xl: calc(var(--f-xl) * 2);
 
 	/* Font weight */
-	--f-normal: 300;
-	--f-bold: calc(var(--f-normal) + 200);
-	--f-bolder: calc(var(--f-bold) + 200);
+	--f-normal: 400;
+	--f-bold: 700;
 
 	/* Max width */
 	--max-w: 56rem;
@@ -57,7 +56,6 @@
 	--s-box-md:
 		0 1px 3px 0 var(--s), 0 1px 2px -1px var(--s);
 	--s-box-lg: 0 20px 25px -5px var(--s), 0 8px 10px -6px var(--s);
-	--s-box-inset-md: inset 0 2px 4px var(--s);
 	--s-drop-md: drop-shadow(0 1px 0.3px var(--s))
 		drop-shadow(0 1px 0.2px var(--s));
 }

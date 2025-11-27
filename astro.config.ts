@@ -38,6 +38,7 @@ export default defineConfig({
 	},
 	i18n: I18N_CONFIG.astro,
 	experimental: {
+		svgo: true,
 		fonts: FONTS.map((props) => ({
 			...props,
 			provider: fontProviders.fontsource(),

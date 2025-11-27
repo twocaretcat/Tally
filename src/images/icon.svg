@@ -1,1 +1,37 @@
-<svg width="256" height="256" viewBox="0 0 67.73 67.73" xmlns="http://www.w3.org/2000/svg"><defs><path id="a" d="M63.49 204.52h87.31v105.51H63.49z"/><path id="d" d="M0 0h512v256H0z"/><path id="c" d="M0 0h512v256H0z"/><filter style="color-interpolation-filters:sRGB" id="b" x="-.08" y="-.08" width="1.15" height="1.17"><feFlood flood-opacity="1" flood-color="#000" result="flood"/><feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1"/><feGaussianBlur in="composite1" stdDeviation="1" result="blur"/><feOffset dy=".5" result="offset"/><feComposite in="SourceGraphic" in2="offset" result="composite2"/></filter></defs><g transform="translate(-60.42 57.68)"><rect style="fill:#1a1a1a;stroke-width:1;paint-order:markers stroke fill" width="63.5" height="63.5" x="62.54" y="-55.56" ry="7.94"/><text xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:41.275px;line-height:1.25;font-family:&quot;Roboto Slab&quot;;-inkscape-font-specification:&quot;Roboto Slab Bold&quot;;baseline-shift:baseline;fill:#fff;fill-opacity:1;stroke:none;stroke-width:.264583" x="-20.95" y="-23.46"/><g transform="matrix(1.22797 0 0 1.22797 114.78 -28.8)" style="stroke-width:.814348;filter:url(#b)"><g aria-label="ll" transform="matrix(.26458 0 0 .26458 -29.85 -18.17)" style="font-weight:700;font-size:156px;line-height:1.25;font-family:&quot;Roboto Slab&quot;;-inkscape-font-specification:&quot;Roboto Slab Bold&quot;;white-space:pre;shape-inside:url(#c);fill:#fff;stroke-width:.814348"><path d="M3.58 143.45v-13.33l10.74-2.29V40.31L2.44 38.02v-13.4h34.12v103.21l10.74 2.29v13.33zM53.32 143.45v-13.33l10.74-2.29V40.31l-11.88-2.29v-13.4H86.3v103.21l10.74 2.29v13.33z" style="stroke-width:.814348"/></g><g style="font-weight:700;font-size:156px;line-height:1.25;font-family:&quot;Roboto Slab&quot;;-inkscape-font-specification:&quot;Roboto Slab Bold&quot;;white-space:pre;shape-inside:url(#d);fill:#fff;stroke-width:.814348"><path d="M10.05 164.01V32.54h13.33V164Z" style="stroke-width:.814348" aria-label="|" transform="scale(.26458) rotate(60 48.64 -12.28)"/></g></g></g></svg>
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	version="1.1"
+	width="160"
+	height="160"
+	viewBox="0 0 42.331008 42.335001"
+	id="icon"
+	stroke="none"
+>
+	<style>
+		g {
+			fill: #51a2ff;
+			fill: var(--p, oklch(0.707 0.165 254.624));
+		}
+
+		@media (prefers-color-scheme: light) {
+			g {
+				fill: #432dd7;
+				fill: var(--bg-1, oklch(45.7% 0.24 277.023));
+			}
+		}
+	</style>
+	<g>
+		<path
+			id="l_1"
+			d="M 12.398997,35.852465 V 6.4825355 h 6.35025 v 18.7075395 10.66239 z"
+		/>
+		<path
+			id="l_2"
+			d="M 24.464437,35.852465 V 6.4825355 h 6.35026 V 35.852465 Z"
+		/>
+		<path
+			id="strikethrough"
+			d="m 37.966386,14.632825 c -1.553104,-0.049 -3.082863,-0.0728 -4.691039,0.14473 -4.322548,0.58456 -8.926527,1.85618 -12.859742,3.44707 -7.036795,2.8462 -18.5468751,10.11132 -18.5468751,10.11132 l 3.3593751,5.38867 c 0,0 11.888608,-7.31596 17.568359,-9.61328 3.546909,-1.43463 7.65695,-2.54402 11.330446,-3.04081 1.529595,-0.20687 5.913493,0.0506 5.913493,0.0506 l 0.421875,-6.33594 c 0,0 -0.942788,-0.10337 -2.495892,-0.15234 z"
+		/>
+	</g>
+</svg>

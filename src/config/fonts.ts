@@ -39,20 +39,29 @@ type FontsConfig = [
  */
 export const FONTS = [
 	{
-		name: 'Roboto Slab',
+		name: 'Lexend',
 		cssVariable: '--f-header',
-		weights: ['300 700'],
-		fallbacks: ['Roboto Slab Variable', 'Roboto Slab', 'sans-serif'],
+		weights: [700],
+		fallbacks: [
+			'Avenir',
+			'Montserrat',
+			'Corbel',
+			'URW Gothic',
+			'source-sans-pro',
+			'sans-serif',
+		],
 	},
 	{
-		name: 'Roboto Flex',
+		name: 'Ubuntu Sans',
 		cssVariable: '--f-body',
-		weights: ['300 700'],
+		weights: ['300 800'],
 		fallbacks: [
-			'Roboto Flex Variable',
-			'Roboto Flex',
+			'Ubuntu',
+			'Seravek',
+			'Gill Sans Nova',
 			'Calibri',
-			'Trebuchet MS',
+			'DejaVu Sans',
+			'source-sans-pro',
 			'sans-serif',
 		],
 	},

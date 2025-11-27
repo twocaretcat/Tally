@@ -1,9 +1,9 @@
 // This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
 import { assert, tryit, type Result } from 'radashi';
-import { SITE } from '../config/site.ts';
-import type { HttpsUrl } from '../types.ts';
-import { THEME, type ThemeId } from '../config/theme.ts';
 import { INPUT } from '../config/input.ts';
+import { SITE } from '../config/site.ts';
+import { THEME, type ThemeId } from '../config/theme.ts';
+import type { HttpsUrl } from '../types.ts';
 
 /**
  * Returns the keys of an object with proper type inference.
@@ -134,5 +134,5 @@ export function decodeQueryParam(param: string) {
  * @returns A fully constructed path with query parameters
  */
 export function buildPagePath(basePath: string, theme: ThemeId, input: string) {
-	return `${basePath}?${THEME.id}=${theme}&${INPUT.id}=${encodeURIComponent(input)}`;
+	return `${basePath}?${THEME.id}=${theme}&${INPUT.id}=${encodeURIComponent(input)}` as const;
 }

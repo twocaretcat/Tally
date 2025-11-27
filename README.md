@@ -47,11 +47,11 @@
 
 | ![Screenshot of Tally's dark theme](docs/images/theme/dark.png) | ![Screenshot of Tally's light theme](docs/images/theme/light.png) |
 | --------------------------------------------------------------- | ----------------------------------------------------------------- |
-| _Dark theme - v3_                                               | _Light theme - v3_                                                |
+| _Dark theme_                                                    | _Light theme_                                                     |
 
 | ![Screenshot of Tally's teal theme](docs/images/theme/teal.png) | ![Screenshot of Tally's dusk theme](docs/images/theme/dusk.png) |
 | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| _Teal theme - v3_                                               | _Dusk theme - v3_                                               |
+| _Teal theme_                                                    | _Dusk theme_                                                    |
 
 ### How it Works
 

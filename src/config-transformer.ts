@@ -34,6 +34,9 @@ export const ASTRO_SNAPSHOT_CONFIG: Config = {
 					outputPath: `${SCREENSHOT.outDir}${theme}.png` as const,
 					width: SCREENSHOT.width,
 					height: SCREENSHOT.height,
+					setViewportOptions: {
+						deviceScaleFactor: 2,
+					},
 				},
 			],
 		),

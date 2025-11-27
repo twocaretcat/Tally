@@ -2,10 +2,7 @@
 <div align="center">
 	<h1 class="projectName">
 		<a href="https://tally.johng.io" title="Tally - Word Counter">
-			<picture>
-				<source media="(prefers-color-scheme: light)" srcset="src/images/logo-light.svg">
-				<img class="projectLogo" src="src/images/logo.svg" alt="Project logo" title="Project logo" width="256">
-			</picture>
+			<img class="projectLogo" src="src/images/logo.svg" alt="Project logo" title="Project logo" width="256">
 		</a>
 	</h1>
 	<p class="projectBadges info">

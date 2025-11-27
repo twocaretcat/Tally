@@ -4,7 +4,7 @@ import { SITE } from '@config/site';
 import { THEME } from '@config/theme.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import iconIco from '@images/favicon.ico';
-import iconPng from '@images/icon-solid.png';
+import iconAppleSvg from '@images/icon-solid.svg';
 import iconSvg from '@images/icon.svg';
 import logoSvg from '@images/logo.svg';
 import { pathToAbsoluteUrl } from '@utils/index.ts';
@@ -27,7 +27,7 @@ type Props = {
 };
 
 const appleTouchIcon = await getImage({
-	src: iconPng,
+	src: iconAppleSvg,
 	format: 'png',
 	width: 180,
 	height: 180,
@@ -78,7 +78,9 @@ const pageCanonicalUrl = new URL(
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
 	<!-- Icons -->
-	<link rel="icon" sizes="48x48 32x32 24x24 16x16" href={iconIco} />
+	<!-- Chrome always picks the .ico when we include multiple sizes, which is undesirable, so we only include 16x16 here -->
+	<!-- Firefox Android picks the largest icon, which is also undesirable, but we can't win em all -->
+	<link rel="icon" sizes="16x16" href={iconIco} />
 	<link
 		rel="apple-touch-icon"
 		sizes={`${appleTouchIcon.options.width}x${appleTouchIcon.options.height}`}

@@ -155,21 +155,46 @@ You can also set any of the supported options by passing query params. You can f
 
 **Example:** [tally.johng.io/en?warnOnLargeInputText=false&rememberInputText=1&enableDebugLogging=0](https://tally.johng.io/en?warnOnLargeInputText=false&rememberInputText=1&enableDebugLogging=0)
 
+## 🛟 Support
+
+Need help? See the [support resources](https://github.com/twocaretcat/.github/blob/main/docs/SUPPORT.md) for information on how to:
+
+- request features
+- report bugs
+- ask questions
+- report security vulnerabilities
+
+## 🤝 Contributing
+
+Want to help out? Pull requests are welcome for:
+
+- feature implementations
+- bug fixes
+- translations
+- documentation
+- tests
+
+See the [contribution guide](../../contribute) for more details.
+
 ## 🧾 License
 
-Copyright © 2025 [John Goodliff](https://johng.io/r/tally).
+Copyright © 2025 [John Goodliff](https://johng.io/r/tally) ([@twocaretcat](https://github.com/twocaretcat)).
 
-This project is licensed under the AGPL-3.0 License. See the [LICENSE](LICENSE) for details.
+This project is licensed under the AGPL-3.0 License. See the [license](LICENSE) for more details.
 
 ## 🖇️ Related
 
 ### Recommended
 
+Other projects you might like:
+
 - **👤 [Tally Chrome Extension](https://github.com/twocaretcat/Tally-Extension)**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
 - **👤 [Mergist](https://mergist.johng.io)**: An online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device
 - **👤 [Shared File Finder for Google Drive](https://github.com/twocaretcat/Shared-File-Finder-for-Google-Drive)**: An Apps Script that finds all files/folders on Google Drive that are shared with others and adds them to a Google Sheet
 
-### Used Here
+### Depends On
+
+Projects used by this one:
 
 - **👤 [tally-ts](https://github.com/twocaretcat/tally-ts)**: A TypeScript word counting library. Used by **Tally** to compute counts
 - **👤 [astro-snapshot](https://github.com/twocaretcat/astro-snapshot)**: An Astro integration for generating screenshots of your pages automatically at build time. Used by **Tally** to generate social preview images

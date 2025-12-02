@@ -34,5 +34,16 @@ export default defineMarkdocConfig({
 				},
 			},
 		},
+		licenseButtonLink: {
+			render: component('@components/app/LicenseButtonLink.astro'),
+			attributes: {
+				to: {
+					type: String,
+				},
+				label: {
+					type: String,
+				},
+			},
+		},
 	},
 });

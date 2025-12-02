@@ -1,0 +1,44 @@
+---
+import ButtonLink from '@components/ui/ButtonLink.astro';
+import Card from '@components/ui/Card.astro';
+import { getLocaleMessages } from '@i18n/index.ts';
+import { Scale } from '@lucide/astro';
+import type { ComponentProps } from 'astro/types';
+
+/**
+ * Props for the `LicenseButtonLink` component.
+ *
+ * These are the same parameters accepted by `ButtonLink`, except the
+ * `icon` and `tooltip` fields are removed. The component supplies its
+ * own icon and localized tooltip text to indicate that it links to a
+ * third-party license page.
+ */
+type Props = Omit<ComponentProps<typeof ButtonLink>, 'icon' | 'tooltip'>;
+
+const msg = getLocaleMessages(Astro).icon.license.label;
+
+const props = Astro.props;
+---
+
+<Card>
+	<ButtonLink icon={Scale} tooltip={msg} {...props} />
+</Card>
+
+<style>
+	.card {
+		display: inline-flex;
+		margin-inline-start: var(--p-sm);
+		vertical-align: middle;
+		border-radius: calc(var(--r-md) / 4);
+
+		.button {
+			padding-block: 0;
+			padding-inline: var(--p-xs);
+			background-color: var(--bg-1);
+		}
+	}
+
+	a {
+		display: contents;
+	}
+</style>

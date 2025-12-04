@@ -1,7 +1,14 @@
+// @ts-check
 import { defineMarkdocConfig, nodes, component } from '@astrojs/markdoc/config';
+import { SITE } from '@config/site.ts';
+import { URL } from '@config/url.ts';
 
 /** @type {import('@markdoc/markdoc').Config} */
 export default defineMarkdocConfig({
+	variables: {
+		site: SITE,
+		url: URL,
+	},
 	nodes: {
 		document: {
 			...nodes.document,

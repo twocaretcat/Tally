@@ -1,5 +1,4 @@
 ---
-import { SITE } from '@config/site.ts';
 import { getLocaleMessages } from '@i18n/index.ts';
 import type { CollectionEntry, CollectionKey } from 'astro:content';
 import { render } from 'astro:content';
@@ -14,9 +13,6 @@ interface Props extends WithChildren<false> {
 	entry: CollectionEntry<CollectionKey>;
 }
 
-const config = {
-	site: SITE,
-} as const;
 const msg = getLocaleMessages(Astro);
 
 const { entry } = Astro.props;
@@ -24,4 +20,4 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<Content {msg} {...config} />
+<Content {msg} />

@@ -24,4 +24,4 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<Content {config} {msg} />
+<Content {msg} {...config} />

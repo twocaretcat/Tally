@@ -36,7 +36,7 @@ type UrlConfig = {
 	lucide: WithHomepageAndLicense;
 	animatedCssLoader: WithHomepageAndLicense & {
 		author: HttpsUrl;
-	}
+	};
 	astroBadges: WithHomepage;
 	astro: WithHomepage;
 };
@@ -54,7 +54,8 @@ export const URL = {
 	},
 	tallyExtension: {
 		homepage: 'https://github.com/twocaretcat/Tally-Extension',
-		chromeWebStore: 'https://chromewebstore.google.com/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk',
+		chromeWebStore:
+			'https://chromewebstore.google.com/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk',
 	},
 	okSolar: {
 		homepage: 'https://meat.io/oksolar',

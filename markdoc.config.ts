@@ -10,7 +10,6 @@ import Markdoc, {
 	type Tag,
 	type ValidationError,
 } from '@markdoc/markdoc';
-import Markdoc from '@markdoc/markdoc';
 import { SITE } from '@config/site.ts';
 import { URL } from '@config/url.ts';
 import { assert, get, isString } from 'radashi';

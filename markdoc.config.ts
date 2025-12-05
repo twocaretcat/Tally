@@ -1,11 +1,9 @@
-// @ts-check
 import { defineMarkdocConfig, nodes, component } from '@astrojs/markdoc/config';
 import Markdoc from '@markdoc/markdoc';
 import { SITE } from '@config/site.ts';
 import { URL } from '@config/url.ts';
 import { assert, get } from 'radashi';
 
-/** @type {import('@markdoc/markdoc').Config} */
 export default defineMarkdocConfig({
 	variables: {
 		site: SITE,

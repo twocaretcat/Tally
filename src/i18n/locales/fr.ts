@@ -48,6 +48,9 @@ const messages: LocaleMessages = {
 		note: {
 			title: 'Remarque',
 		},
+		warning: {
+			title: 'Avertissement',
+		},
 		error: {
 			title: 'Erreur',
 		},

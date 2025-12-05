@@ -1,6 +1,11 @@
 ---
 import { getLocaleMessages } from '@i18n/index.ts';
-import { Info, OctagonX, type Icon as IconType } from '@lucide/astro';
+import {
+	Info,
+	OctagonX,
+	TriangleAlert,
+	type Icon as IconType,
+} from '@lucide/astro';
 import type { HTMLAttributes } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
 import Icon from './Icon.astro';
@@ -9,7 +14,7 @@ import Strong from './Strong.astro';
 /**
  * The alert type determining icon, color, and styling.
  */
-type Type = 'note' | 'error';
+type Type = 'note' | 'warning' | 'error';
 
 /**
  * Props for an alert/notification aside with configurable styling.
@@ -17,20 +22,29 @@ type Type = 'note' | 'error';
  * Used by Markdoc for rendering alert blocks in markdown content.
  *
  * @property type - The alert type ('note' or 'error')
+ * @property title - An optional title that overrides the default title for the alert type
+ * @property icon - An optional icon that overrides the default icon for the alert type
  */
-interface Props extends WithChildren<true, HTMLAttributes<'aside'>> {
+interface Props extends WithChildren<
+	true,
+	Omit<HTMLAttributes<'aside'>, 'title'>
+> {
 	type?: Type;
+	title?: string;
+	icon?: typeof IconType;
 }
 
 const iconMap = {
 	note: Info,
+	warning: TriangleAlert,
 	error: OctagonX,
 } as { [key in Type]: typeof IconType };
 
-const { type = 'note', ...restProps } = Astro.props;
+let { type, title, icon, ...restProps } = Astro.props;
 
-const title = getLocaleMessages(Astro).alert[type].title;
-const icon = iconMap[type];
+type ??= 'note';
+title ??= getLocaleMessages(Astro).alert[type].title;
+icon ??= iconMap[type];
 ---
 
 <aside role="note" data-type={type} {...restProps}>
@@ -43,19 +57,21 @@ const icon = iconMap[type];
 
 <style>
 	aside {
+		--alert-color: var(--p);
+
 		display: flex;
 		flex-direction: column;
 		gap: var(--p-sm);
 		padding: var(--p-md);
 		border-radius: var(--r-md);
-		border: var(--b-md) solid var(--p);
+		border: var(--b-md) solid var(--alert-color);
 
 		> strong {
 			display: inline-flex;
 			flex-direction: row;
 			align-items: center;
 			gap: var(--p-xs);
-			color: var(--p);
+			color: var(--alert-color);
 			font-family: var(--f-header);
 		}
 
@@ -64,11 +80,11 @@ const icon = iconMap[type];
 		}
 	}
 
-	[data-type='error'] {
-		border-color: var(--e);
+	[data-type='warning'] {
+		--alert-color: var(--w);
+	}
 
-		> strong {
-			color: var(--e);
-		}
+	[data-type='error'] {
+		--alert-color: var(--e);
 	}
 </style>

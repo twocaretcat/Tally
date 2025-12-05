@@ -56,6 +56,9 @@ const messages: LocaleMessages = {
 			// Title for alerts of type 'note'
 			title: 'ملاحظة',
 		},
+		warning: {
+			title: 'تحذير',
+		},
 		error: {
 			// Title for alerts of type 'error'
 			title: 'خطأ',

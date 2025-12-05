@@ -43,6 +43,9 @@ const messages: LocaleMessages = {
 		note: {
 			title: '备注',
 		},
+		warning: {
+			title: '警告',
+		},
 		error: {
 			title: '错误',
 		},

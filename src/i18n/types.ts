@@ -68,6 +68,7 @@ export type LocaleMessages = {
 	};
 	alert: {
 		note: WithTitle;
+		warning: WithTitle;
 		error: WithTitle;
 	};
 	header: WithLabel;

@@ -44,6 +44,9 @@ const messages: LocaleMessages = {
 		note: {
 			title: 'Примечание',
 		},
+		warning: {
+			title: 'Предупреждение',
+		},
 		error: {
 			title: 'Ошибка',
 		},

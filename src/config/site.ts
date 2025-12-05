@@ -19,6 +19,7 @@ type SiteConfig = {
 		issues: HttpsUrl;
 		funding: HttpsUrl;
 		license: HttpsUrl;
+		privacyPolicy: HttpsUrl;
 	};
 	author: {
 		name: {
@@ -59,6 +60,7 @@ export const SITE = {
 		issues: `${REPO_URL}/issues`,
 		funding: `${AUTHOR_HOMEPAGE_URL}/funding`,
 		license: `${REPO_URL}/blob/main/LICENSE`,
+		privacyPolicy: `${AUTHOR_HOMEPAGE_URL}/privacy-policy`,
 	},
 	author: {
 		name: {

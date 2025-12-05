@@ -18,8 +18,8 @@ type SiteConfig = {
 		github: HttpsUrl;
 		issues: HttpsUrl;
 		funding: HttpsUrl;
-		specification: HttpsUrl;
-		mergist: HttpsUrl;
+		license: HttpsUrl;
+		privacyPolicy: HttpsUrl;
 	};
 	author: {
 		name: {
@@ -59,8 +59,8 @@ export const SITE = {
 		github: REPO_URL,
 		issues: `${REPO_URL}/issues`,
 		funding: `${AUTHOR_HOMEPAGE_URL}/funding`,
-		specification: `${REPO_URL}/blob/main/README.md#specification`,
-		mergist: 'https://mergist.johng.io',
+		license: `${REPO_URL}/blob/main/LICENSE`,
+		privacyPolicy: `${AUTHOR_HOMEPAGE_URL}/privacy-policy`,
 	},
 	author: {
 		name: {

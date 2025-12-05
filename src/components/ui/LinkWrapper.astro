@@ -48,7 +48,10 @@ href ??= to;
 
 const relsSet = new Set(rel?.split(' '));
 
-assert(href, "one of 'href' or 'to' attributes must be provided to Link");
+assert(
+	href,
+	"one of 'href' or 'to' attributes must be provided to LinkWrapper",
+);
 
 if (isExternalUrl(href)) {
 	relsSet.add('external');

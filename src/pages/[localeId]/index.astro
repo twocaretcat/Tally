@@ -1,4 +1,5 @@
 ---
+import ExperimentalIcon from '@components/app/ExperimentalIcon.astro';
 import Footer from '@components/app/Footer.astro';
 import Header from '@components/app/Header.astro';
 import CounterInput from '@components/app/home/CounterInput.astro';
@@ -51,7 +52,7 @@ async function getEntryIf<TId extends string>(
 }
 
 const currentLocaleId = getLocale(Astro);
-const msg = getLocaleMessages(currentLocaleId).site;
+const msg = getLocaleMessages(currentLocaleId);
 const inputPreloadVars = {
 	id: INPUT.id,
 	d: INPUT.default,
@@ -83,7 +84,7 @@ export function getStaticPaths() {
 }
 ---
 
-<PageLayout description={msg.longDescription}>
+<PageLayout description={msg.site.longDescription}>
 	<Header />
 	<Main>
 		<section>
@@ -97,7 +98,11 @@ export function getStaticPaths() {
 			</noscript>
 			{
 				experimentalLocaleAlertEntry && (
-					<Alert>
+					<Alert
+						type="warning"
+						title={msg.icon.experimental.label}
+						icon={ExperimentalIcon}
+					>
 						<MarkdocContent entry={experimentalLocaleAlertEntry} />
 					</Alert>
 				)

@@ -57,6 +57,33 @@
 
 Counting functionality is provided by the related [tally-ts] library. Refer to its documentation for more information on how the counting algorithm works.
 
+## 📦 Installation
+
+> [!NOTE]
+> These instructions are for self-hosting **Tally** on your own server or developing locally. If you just want to use the web app, you can visit it at [tally.johng.io].
+
+1. **Install [Bun](https://bun.com/)** (we use Bun, but [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) probably works too)
+
+2. **Clone the repository**
+
+   ```sh
+   git clone https://github.com/twocaretcat/Tally.git
+   cd Tally
+   ```
+
+3. **Install dependencies**
+
+   ```sh
+   bun install
+   ```
+
+4. **Build & Serve**
+
+   ```sh
+   bun run dev                       # Start the dev server, or
+   bun run build && bun run preview  # Build for production & preview the build
+   ```
+
 ## 🕹️ Usage
 
 You can access **Tally** at [tally.johng.io]. If your preferred language is supported, you will automatically be redirected to the appropriate page. If not, we'll show the English version, but you can always manually change the language later.

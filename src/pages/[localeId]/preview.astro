@@ -26,7 +26,7 @@ const currentLocaleId = getLocale(Astro);
 const msg = getLocaleMessages(currentLocaleId);
 const label = new URL(SITE.url.base).host;
 const basePath = getRelativeLocaleUrl(currentLocaleId);
-const pagePaths = SCREENSHOT.list
+const pagePaths = SCREENSHOT.variants
 	.slice(0, 3)
 	.map(({ theme }) => buildPagePath(basePath, theme, msg.input.placeholder));
 

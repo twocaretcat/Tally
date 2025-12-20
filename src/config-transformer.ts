@@ -27,18 +27,17 @@ export const ASTRO_SNAPSHOT_CONFIG: Config = {
 			}),
 		]),
 		...objectify(
-			SCREENSHOT.list,
+			SCREENSHOT.variants,
 			({ theme, input }) => buildPagePath(SITE.basePath, theme, input),
-			({ theme }) => [
-				{
-					outputPath: `${SCREENSHOT.outDir}${theme}.png` as const,
-					width: SCREENSHOT.width,
-					height: SCREENSHOT.height,
+			({ theme }) =>
+				SCREENSHOT.outputOptions.map(({ outDir, width, height, scale }) => ({
+					outputPath: `${outDir}${theme}.png` as const,
+					width: Math.floor(width / scale),
+					height: Math.floor(height / scale),
 					setViewportOptions: {
-						deviceScaleFactor: 2,
+						deviceScaleFactor: scale,
 					},
-				},
-			],
+				})),
 		),
 	},
 } as const;

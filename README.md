@@ -22,16 +22,25 @@
 
 ## 👋 About
 
-**Tally - Word Counter** is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, punctuation, and symbols/special characters. Make sure you have the right number of words for your essay or post by counting them instantly with **Tally**.
+**Tally - Word Counter** is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, punctuation, and symbols/special characters.
+
+**Tally** runs entirely in your browser, with no accounts, ads, or privacy-invasive tracking. Unlike many tools, it supports multiple languages, computes counts in real-time, and offers a modern, themeable interface (including dark mode).
+
+Make sure you have the right number of words for your essay or post by counting them instantly with **Tally**.
 
 ### Features
 
-- **🧮 View text metrics:** Count the number of characters, words, sentences, paragraphs, and lines in your text.
-- **📊 View character composition:** View the number of spaces, digits, letters, punctuation, and symbols/special characters in the input.
-- **🚀 Real-time updates:** Optimized for speed, **Tally** updates the counts in real-time as you type.
-- **🌍 Multilingual support:** Accurate word and character segmentation across many languages and scripts.
-- **🎨 Themes:** Save your eyes with the built-in dark mode, or try one of the other included themes.
-- **🆓 100% Free & Ad-Free:** Use the tool without distractions, privacy-invasive tracking, or paywalls — no ads, no sign-ups, no limitations.
+- **🧮 Text statistics:** Analyze your text in multiple ways
+  - **View general counts:** characters, words, sentences, paragraphs, and lines
+  - **View character counts by type:** spaces, digits, letters, punctuation, and symbols/special characters
+- **🚀 Real-time updates:** Optimized for speed, **Tally** updates the counts in real-time as you type
+- **🌍 Multilingual support:** Accurate token segmentation and classification across many languages and scripts
+- **🎨 Themes:** Save your eyes with the built-in dark mode, or try one of the other included themes
+- **🎛️ Options:** Customize your experience with various options
+  - **Warn on large input text:** Avoid accidentally pasting large amounts of text
+  - **Remember input text:** Save your text locally to continue where you left off
+  - **Enable debug logging:** Print debug logs to the console for troubleshooting purposes
+- **🆓 100% Free & Ad-Free:** Use the tool without distractions, privacy-invasive tracking, or paywalls — no ads, no sign-ups, no limitations
 - **👨🏻‍💻 Open-source:** Know how to code? Help make **Tally** better by contributing to the project on GitHub, or copy it and make your own version!
 
 ### Use Cases

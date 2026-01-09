@@ -12,6 +12,7 @@ h6 {
 
 * {
 	outline: var(--b-md) solid transparent;
+	scrollbar-color: var(--p) transparent;
 
 	&:focus-visible {
 		outline-color: var(--p);

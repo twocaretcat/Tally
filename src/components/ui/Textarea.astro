@@ -16,7 +16,7 @@ const props = Astro.props;
 <Card as="textarea" {...props} />
 
 <style>
-	textarea {
+	textarea.card {
 		min-height: 18rem;
 		max-height: var(--max-w);
 		border: none;
@@ -31,7 +31,7 @@ const props = Astro.props;
 		view-transition-name: input;
 		line-height: inherit;
 		/* Revert `overflow:hidden` set by Card */
-		overflow-y: auto;
+		overflow-block: auto;
 		contain: strict;
 
 		&:focus {
@@ -40,17 +40,6 @@ const props = Astro.props;
 
 		&:disabled {
 			opacity: var(--o-md);
-		}
-
-		&::-webkit-scrollbar {
-			width: var(--p-xs);
-		}
-
-		&::-webkit-scrollbar-thumb {
-			border-radius: var(--r-md);
-			background-color: var(--fg);
-			box-shadow: var(--s-box-md);
-			cursor: pointer;
 		}
 
 		&::placeholder {

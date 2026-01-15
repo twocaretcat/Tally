@@ -5,6 +5,7 @@ import { OPTION } from '@config/option.ts';
 import { INPUT } from '@config/input.ts';
 import { persistentBooleanAtom } from './utils.ts';
 import { type OutputId } from '@config/output.ts';
+import type { Lint } from 'harper.js';
 
 /**
  * The currently selected theme ID.
@@ -77,3 +78,8 @@ export const $inputText = atom<string>(
  * Null when no counts have been computed or when computation is cancelled.
  */
 export const $outputCounts = atom<{ [key in OutputId]: number } | null>(null);
+
+/**
+ * The computed lint issues for the current input.
+ */
+export const $outputLints = atom<Lint[]>([]);

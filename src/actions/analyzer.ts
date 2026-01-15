@@ -1,38 +1,26 @@
 import { INPUT } from '@config/input.ts';
 import {
-	$inputText,
 	$warnOnLargeInputText,
 	$outputCounts,
+	$outputLints,
 } from '@stores/index.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { Tally } from '@twocaretcat/tally-ts';
+import { WorkerLinter, binaryInlined } from 'harper.js';
+import { logElapsedTime } from '@utils/index.ts';
 
 const currentLocaleId = getLocale();
 const msg = getLocaleMessages(currentLocaleId).input.largeInputWarning.message;
-const tally = new Tally(currentLocaleId);
+const tally = new Tally({ locales: currentLocaleId });
+const linter = new WorkerLinter({ binary: binaryInlined });
 
 /**
- * Updates the output counts based on the current input text.
+ * Computes counts (character, word, etc.) for the given text and updates the counts output state.
  *
- * Warns the user and requests confirmation if the input exceeds the maximum
- * character limit (when warnings are enabled). Clears the output if the user
- * cancels the confirmation.
- *
- * @returns A promise that resolves when the counts have been updated
+ * @param text - The text to analyze
  */
-export async function updateCounts() {
-	const text = $inputText.get();
-
-	// Warn the user if the input text is large
-	if ($warnOnLargeInputText.get() && text.length > INPUT.maxCharacters) {
-		if (!confirm(msg)) {
-			$outputCounts.set(null);
-
-			return;
-		}
-	}
-
-	const startTime = performance.now();
+function updateCounts(text: string) {
+	const startTs = performance.now();
 	const { total, by, related } = tally.countGraphemes(text);
 	const counts = {
 		characters: total,
@@ -47,9 +35,50 @@ export async function updateCounts() {
 		symbols: by.symbols.total,
 	};
 
-	console.debug(
-		`Processed text in ${(performance.now() - startTime).toFixed(0)}ms`,
-	);
-
 	$outputCounts.set(counts);
+
+	logElapsedTime('Counted text', startTs);
+}
+
+/**
+ * Runs the linter on the provided text and updates the lint output state.
+ *
+ * @param text - The text to lint
+ * @returns A promise that resolves once linting and state updates are complete
+ */
+async function updateLints(text: string) {
+	const startTs = performance.now();
+	const lints = await linter.lint(text);
+
+	$outputLints.set(lints);
+
+	logElapsedTime('Linted text', startTs);
+}
+
+/**
+ * Analyzes the given text (compute counts, lint, etc.) and updates outputs.
+ *
+ * If enabled, prompts the user before processing large inputs and aborts
+ * the analysis if the user declines.
+ *
+ * @param text - The text to analyze
+ * @returns A promise that resolves when the counts have been updated
+ */
+export async function analyzeText(text: string) {
+	// Warn the user if the input text is large
+	if ($warnOnLargeInputText.get() && text.length > INPUT.maxCharacters) {
+		if (!confirm(msg)) {
+			$outputCounts.set(null);
+
+			return;
+		}
+	}
+
+	const startTs = performance.now();
+
+	updateCounts(text);
+
+	await updateLints(text);
+
+	logElapsedTime('Analyzed text', startTs);
 }

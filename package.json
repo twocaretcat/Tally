@@ -65,7 +65,7 @@
 		"npm-check-updates": "^19.3.1",
 		"prettier-plugin-astro-organize-imports": "^0.4.11",
 		"prettier-plugin-astro": "^0.14.1",
-		"prettier": "^3.7.4",
+		"prettier": "^3.8.0",
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
@@ -77,10 +77,11 @@
 		"@playform/compress": "^0.2.1",
 		"@twocaretcat/astro-snapshot": "npm:@jsr/twocaretcat__astro-snapshot@^2.1.0",
 		"@twocaretcat/tally-ts": "npm:@jsr/twocaretcat__tally-ts@^2.0.0",
-		"astro": "5.16.8",
+		"astro": "5.16.9",
 		"astro-better-image-service": "^2.1.10",
 		"astro-capo": "^0.0.1",
 		"astro-robots-txt": "^1.0.0",
+		"harper.js": "^1.4.0",
 		"nanostores": "^1.1.0",
 		"radashi": "^12.7.1",
 		"sharp": "^0.34.5"

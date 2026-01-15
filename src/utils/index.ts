@@ -136,3 +136,13 @@ export function decodeQueryParam(param: string) {
 export function buildPagePath(basePath: string, theme: ThemeId, input: string) {
 	return `${basePath}?${THEME.id}=${theme}&${INPUT.id}=${encodeURIComponent(input)}` as const;
 }
+
+/**
+ * Logs the elapsed time since a given start timestamp using `console.debug`.
+ *
+ * @param label - Descriptive label included in the log output.
+ * @param startTs - Start timestamp in milliseconds, typically from `performance.now()`.
+ */
+export function logElapsedTime(label: string, startTs: number) {
+	console.debug(`${label} in ${(performance.now() - startTs).toFixed(0)}ms`);
+}

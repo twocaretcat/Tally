@@ -114,7 +114,7 @@ export function getStaticPaths() {
 	<Footer />
 	<!-- Preload the input text as soon as possible to prevent FOUC -->
 	<script is:inline async type="module" define:vars={inputPreloadVars}>
-		document.getElementById(id).value =
+		document.getElementById(id).textContent =
 			new URLSearchParams(document.location.search).get(id) ??
 			localStorage.getItem(id) ??
 			d;

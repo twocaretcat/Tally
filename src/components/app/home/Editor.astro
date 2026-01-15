@@ -1,5 +1,5 @@
 ---
-import Textarea from '@components/ui/Textarea.astro';
+import Card from '@components/ui/Card.astro';
 import { INPUT } from '@config/input';
 import { getLocaleMessages } from '@i18n/index.ts';
 import type { WithChildren } from '../../../types.ts';
@@ -9,32 +9,209 @@ import type { WithChildren } from '../../../types.ts';
  */
 type Props = WithChildren<false>;
 
+// TODO: Fix placeholder
 const { label, placeholder } = getLocaleMessages(Astro).input;
 ---
 
-<Textarea
+<Card
 	id={INPUT.id}
-	{placeholder}
 	aria-label={label}
 	spellcheck="false"
+	role="textbox"
 	autofocus
-	disabled
 />
+
+<!-- There's currently no way to style these all at once :( -->
+<style>
+	::highlight(Agreement) {
+		text-decoration: var(--Agreement) underline var(--b-lg);
+	}
+
+	::highlight(BoundaryError) {
+		text-decoration: var(--BoundaryError) underline var(--b-lg);
+	}
+
+	::highlight(Capitalization) {
+		text-decoration: var(--Capitalization) underline var(--b-lg);
+	}
+
+	::highlight(Eggcorn) {
+		text-decoration: var(--Eggcorn) underline var(--b-lg);
+	}
+
+	::highlight(Enhancement) {
+		text-decoration: var(--Enhancement) underline var(--b-lg);
+	}
+
+	::highlight(Formatting) {
+		text-decoration: var(--Formatting) underline var(--b-lg);
+	}
+
+	::highlight(Grammar) {
+		text-decoration: var(--Grammar) underline var(--b-lg);
+	}
+
+	::highlight(Malapropism) {
+		text-decoration: var(--Malapropism) underline var(--b-lg);
+	}
+
+	::highlight(Miscellaneous) {
+		text-decoration: var(--Miscellaneous) underline var(--b-lg);
+	}
+
+	::highlight(Nonstandard) {
+		text-decoration: var(--Nonstandard) underline var(--b-lg);
+	}
+
+	::highlight(Punctuation) {
+		text-decoration: var(--Punctuation) underline var(--b-lg);
+	}
+
+	::highlight(Readability) {
+		text-decoration: var(--Readability) underline var(--b-lg);
+	}
+
+	::highlight(Redundancy) {
+		text-decoration: var(--Redundancy) underline var(--b-lg);
+	}
+
+	::highlight(Regionalism) {
+		text-decoration: var(--Regionalism) underline var(--b-lg);
+	}
+
+	::highlight(Repetition) {
+		text-decoration: var(--Repetition) underline var(--b-lg);
+	}
+
+	::highlight(Spelling) {
+		text-decoration: var(--Spelling) underline var(--b-lg);
+	}
+
+	::highlight(Style) {
+		text-decoration: var(--Style) underline var(--b-lg);
+	}
+
+	::highlight(Typo) {
+		text-decoration: var(--Typo) underline var(--b-lg);
+	}
+
+	::highlight(Usage) {
+		text-decoration: var(--Usage) underline var(--b-lg);
+	}
+
+	::highlight(WordChoice) {
+		text-decoration: var(--WordChoice) underline var(--b-lg);
+	}
+
+	#input {
+		min-height: 18rem;
+		max-height: var(--max-w);
+		padding: var(--p-md);
+		background-color: var(--bg-2);
+		color: var(--fg);
+		caret-color: var(--p);
+		border: none;
+		font-family: var(--f-body);
+		font-size: var(--f-md);
+		font-weight: var(--f-normal);
+		transition-duration: var(--d-md);
+		resize: block;
+		view-transition-name: input;
+		line-height: inherit;
+		/* Prevent whitespace from being collapsed when `contenteditable` is unset */
+		white-space: pre-wrap;
+		/* Revert `overflow:hidden` set by Card */
+		overflow-block: auto;
+		contain: strict;
+
+		/* Disabled */
+		&:not([contenteditable]) {
+			opacity: var(--o-md);
+		}
+	}
+</style>
 
 <script>
 	import { INPUT } from '@config/input.ts';
-	import { $inputText } from '@stores/index.ts';
-	import { getDefinedElementById } from '@utils/index.ts';
-	import { debounce } from 'radashi';
+	import { LINT_KINDS, type LintKind } from '@lib/harper.ts';
+	import { $inputText, $outputLints } from '@stores/index.ts';
+	import { immediateDebounce } from '@utils/immediate-debounce.ts';
+	import { addValueToMapSet, getDefinedElementById } from '@utils/index.ts';
+	import type { Lint } from 'harper.js';
 
-	// Setting the initial textarea value is handled by the preload script on the counter page
-	const updateInputText = debounce({ delay: 35 }, () =>
-		$inputText.set(input.value),
-	);
+	/**
+	 * Creates a Range object for a text node with bounds checking.
+	 *
+	 * @param node - The text node to create the range within
+	 * @param start - Starting character offset
+	 * @param end - Ending character offset
+	 * @returns A Range object with the specified boundaries
+	 */
+	function createRange(node: Node, start: number, end: number) {
+		const range = new Range();
 
-	const input = getDefinedElementById<HTMLTextAreaElement>(INPUT.id);
+		range.setStart(node, start);
+		range.setEnd(node, end);
+
+		return range;
+	}
+
+	/**
+	 * Updates CSS Custom Highlights for lint issues in the input text.
+	 *
+	 * @param lints - Array of Lint objects
+	 */
+	function updateHighlights(lints: readonly Lint[]) {
+		const textNode = input.firstChild;
+
+		if (!textNode) return;
+
+		const inputLength = textNode.nodeValue?.length ?? 0;
+		const newLintKindToHighlightMap = new Map<LintKind, Highlight>();
+
+		for (const lint of lints) {
+			const lintKind = lint.lint_kind() as LintKind;
+			const { start, end } = lint.span();
+
+			// If the end index is out of bounds, skip it and the remaining lints (assuming they are in order)
+			// This may happen if the input text is modified before we get the lint result back
+			if (end > inputLength) break;
+
+			const range = createRange(textNode, start, end);
+
+			addValueToMapSet(newLintKindToHighlightMap, lintKind, range, Highlight);
+		}
+
+		// Replace all the highlights at once to prevent flickering
+		for (const lintKind of LINT_KINDS) {
+			CSS.highlights.set(
+				lintKind,
+				newLintKindToHighlightMap.get(lintKind) ?? new Highlight(),
+			);
+		}
+	}
+
+	/**
+	 * Debounced handler that normalizes the input node and updates the input text store.
+	 */
+	const updateInputText = immediateDebounce({ delay: 35 }, async () => {
+		// If the input has multiple text nodes, normalize them into one
+		if (input.childNodes.length > 1) {
+			input.normalize();
+		}
+
+		// Setting the initial input value is handled by the preload script on the counter page
+		$inputText.set(input.firstChild?.nodeValue ?? '');
+	});
+
+	const input = getDefinedElementById<HTMLDivElement>(INPUT.id);
+
+	$outputLints.subscribe(updateHighlights);
 
 	input.addEventListener('input', updateInputText);
 
-	input.disabled = false;
+	// Wait till the page has loaded before enabling the input
+	input.contentEditable = 'plaintext-only';
+
+	updateInputText();
 </script>

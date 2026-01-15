@@ -7,7 +7,7 @@ import {
 	$rememberInputText,
 	$theme,
 } from '@stores/index.ts';
-import { updateCounts } from '../actions/counter.ts';
+import { analyzeText } from '../actions/analyzer.ts';
 import { toggleDebugLogging } from '../actions/logger.ts';
 import { THEME } from '@config/theme.ts';
 
@@ -34,7 +34,7 @@ $theme.subscribe((themeId) => {
  * If `$rememberInputText` is enabled, saves the current input to `$persistedInputText`.
  */
 $inputText.subscribe((inputText) => {
-	updateCounts();
+	analyzeText(inputText);
 
 	if ($rememberInputText.get()) {
 		$persistedInputText.set(inputText);

@@ -1,6 +1,7 @@
 ---
 import Icon from '@components/ui/Icon.astro';
 import { Check, X } from '@lucide/astro';
+import { clsx } from '@utils/index.ts';
 import type { HTMLTag, Polymorphic } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
 
@@ -34,19 +35,22 @@ type Props<Tag extends HTMLTag = HTMLTag> = WithChildren<
 	}>
 >;
 
-const { as: Tag = 'button', type, ...restProps } = Astro.props;
+const {
+	as: Tag = 'button',
+	type,
+	class: className,
+	...restProps
+} = Astro.props;
 
 const showDisabledIcon = type === 'checkbox';
 const showEnabledIcon = showDisabledIcon || type === 'radio';
 ---
 
-<Tag {...restProps} class="button">
+<Tag {...restProps} class={clsx('button', className)}>
 	<slot name="input" />
 	{showEnabledIcon && <Icon icon={Check} role="presentation" />}
 	{showDisabledIcon && <Icon icon={X} role="presentation" />}
-	<span>
-		<slot />
-	</span>
+	<span><slot /></span>
 </Tag>
 
 <style>
@@ -59,6 +63,7 @@ const showEnabledIcon = showDisabledIcon || type === 'radio';
 		flex-grow: 1;
 		padding: var(--p-sm);
 		color: var(--fg);
+		border: none;
 		white-space: nowrap;
 		cursor: pointer;
 		transition-duration: var(--d-md);

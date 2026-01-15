@@ -1,4 +1,5 @@
 ---
+import { clsx } from '@utils/index.ts';
 import type { HTMLTag, Polymorphic } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
 
@@ -15,11 +16,11 @@ type Props<Tag extends HTMLTag = HTMLTag> = WithChildren<
 	}>
 >;
 
-const { as: Tag = 'div', ...restProps } = Astro.props;
+const { as: Tag = 'div', class: className, ...restProps } = Astro.props;
 ---
 
 <!-- This must be on the same line to prevent whitespace from being inserted -->
-<Tag {...restProps} class="card"><slot /></Tag>
+<Tag {...restProps} class={clsx('card', className)}><slot /></Tag>
 
 <style>
 	.card {

@@ -10,6 +10,7 @@
 			"@i18n/*": ["./src/i18n/*"],
 			"@images/*": ["./src/images/*"],
 			"@layouts/*": ["./src/layouts/*"],
+			"@lib/*": ["./src/lib/*"],
 			"@stores/*": ["./src/stores/*"],
 			"@utils/*": ["./src/utils/*"]
 		}

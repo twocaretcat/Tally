@@ -60,6 +60,18 @@ export function wKey(...keys: (string | undefined | null)[]) {
 }
 
 /**
+ * Joins class name strings into a single space-delimited string.
+ *
+ * Ignores falsy values such as `undefined` and `null`.
+ *
+ * @param classes - Class name values to combine
+ * @returns A space-separated class name string
+ */
+export function clsx(...classes: (string | undefined | null)[]) {
+	return classes.filter(Boolean).join(' ');
+}
+
+/**
  * Checks if a URL string is an external HTTPS URL.
  *
  * @param urlString - The URL string to check

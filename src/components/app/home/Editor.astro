@@ -9,20 +9,20 @@ import type { WithChildren } from '../../../types.ts';
  */
 type Props = WithChildren<false>;
 
-// TODO: Fix placeholder
 const { label, placeholder } = getLocaleMessages(Astro).input;
 ---
 
 <Card
 	id={INPUT.id}
 	aria-label={label}
+	aria-placeholder={placeholder}
 	spellcheck="false"
 	role="textbox"
 	autofocus
 />
 
-<!-- There's currently no way to style these all at once :( -->
 <style>
+	/* There's currently no way to style these all at once :( */
 	::highlight(Agreement) {
 		text-decoration: var(--Agreement) underline var(--b-lg);
 	}
@@ -127,6 +127,11 @@ const { label, placeholder } = getLocaleMessages(Astro).input;
 
 		/* Disabled */
 		&:not([contenteditable]) {
+			opacity: var(--o-md);
+		}
+
+		&:empty::before {
+			content: attr(aria-placeholder);
 			opacity: var(--o-md);
 		}
 	}

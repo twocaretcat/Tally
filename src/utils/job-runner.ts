@@ -36,7 +36,6 @@ export function createJobRunner<TArgs extends any[], TReturn>(
 	const jobMap = new Map<string, Job>();
 
 	let running = false;
-	let runningId: string | undefined;
 
 	/**
 	 * Selects the next queued job ID to run.
@@ -72,7 +71,6 @@ export function createJobRunner<TArgs extends any[], TReturn>(
 		jobMap.delete(nextId);
 
 		running = true;
-		runningId = nextId;
 
 		try {
 			const result = await asyncFn(...job.args);
@@ -82,7 +80,6 @@ export function createJobRunner<TArgs extends any[], TReturn>(
 			for (const r of job.resolvers) r.reject(err);
 		} finally {
 			running = false;
-			runningId = undefined;
 
 			// Continue with remaining jobs
 			if (highQueue.length || lowQueue.length) void processNext();

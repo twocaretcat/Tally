@@ -140,13 +140,13 @@ const { label, placeholder } = getLocaleMessages(Astro).input;
 <script>
 	import { INPUT } from '@config/input.ts';
 	import { LINT_KINDS, type LintKind } from '@lib/harper.ts';
-	import { $inputText, $outputLints } from '@stores/index.ts';
+	import { $input, $lintChunkMap } from '@stores/index.ts';
 	import { immediateDebounce } from '@utils/immediate-debounce.ts';
 	import { addValueToMapSet, getDefinedElementById } from '@utils/index.ts';
-	import type { Lint } from 'harper.js';
+	import type { LintChunkMap, RangeIndices } from '../../../types.ts';
 
 	/**
-	 * Creates a Range object for a text node with bounds checking.
+	 * Creates a Range object for a text node.
 	 *
 	 * @param node - The text node to create the range within
 	 * @param start - Starting character offset
@@ -165,9 +165,9 @@ const { label, placeholder } = getLocaleMessages(Astro).input;
 	/**
 	 * Updates CSS Custom Highlights for lint issues in the input text.
 	 *
-	 * @param lints - Array of Lint objects
+	 * @param lintChunkMap - Map of lint chunks to highlight
 	 */
-	function updateHighlights(lints: readonly Lint[]) {
+	function updateHighlights(lintChunkMap: Readonly<LintChunkMap>) {
 		const textNode = input.firstChild;
 
 		if (!textNode) return;
@@ -175,17 +175,23 @@ const { label, placeholder } = getLocaleMessages(Astro).input;
 		const inputLength = textNode.nodeValue?.length ?? 0;
 		const newLintKindToHighlightMap = new Map<LintKind, Highlight>();
 
-		for (const lint of lints) {
-			const lintKind = lint.lint_kind() as LintKind;
-			const { start, end } = lint.span();
+		for (const lintChunk of Object.values(lintChunkMap)) {
+			if (!lintChunk) continue;
 
-			// If the end index is out of bounds, skip it and the remaining lints (assuming they are in order)
-			// This may happen if the input text is modified before we get the lint result back
-			if (end > inputLength) break;
+			for (const lint of lintChunk.lints) {
+				const lintKind = lint.lint_kind() as LintKind;
+				const span = lint.span();
+				const start = lintChunk.start + span.start;
+				const end = lintChunk.start + span.end;
 
-			const range = createRange(textNode, start, end);
+				// If the end index is out of bounds, skip it and the remaining lints (assuming they are in order)
+				// This may happen if the input text is modified before we get the lint result back
+				if (end > inputLength) break;
 
-			addValueToMapSet(newLintKindToHighlightMap, lintKind, range, Highlight);
+				const range = createRange(textNode, start, end);
+
+				addValueToMapSet(newLintKindToHighlightMap, lintKind, range, Highlight);
+			}
 		}
 
 		// Replace all the highlights at once to prevent flickering
@@ -198,25 +204,97 @@ const { label, placeholder } = getLocaleMessages(Astro).input;
 	}
 
 	/**
-	 * Debounced handler that normalizes the input node and updates the input text store.
+	 * Returns a single text node for the input element.
+	 *
+	 * Normalizes multiple text nodes and removes empty or newline-only nodes.
+	 *
+	 * @returns The text node, or `undefined` if none exists
 	 */
-	const updateInputText = immediateDebounce({ delay: 35 }, async () => {
+	function getTextNode() {
+		const numOfChildren = input.childNodes.length;
+
 		// If the input has multiple text nodes, normalize them into one
-		if (input.childNodes.length > 1) {
+		if (numOfChildren > 1) {
 			input.normalize();
 		}
 
+		const textNode = input.firstChild;
+
+		// There's nothing here
+		if (!textNode) return;
+
+		const { nodeValue } = textNode;
+
+		// Remove the text node if it is empty so that placeholder text can be shown with CSS
+		if (!nodeValue || nodeValue === '\n') {
+			input.removeChild(textNode);
+
+			return;
+		}
+
+		return textNode;
+	}
+
+	/**
+	 * Computes the visible text range within the input element.
+	 *
+	 * Uses caret positions at the element bounds and clamps the result
+	 * to the length of the current text node.
+	 *
+	 * @param textNode The text node to measure.
+	 * @returns A tuple `[start, end]` indicating the visible range of text.
+	 */
+	function getVisibleRangeIndices(textNode: Node | undefined): RangeIndices {
+		const { top, left, bottom, right } = input.getBoundingClientRect();
+		const maxEnd = textNode?.nodeValue?.length ?? 0;
+		const start = document.caretPositionFromPoint(left, top)?.offset ?? 0;
+		const end =
+			document.caretPositionFromPoint(right, bottom)?.offset ?? maxEnd;
+		const clippedStart = Math.max(start, 0);
+		const clippedEnd = Math.min(end, maxEnd);
+
+		return [clippedStart, clippedEnd];
+	}
+
+	/**
+	 * Extracts the user-visible text from a text node.
+	 *
+	 * @param textNode The text node to extract text from.
+	 * @returns The text content as a string, or an empty string if the node is absent or empty.
+	 */
+	function getText(textNode: Node | undefined) {
+		const text = textNode?.nodeValue;
+
+		if (!text) return '';
+
+		// Browsers may include a trailing newline in the input text, but this is not visible to the user
+		if (text.endsWith('\n')) {
+			return text.slice(0, -1);
+		}
+
+		return text;
+	}
+
+	/**
+	 * Debounced handler that normalizes the input node and updates the input text store.
+	 */
+	const updateInputText = immediateDebounce({ delay: 35 }, async () => {
+		const textNode = getTextNode();
+
 		// Setting the initial input value is handled by the preload script on the counter page
-		$inputText.set(input.firstChild?.nodeValue ?? '');
+		$input.set({
+			text: getText(textNode),
+			visibleRangeIndices: getVisibleRangeIndices(textNode),
+		});
 	});
 
 	const input = getDefinedElementById<HTMLDivElement>(INPUT.id);
 
-	$outputLints.subscribe(updateHighlights);
+	$lintChunkMap.subscribe(updateHighlights);
 
 	input.addEventListener('input', updateInputText);
 
-	// Wait till the page has loaded before enabling the input
+	// Wait till the page has loaded before 'enabling' the input
 	input.contentEditable = 'plaintext-only';
 
 	updateInputText();

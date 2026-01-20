@@ -1,7 +1,7 @@
 import { INPUT } from '@config/input.ts';
 import {
 	$enableDebugLogging,
-	$inputText,
+	$input,
 	$persistedInputText,
 	$persistedTheme,
 	$rememberInputText,
@@ -29,15 +29,15 @@ $theme.subscribe((themeId) => {
 });
 
 /**
- * Updates counts and optionally persists input text whenever it changes.
+ * Analyze input text and optionally persists the value whenever it changes.
  *
  * If `$rememberInputText` is enabled, saves the current input to `$persistedInputText`.
  */
-$inputText.subscribe((inputText) => {
-	analyzeText(inputText);
+$input.subscribe(async ({ text, visibleRangeIndices }) => {
+	analyzeText(text, visibleRangeIndices);
 
 	if ($rememberInputText.get()) {
-		$persistedInputText.set(inputText);
+		$persistedInputText.set(text);
 	}
 });
 
@@ -47,7 +47,7 @@ $inputText.subscribe((inputText) => {
  * Sets `$persistedInputText` to either the current input (if remembering) or the default empty value.
  */
 $rememberInputText.subscribe((rememberInputText) => {
-	const value = rememberInputText ? $inputText.get() : INPUT.default;
+	const value = rememberInputText ? $input.get().text : INPUT.default;
 
 	$persistedInputText.set(value);
 });

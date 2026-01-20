@@ -2,9 +2,9 @@
 import ExperimentalIcon from '@components/app/ExperimentalIcon.astro';
 import Footer from '@components/app/Footer.astro';
 import Header from '@components/app/Header.astro';
-import CounterInput from '@components/app/home/CounterInput.astro';
-import CounterOutputs from '@components/app/home/CounterOutputs.astro';
+import Editor from '@components/app/home/Editor.astro';
 import Nav from '@components/app/home/Nav.astro';
+import Outputs from '@components/app/home/Outputs.astro';
 import Alert from '@components/ui/Alert.astro';
 import Article from '@components/ui/Article.astro';
 import Main from '@components/ui/Main.astro';
@@ -88,8 +88,8 @@ export function getStaticPaths() {
 	<Header />
 	<Main>
 		<section>
-			<CounterInput />
-			<CounterOutputs />
+			<Editor />
+			<Outputs />
 			<Nav />
 			<noscript>
 				<Alert type="error">
@@ -114,7 +114,7 @@ export function getStaticPaths() {
 	<Footer />
 	<!-- Preload the input text as soon as possible to prevent FOUC -->
 	<script is:inline async type="module" define:vars={inputPreloadVars}>
-		document.getElementById(id).value =
+		document.getElementById(id).textContent =
 			new URLSearchParams(document.location.search).get(id) ??
 			localStorage.getItem(id) ??
 			d;

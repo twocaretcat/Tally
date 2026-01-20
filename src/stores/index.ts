@@ -1,10 +1,11 @@
-import { atom } from 'nanostores';
+import { atom, map } from 'nanostores';
 import { persistentAtom } from '@nanostores/persistent';
 import { THEME, type ThemeId } from '@config/theme.ts';
 import { OPTION } from '@config/option.ts';
 import { INPUT } from '@config/input.ts';
 import { persistentBooleanAtom } from './utils.ts';
 import { type OutputId } from '@config/output.ts';
+import type { LintChunkMap, RangeIndices } from '../types.ts';
 
 /**
  * The currently selected theme ID.
@@ -62,13 +63,25 @@ export const $enableDebugLogging = persistentBooleanAtom(
 );
 
 /**
- * The current input text in the text area.
+ * The current text input and its visible range.
  *
  * Initialized from `$persistedInputText` if `$rememberInputText` is enabled,
  * otherwise uses the default empty value.
  */
-export const $inputText = atom<string>(
-	$rememberInputText.get() ? $persistedInputText.get() : INPUT.default,
+export const $input = atom<{
+	text: string;
+	visibleRangeIndices: RangeIndices;
+}>(
+	(() => {
+		const text = $rememberInputText.get()
+			? $persistedInputText.get()
+			: INPUT.default;
+
+		return {
+			text,
+			visibleRangeIndices: [0, text.length],
+		};
+	})(),
 );
 
 /**
@@ -77,3 +90,15 @@ export const $inputText = atom<string>(
  * Null when no counts have been computed or when computation is cancelled.
  */
 export const $outputCounts = atom<{ [key in OutputId]: number } | null>(null);
+
+/**
+ * Computed lint chunks for the current input.
+ */
+export const $lintChunkMap = map<LintChunkMap>({
+	visible: {
+		start: 0,
+		lints: [],
+	},
+	trailing: undefined,
+	leading: undefined,
+});

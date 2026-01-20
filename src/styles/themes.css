@@ -7,6 +7,7 @@
 	 --w    : Warning accent color
 	 --e    : Error accent color
    --s-mix: Shadow mix percentage for blending effects
+	 --*:   : Lint kind accent colors
 */
 
 /* Default light theme values */
@@ -19,6 +20,26 @@
 	--l-w: oklch(55.5% 0.163 48.998); /* Amber 700 */
 	--l-e: oklch(50.5% 0.213 27.518); /* Red 700 */
 	--l-s-mix: 30%;
+	--l-Agreement: oklch(53.2% 0.157 131.589); /* Lime 700 */
+	--l-BoundaryError: oklch(55.5% 0.163 48.998); /* Amber 700 */
+	--l-Capitalization: oklch(49.1% 0.27 292.581); /* Violet 700 */
+	--l-Eggcorn: oklch(55.3% 0.195 38.402); /* Orange 700 */
+	--l-Enhancement: oklch(45.7% 0.24 277.023); /* Indigo 700 */
+	--l-Formatting: oklch(49.6% 0.265 301.924); /* Purple 700 */
+	--l-Grammar: oklch(50.5% 0.213 27.518); /* Red 700 */
+	--l-Malapropism: oklch(52.5% 0.223 3.958); /* Pink 700 */
+	--l-Miscellaneous: oklch(51.1% 0.096 186.391); /* Teal 700 */
+	--l-Nonstandard: oklch(52% 0.105 223.128); /* Cyan 700 */
+	--l-Punctuation: oklch(55.5% 0.163 48.998); /* Amber 700 */
+	--l-Readability: oklch(52.7% 0.154 150.069); /* Green 700 */
+	--l-Redundancy: oklch(48.8% 0.243 264.376); /* Blue 700 */
+	--l-Regionalism: oklch(49.6% 0.265 301.924); /* Purple 700 */
+	--l-Repetition: oklch(50.8% 0.118 165.612); /* Emerald 700 */
+	--l-Spelling: oklch(51.4% 0.222 16.935); /* Rose 700 */
+	--l-Style: oklch(55.4% 0.135 66.442); /* Yellow 700 */
+	--l-Typo: oklch(55.3% 0.195 38.402); /* Orange 700 */
+	--l-Usage: oklch(50% 0.134 242.749); /* Sky 700 */
+	--l-WordChoice: oklch(51.8% 0.253 323.949); /* Fuchsia 700 */
 }
 
 /* Auto (dark) theme / Dark theme */
@@ -31,6 +52,26 @@
 	--w: oklch(82.8% 0.189 84.429); /* Amber 400 */
 	--e: oklch(70.4% 0.191 22.216); /* Red 400 */
 	--s-mix: 100%;
+	--Agreement: oklch(84.1% 0.238 128.85); /* Lime 400 */
+	--BoundaryError: oklch(82.8% 0.189 84.429); /* Amber 400 */
+	--Capitalization: oklch(70.2% 0.183 293.541); /* Violet 400 */
+	--Eggcorn: oklch(75% 0.183 55.934); /* Orange 400 */
+	--Enhancement: oklch(67.3% 0.182 276.935); /* Indigo 400 */
+	--Formatting: oklch(71.4% 0.203 305.504); /* Purple 400 */
+	--Grammar: oklch(70.4% 0.191 22.216); /* Red 400 */
+	--Malapropism: oklch(71.8% 0.202 349.761); /* Pink 400 */
+	--Miscellaneous: oklch(77.7% 0.152 181.912); /* Teal 400 */
+	--Nonstandard: oklch(78.9% 0.154 211.53); /* Cyan 400 */
+	--Punctuation: oklch(82.8% 0.189 84.429); /* Amber 400 */
+	--Readability: oklch(79.2% 0.209 151.711); /* Green 400 */
+	--Redundancy: oklch(70.7% 0.165 254.624); /* Blue 400 */
+	--Regionalism: oklch(71.4% 0.203 305.504); /* Purple 400 */
+	--Repetition: oklch(76.5% 0.177 163.223); /* Emerald 400 */
+	--Spelling: oklch(71.2% 0.194 13.428); /* Rose 400 */
+	--Style: oklch(85.2% 0.199 91.936); /* Yellow 400 */
+	--Typo: oklch(75% 0.183 55.934); /* Orange 400 */
+	--Usage: oklch(74.6% 0.16 232.661); /* Sky 400 */
+	--WordChoice: oklch(74% 0.238 322.16); /* Fuchsia 400 */
 }
 
 /* Auto (light) theme */
@@ -44,6 +85,26 @@
 		--w: var(--l-w);
 		--e: var(--l-e);
 		--s-mix: var(--l-s-mix);
+		--Agreement: var(--l-Agreement);
+		--BoundaryError: var(--l-BoundaryError);
+		--Capitalization: var(--l-Capitalization);
+		--Eggcorn: var(--l-Eggcorn);
+		--Enhancement: var(--l-Enhancement);
+		--Formatting: var(--l-Formatting);
+		--Grammar: var(--l-Grammar);
+		--Malapropism: var(--l-Malapropism);
+		--Miscellaneous: var(--l-Miscellaneous);
+		--Nonstandard: var(--l-Nonstandard);
+		--Punctuation: var(--l-Punctuation);
+		--Readability: var(--l-Readability);
+		--Redundancy: var(--l-Redundancy);
+		--Regionalism: var(--l-Regionalism);
+		--Repetition: var(--l-Repetition);
+		--Spelling: var(--l-Spelling);
+		--Style: var(--l-Style);
+		--Typo: var(--l-Typo);
+		--Usage: var(--l-Usage);
+		--WordChoice: var(--l-WordChoice);
 	}
 }
 
@@ -56,6 +117,26 @@
 	--w: var(--l-w);
 	--e: var(--l-e);
 	--s-mix: var(--l-s-mix);
+	--Agreement: var(--l-Agreement);
+	--BoundaryError: var(--l-BoundaryError);
+	--Capitalization: var(--l-Capitalization);
+	--Eggcorn: var(--l-Eggcorn);
+	--Enhancement: var(--l-Enhancement);
+	--Formatting: var(--l-Formatting);
+	--Grammar: var(--l-Grammar);
+	--Malapropism: var(--l-Malapropism);
+	--Miscellaneous: var(--l-Miscellaneous);
+	--Nonstandard: var(--l-Nonstandard);
+	--Punctuation: var(--l-Punctuation);
+	--Readability: var(--l-Readability);
+	--Redundancy: var(--l-Redundancy);
+	--Regionalism: var(--l-Regionalism);
+	--Repetition: var(--l-Repetition);
+	--Spelling: var(--l-Spelling);
+	--Style: var(--l-Style);
+	--Typo: var(--l-Typo);
+	--Usage: var(--l-Usage);
+	--WordChoice: var(--l-WordChoice);
 }
 
 /* OG dusk theme */
@@ -77,6 +158,26 @@
 	--w: oklch(85% 0.18 80);
 	--e: oklch(65% 0.19 25);
 	--s-mix: var(--l-s-mix);
+	--Agreement: var(--l-Agreement);
+	--BoundaryError: var(--l-BoundaryError);
+	--Capitalization: var(--l-Capitalization);
+	--Eggcorn: var(--l-Eggcorn);
+	--Enhancement: var(--l-Enhancement);
+	--Formatting: var(--l-Formatting);
+	--Grammar: var(--l-Grammar);
+	--Malapropism: var(--l-Malapropism);
+	--Miscellaneous: var(--l-Miscellaneous);
+	--Nonstandard: var(--l-Nonstandard);
+	--Punctuation: var(--l-Punctuation);
+	--Readability: var(--l-Readability);
+	--Redundancy: var(--l-Redundancy);
+	--Regionalism: var(--l-Regionalism);
+	--Repetition: var(--l-Repetition);
+	--Spelling: var(--l-Spelling);
+	--Style: var(--l-Style);
+	--Typo: var(--l-Typo);
+	--Usage: var(--l-Usage);
+	--WordChoice: var(--l-WordChoice);
 }
 
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
@@ -111,6 +212,26 @@
 	--w: oklch(63.1% 0.129 86.4); /* yellow */
 	--e: oklch(63.1% 0.221 21.6); /* red */
 	--s-mix: var(--l-s-mix);
+	--Agreement: var(--l-Agreement);
+	--BoundaryError: var(--l-BoundaryError);
+	--Capitalization: var(--l-Capitalization);
+	--Eggcorn: var(--l-Eggcorn);
+	--Enhancement: var(--l-Enhancement);
+	--Formatting: var(--l-Formatting);
+	--Grammar: var(--l-Grammar);
+	--Malapropism: var(--l-Malapropism);
+	--Miscellaneous: var(--l-Miscellaneous);
+	--Nonstandard: var(--l-Nonstandard);
+	--Punctuation: var(--l-Punctuation);
+	--Readability: var(--l-Readability);
+	--Redundancy: var(--l-Redundancy);
+	--Regionalism: var(--l-Regionalism);
+	--Repetition: var(--l-Repetition);
+	--Spelling: var(--l-Spelling);
+	--Style: var(--l-Style);
+	--Typo: var(--l-Typo);
+	--Usage: var(--l-Usage);
+	--WordChoice: var(--l-WordChoice);
 }
 
 /* Colors from https://github.com/morhetz/gruvbox (MIT) */
@@ -132,6 +253,26 @@
 	--w: #b57614; /* faded_yellow */
 	--e: #9d0006; /* faded_red */
 	--s-mix: var(--l-s-mix);
+	--Agreement: var(--l-Agreement);
+	--BoundaryError: var(--l-BoundaryError);
+	--Capitalization: var(--l-Capitalization);
+	--Eggcorn: var(--l-Eggcorn);
+	--Enhancement: var(--l-Enhancement);
+	--Formatting: var(--l-Formatting);
+	--Grammar: var(--l-Grammar);
+	--Malapropism: var(--l-Malapropism);
+	--Miscellaneous: var(--l-Miscellaneous);
+	--Nonstandard: var(--l-Nonstandard);
+	--Punctuation: var(--l-Punctuation);
+	--Readability: var(--l-Readability);
+	--Redundancy: var(--l-Redundancy);
+	--Regionalism: var(--l-Regionalism);
+	--Repetition: var(--l-Repetition);
+	--Spelling: var(--l-Spelling);
+	--Style: var(--l-Style);
+	--Typo: var(--l-Typo);
+	--Usage: var(--l-Usage);
+	--WordChoice: var(--l-WordChoice);
 }
 
 /* Colors from https://catppuccin.com/palette/#flavor-mocha (MIT) */
@@ -153,6 +294,26 @@
 	--w: #df8e1d; /* Yellow */
 	--e: #d20f39; /* Red */
 	--s-mix: var(--l-s-mix);
+	--Agreement: var(--l-Agreement);
+	--BoundaryError: var(--l-BoundaryError);
+	--Capitalization: var(--l-Capitalization);
+	--Eggcorn: var(--l-Eggcorn);
+	--Enhancement: var(--l-Enhancement);
+	--Formatting: var(--l-Formatting);
+	--Grammar: var(--l-Grammar);
+	--Malapropism: var(--l-Malapropism);
+	--Miscellaneous: var(--l-Miscellaneous);
+	--Nonstandard: var(--l-Nonstandard);
+	--Punctuation: var(--l-Punctuation);
+	--Readability: var(--l-Readability);
+	--Redundancy: var(--l-Redundancy);
+	--Regionalism: var(--l-Regionalism);
+	--Repetition: var(--l-Repetition);
+	--Spelling: var(--l-Spelling);
+	--Style: var(--l-Style);
+	--Typo: var(--l-Typo);
+	--Usage: var(--l-Usage);
+	--WordChoice: var(--l-WordChoice);
 }
 
 /* Colors from https://draculatheme.com/spec#color-palette (MIT) */

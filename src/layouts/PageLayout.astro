@@ -43,7 +43,7 @@ const props = Astro.props;
 	import { THEME, type ThemeId } from '@config/theme.ts';
 	import {
 		$enableDebugLogging,
-		$inputText,
+		$input,
 		$rememberInputText,
 		$theme,
 		$warnOnLargeInputText,
@@ -107,9 +107,12 @@ const props = Astro.props;
 				handleBooleanParam(value, $enableDebugLogging),
 		},
 		[INPUT.id]: {
-			store: $inputText,
+			store: $input,
 			handler: (value: string) => {
-				$inputText.set(decodeQueryParam(value));
+				$input.set({
+					text: decodeQueryParam(value),
+					visibleRangeIndices: [0, value.length],
+				});
 			},
 		},
 	};

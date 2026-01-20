@@ -1,15 +1,7 @@
-import {
-	$inputText,
-	$warnOnLargeInputText,
-	$outputCounts,
-	$rememberInputText,
-	$theme,
-	$persistedInputText,
-	$persistedTheme,
-} from '@stores/index.ts';
+import * as stores from '@stores/index.ts';
 import { logger } from '@nanostores/logger';
 
-const originalDebug = console.debug;
+const originalDebugFn = console.debug;
 
 let destroyLogger: () => void;
 
@@ -23,17 +15,9 @@ let destroyLogger: () => void;
  */
 export function toggleDebugLogging(enable: boolean) {
 	if (enable) {
-		destroyLogger = logger({
-			$warnOnLargeInputText,
-			$rememberInputText,
-			$theme,
-			$inputText,
-			$persistedTheme,
-			$persistedInputText,
-			$outputCounts,
-		});
+		destroyLogger = logger(stores);
 
-		console.debug = originalDebug;
+		console.debug = originalDebugFn;
 	} else {
 		destroyLogger?.();
 

@@ -31,6 +31,7 @@
 
 	/* Border width */
 	--b-md: 0.0625em;
+	--b-lg: calc(var(--b-md) * 2);
 
 	/* Border radius */
 	--r-md: var(--p-sm);

@@ -63,9 +63,9 @@
 		"@astrojs/check": "^0.9.6",
 		"@types/bun": "latest",
 		"npm-check-updates": "^19.3.1",
-		"prettier-plugin-astro-organize-imports": "^0.4.11",
-		"prettier-plugin-astro": "^0.14.1",
 		"prettier": "^3.8.0",
+		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-astro-organize-imports": "^0.4.11",
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {

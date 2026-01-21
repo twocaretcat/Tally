@@ -17,5 +17,5 @@ type InputConfig = {
 export const INPUT = {
 	id: 'input',
 	default: '',
-	maxCharacters: 1_000_000,
+	maxCharacters: 100_000,
 } as const satisfies InputConfig;

@@ -125,11 +125,11 @@ const messages: LocaleMessages = {
 	options: {
 		title: 'Options',
 		map: {
-			warnOnLargeInputText: {
-				label: "Avertir en cas d'entrée volumineuse",
-			},
 			rememberInputText: {
 				label: 'Se souvenir du texte saisi',
+			},
+			warnOnLargeInputText: {
+				label: "Avertir en cas d'entrée volumineuse",
 			},
 			enableDebugLogging: {
 				label: 'Activer les logs de débogage',

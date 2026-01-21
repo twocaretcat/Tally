@@ -1,3 +1,4 @@
+import type { OptionId } from '@config/option.ts';
 import { persistentAtom } from '@nanostores/persistent';
 
 /**
@@ -7,7 +8,7 @@ import { persistentAtom } from '@nanostores/persistent';
  * @param defaultValue - The default boolean value if none exists in storage
  * @returns A persistent atom store containing a boolean value
  */
-export function persistentBooleanAtom(key: string, defaultValue: boolean) {
+export function persistentBooleanAtom(key: OptionId, defaultValue: boolean) {
 	return persistentAtom<boolean>(key, defaultValue, {
 		encode: JSON.stringify,
 		decode: JSON.parse,

@@ -160,11 +160,11 @@ const messages: LocaleMessages = {
 		title: 'الخيارات',
 		// Option names
 		map: {
-			warnOnLargeInputText: {
-				label: 'التحذير عند إدخال نص كبير',
-			},
 			rememberInputText: {
 				label: 'تذكر نص الإدخال',
+			},
+			warnOnLargeInputText: {
+				label: 'التحذير عند إدخال نص كبير',
 			},
 			enableDebugLogging: {
 				label: 'تفعيل تسجيل التصحيح',

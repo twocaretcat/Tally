@@ -121,11 +121,11 @@ const messages: LocaleMessages = {
 	options: {
 		title: 'Настройки',
 		map: {
-			warnOnLargeInputText: {
-				label: 'Предупреждать при вводе большого количества текста',
-			},
 			rememberInputText: {
 				label: 'Запоминать введённый текст',
+			},
+			warnOnLargeInputText: {
+				label: 'Предупреждать при вводе большого количества текста',
 			},
 			enableDebugLogging: {
 				label: 'Включить ведение журнала отладки',

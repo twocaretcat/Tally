@@ -125,11 +125,11 @@ const messages: LocaleMessages = {
 	options: {
 		title: 'Opciones',
 		map: {
-			warnOnLargeInputText: {
-				label: 'Advertir sobre entradas de gran tamaño',
-			},
 			rememberInputText: {
 				label: 'Recordar texto de entrada',
+			},
+			warnOnLargeInputText: {
+				label: 'Advertir sobre entradas de gran tamaño',
 			},
 			enableDebugLogging: {
 				label: 'Habilitar registros de depuración',

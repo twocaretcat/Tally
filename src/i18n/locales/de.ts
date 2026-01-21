@@ -121,11 +121,11 @@ const messages: LocaleMessages = {
 	options: {
 		title: 'Optionen',
 		map: {
-			warnOnLargeInputText: {
-				label: 'Bei großer Eingabe warnen',
-			},
 			rememberInputText: {
 				label: 'Eingegebenen Text merken',
+			},
+			warnOnLargeInputText: {
+				label: 'Bei großer Eingabe warnen',
 			},
 			enableDebugLogging: {
 				label: 'Debug-Logging aktivieren',

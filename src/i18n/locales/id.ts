@@ -125,11 +125,11 @@ const messages: LocaleMessages = {
 	options: {
 		title: 'Opsi',
 		map: {
-			warnOnLargeInputText: {
-				label: 'Peringatkan saat input berukuran besar',
-			},
 			rememberInputText: {
 				label: 'Simpan teks masukan',
+			},
+			warnOnLargeInputText: {
+				label: 'Peringatkan saat input berukuran besar',
 			},
 			enableDebugLogging: {
 				label: 'Aktifkan logging debug',

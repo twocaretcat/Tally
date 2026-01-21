@@ -28,7 +28,7 @@ export const $theme = atom<ThemeId>($persistedTheme.get() ?? THEME.default.id);
  * Persisted to localStorage.
  */
 export const $rememberInputText = persistentBooleanAtom(
-	OPTION.map.rememberInputText.id,
+	'rememberInputText',
 	OPTION.map.rememberInputText.default,
 );
 
@@ -38,8 +38,18 @@ export const $rememberInputText = persistentBooleanAtom(
  * Persisted to localStorage.
  */
 export const $warnOnLargeInputText = persistentBooleanAtom(
-	OPTION.map.warnOnLargeInputText.id,
+	'warnOnLargeInputText',
 	OPTION.map.warnOnLargeInputText.default,
+);
+
+/**
+ * Whether to enable debug logging for store state changes.
+ *
+ * Persisted to localStorage.
+ */
+export const $enableDebugLogging = persistentBooleanAtom(
+	'enableDebugLogging',
+	OPTION.map.enableDebugLogging.default,
 );
 
 /**
@@ -50,16 +60,6 @@ export const $warnOnLargeInputText = persistentBooleanAtom(
 export const $persistedInputText = persistentAtom<string>(
 	INPUT.id,
 	INPUT.default,
-);
-
-/**
- * Whether to enable debug logging for store state changes.
- *
- * Persisted to localStorage.
- */
-export const $enableDebugLogging = persistentBooleanAtom(
-	OPTION.map.enableDebugLogging.id,
-	OPTION.map.enableDebugLogging.default,
 );
 
 /**

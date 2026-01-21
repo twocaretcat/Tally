@@ -36,7 +36,7 @@ const msg = getLocaleMessages(Astro).options;
 </InputGroup>
 
 <script>
-	import { OPTION, type OptionId } from '@config/option.ts';
+	import { type OptionId } from '@config/option.ts';
 	import {
 		$enableDebugLogging,
 		$rememberInputText,
@@ -60,9 +60,9 @@ const msg = getLocaleMessages(Astro).options;
 	type OptionMap = Record<OptionId, OptionEntry>;
 
 	const idStoreMap = {
-		[OPTION.map.warnOnLargeInputText.id]: $warnOnLargeInputText,
-		[OPTION.map.rememberInputText.id]: $rememberInputText,
-		[OPTION.map.enableDebugLogging.id]: $enableDebugLogging,
+		['rememberInputText']: $rememberInputText,
+		['warnOnLargeInputText']: $warnOnLargeInputText,
+		['enableDebugLogging']: $enableDebugLogging,
 	} as const satisfies { [id in OptionId]: WritableAtom<boolean> };
 
 	const optionMap: OptionMap = mapEntries(idStoreMap, (optionId, store) => [

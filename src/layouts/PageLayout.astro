@@ -13,7 +13,7 @@ type Props = WithChildren<true, ComponentProps<typeof BaseLayout>>;
 
 const themePreloadVars = {
 	id: THEME.id,
-	d: THEME.default,
+	d: THEME.defaultValue,
 } as const;
 
 const props = Astro.props;

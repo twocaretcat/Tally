@@ -36,9 +36,9 @@ $theme.subscribe((themeId) => {
 $input.subscribe(async ({ text, visibleRangeIndices }) => {
 	analyzeText(text, visibleRangeIndices);
 
-	if ($rememberInputText.get()) {
-		$persistedInputText.set(text);
-	}
+	if (!$rememberInputText.get()) return;
+
+	$persistedInputText.set(text);
 });
 
 /**
@@ -47,9 +47,9 @@ $input.subscribe(async ({ text, visibleRangeIndices }) => {
  * Sets `$persistedInputText` to either the current input (if remembering) or the default empty value.
  */
 $rememberInputText.subscribe((rememberInputText) => {
-	const value = rememberInputText ? $input.get().text : INPUT.default;
+	const text = rememberInputText ? $input.get().text : INPUT.defaultValue;
 
-	$persistedInputText.set(value);
+	$persistedInputText.set(text);
 });
 
 /**

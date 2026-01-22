@@ -55,7 +55,7 @@ const currentLocaleId = getLocale(Astro);
 const msg = getLocaleMessages(currentLocaleId);
 const inputPreloadVars = {
 	id: INPUT.id,
-	d: INPUT.default,
+	d: INPUT.defaultValue,
 } as const;
 
 const aboutEntry = await getEntry(currentLocaleId, 'about');

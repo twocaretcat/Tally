@@ -20,12 +20,12 @@ const msg = getLocaleMessages(Astro).options;
 
 <InputGroup id={OPTION.id} title={msg.title} role="group">
 	{
-		entriesOf(OPTION.map).map(([id, optionConfig]) => (
+		entriesOf(OPTION.map).map(([id, { defaultValue }]) => (
 			<Button as="label" {type}>
 				<HiddenInput
 					slot="input"
 					name={OPTION.id}
-					checked={optionConfig.default}
+					checked={defaultValue}
 					{id}
 					{type}
 				/>

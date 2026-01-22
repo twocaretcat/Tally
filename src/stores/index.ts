@@ -14,13 +14,15 @@ import type { LintChunkMap, RangeIndices } from '../types.ts';
  */
 export const $persistedTheme = persistentAtom<ThemeId>(
 	THEME.id,
-	THEME.default.id,
+	THEME.defaultValue.id,
 );
 
 /**
  * The currently selected theme ID.
  */
-export const $theme = atom<ThemeId>($persistedTheme.get() ?? THEME.default.id);
+export const $theme = atom<ThemeId>(
+	$persistedTheme.get() ?? THEME.defaultValue.id,
+);
 
 /**
  * Whether to remember input text between browser sessions.
@@ -29,7 +31,7 @@ export const $theme = atom<ThemeId>($persistedTheme.get() ?? THEME.default.id);
  */
 export const $rememberInputText = persistentBooleanAtom(
 	'rememberInputText',
-	OPTION.map.rememberInputText.default,
+	OPTION.map.rememberInputText.defaultValue,
 );
 
 /**
@@ -39,7 +41,7 @@ export const $rememberInputText = persistentBooleanAtom(
  */
 export const $warnOnLargeInputText = persistentBooleanAtom(
 	'warnOnLargeInputText',
-	OPTION.map.warnOnLargeInputText.default,
+	OPTION.map.warnOnLargeInputText.defaultValue,
 );
 
 /**
@@ -49,7 +51,7 @@ export const $warnOnLargeInputText = persistentBooleanAtom(
  */
 export const $enableDebugLogging = persistentBooleanAtom(
 	'enableDebugLogging',
-	OPTION.map.enableDebugLogging.default,
+	OPTION.map.enableDebugLogging.defaultValue,
 );
 
 /**
@@ -59,7 +61,7 @@ export const $enableDebugLogging = persistentBooleanAtom(
  */
 export const $persistedInputText = persistentAtom<string>(
 	INPUT.id,
-	INPUT.default,
+	INPUT.defaultValue,
 );
 
 /**
@@ -75,7 +77,7 @@ export const $input = atom<{
 	(() => {
 		const text = $rememberInputText.get()
 			? $persistedInputText.get()
-			: INPUT.default;
+			: INPUT.defaultValue;
 
 		return {
 			text,

@@ -1,10 +1,10 @@
 /**
  * Configuration for a single user preference option.
  *
- * @property default - The default boolean value
+ * @property defaultValue - The default boolean value
  */
 type Option = {
-	default: boolean;
+	defaultValue: boolean;
 };
 
 /**
@@ -25,13 +25,13 @@ type OptionConfig = {
 
 const optionMap = {
 	rememberInputText: {
-		default: false,
+		defaultValue: false,
 	},
 	warnOnLargeInputText: {
-		default: true,
+		defaultValue: true,
 	},
 	enableDebugLogging: {
-		default: false,
+		defaultValue: false,
 	},
 } as const satisfies OptionMap;
 

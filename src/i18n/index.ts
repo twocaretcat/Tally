@@ -71,7 +71,7 @@ export function getLocaleMessages(
 ): LocaleMessages {
 	const localeId = typeof arg === 'string' ? arg : getLocale(arg);
 
-	return localeMessageMap[localeId] ?? localeMessageMap[LOCALE.default];
+	return localeMessageMap[localeId] ?? localeMessageMap[LOCALE.defaultValue];
 }
 
 /**
@@ -186,5 +186,5 @@ export function getBestMatchingLocale() {
 		}
 	}
 
-	return LOCALE.default;
+	return LOCALE.defaultValue;
 }

@@ -1,11 +1,20 @@
-import { atom, map } from 'nanostores';
-import { persistentAtom } from '@nanostores/persistent';
-import { THEME, type ThemeId } from '@config/theme.ts';
-import { OPTION } from '@config/option.ts';
 import { INPUT } from '@config/input.ts';
-import { persistentBooleanAtom } from './utils.ts';
+import { OPTION } from '@config/option.ts';
 import { type OutputId } from '@config/output.ts';
+import { THEME, type ThemeId } from '@config/theme.ts';
+import { persistentAtom } from '@nanostores/persistent';
+import { atom, map } from 'nanostores';
+import { mapEntries } from 'radashi';
 import type { LintChunkMap, RangeIndices } from '../types.ts';
+import { persistentBooleanAtom } from './utils.ts';
+
+/**
+ * Map of option IDs to persistent boolean atoms.
+ */
+export const $option = mapEntries(OPTION.map, (id, { defaultValue }) => [
+	id,
+	persistentBooleanAtom(id, defaultValue),
+]);
 
 /**
  * The currently selected theme ID.
@@ -25,39 +34,9 @@ export const $theme = atom<ThemeId>(
 );
 
 /**
- * Whether to remember input text between browser sessions.
- *
- * Persisted to localStorage.
- */
-export const $rememberInputText = persistentBooleanAtom(
-	'rememberInputText',
-	OPTION.map.rememberInputText.defaultValue,
-);
-
-/**
- * Whether to warn the user when input text exceeds the maximum character limit.
- *
- * Persisted to localStorage.
- */
-export const $warnOnLargeInputText = persistentBooleanAtom(
-	'warnOnLargeInputText',
-	OPTION.map.warnOnLargeInputText.defaultValue,
-);
-
-/**
- * Whether to enable debug logging for store state changes.
- *
- * Persisted to localStorage.
- */
-export const $enableDebugLogging = persistentBooleanAtom(
-	'enableDebugLogging',
-	OPTION.map.enableDebugLogging.defaultValue,
-);
-
-/**
  * The input text saved to localStorage.
  *
- * Only used when `$rememberInputText` is true.
+ * Only used when `rememberInputText` is true.
  */
 export const $persistedInputText = persistentAtom<string>(
 	INPUT.id,
@@ -67,7 +46,7 @@ export const $persistedInputText = persistentAtom<string>(
 /**
  * The current text input and its visible range.
  *
- * Initialized from `$persistedInputText` if `$rememberInputText` is enabled,
+ * Initialized from `persistedInputText` if `rememberInputText` is enabled,
  * otherwise uses the default empty value.
  */
 export const $input = atom<{
@@ -75,7 +54,7 @@ export const $input = atom<{
 	visibleRangeIndices: RangeIndices;
 }>(
 	(() => {
-		const text = $rememberInputText.get()
+		const text = $option.rememberInputText.get()
 			? $persistedInputText.get()
 			: INPUT.defaultValue;
 

@@ -36,44 +36,12 @@ const msg = getLocaleMessages(Astro).options;
 </InputGroup>
 
 <script>
-	import { type OptionId } from '@config/option.ts';
-	import {
-		$enableDebugLogging,
-		$rememberInputText,
-		$warnOnLargeInputText,
-	} from '@stores/index.ts';
-	import { getDefinedElementById } from '@utils/index.ts';
-	import type { WritableAtom } from 'nanostores';
-	import { mapEntries } from 'radashi';
+	import { $option } from '@stores/index.ts';
+	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
 
-	/**
-	 * Associates a store with its corresponding checkbox element.
-	 *
-	 * @property store - The nanostores atom for this option
-	 * @property checkbox - The DOM checkbox input element
-	 */
-	type OptionEntry = {
-		store: WritableAtom<boolean>;
-		checkbox: HTMLInputElement;
-	};
+	for (const [id, store] of entriesOf($option)) {
+		const checkbox = getDefinedElementById<HTMLInputElement>(id);
 
-	type OptionMap = Record<OptionId, OptionEntry>;
-
-	const idStoreMap = {
-		['rememberInputText']: $rememberInputText,
-		['warnOnLargeInputText']: $warnOnLargeInputText,
-		['enableDebugLogging']: $enableDebugLogging,
-	} as const satisfies { [id in OptionId]: WritableAtom<boolean> };
-
-	const optionMap: OptionMap = mapEntries(idStoreMap, (optionId, store) => [
-		optionId,
-		{
-			store,
-			checkbox: getDefinedElementById<HTMLInputElement>(optionId),
-		},
-	]);
-
-	for (const { store, checkbox } of Object.values(optionMap)) {
 		// Update checkboxes when the option changes
 		store.subscribe((value) => {
 			checkbox.checked = value;

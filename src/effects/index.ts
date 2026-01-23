@@ -1,10 +1,9 @@
 import { INPUT } from '@config/input.ts';
 import {
-	$enableDebugLogging,
 	$input,
+	$option,
 	$persistedInputText,
 	$persistedTheme,
-	$rememberInputText,
 	$theme,
 } from '@stores/index.ts';
 import { analyzeText } from '../actions/analyzer.ts';
@@ -31,12 +30,12 @@ $theme.subscribe((themeId) => {
 /**
  * Analyze input text and optionally persists the value whenever it changes.
  *
- * If `$rememberInputText` is enabled, saves the current input to `$persistedInputText`.
+ * If `rememberInputText` is enabled, saves the current input to `$persistedInputText`.
  */
 $input.subscribe(async ({ text, visibleRangeIndices }) => {
 	analyzeText(text, visibleRangeIndices);
 
-	if (!$rememberInputText.get()) return;
+	if (!$option.rememberInputText.get()) return;
 
 	$persistedInputText.set(text);
 });
@@ -44,9 +43,9 @@ $input.subscribe(async ({ text, visibleRangeIndices }) => {
 /**
  * Clears persisted input text when the remember option is disabled.
  *
- * Sets `$persistedInputText` to either the current input (if remembering) or the default empty value.
+ * Sets `persistedInputText` to either the current input (if remembering) or the default empty value.
  */
-$rememberInputText.subscribe((rememberInputText) => {
+$option.rememberInputText.subscribe((rememberInputText) => {
 	const text = rememberInputText ? $input.get().text : INPUT.defaultValue;
 
 	$persistedInputText.set(text);
@@ -55,4 +54,4 @@ $rememberInputText.subscribe((rememberInputText) => {
 /**
  * Toggles debug logging on or off whenever the option changes.
  */
-$enableDebugLogging.subscribe(toggleDebugLogging);
+$option.enableDebugLogging.subscribe(toggleDebugLogging);

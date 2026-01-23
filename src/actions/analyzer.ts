@@ -1,10 +1,6 @@
 import { INPUT } from '@config/input.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
-import {
-	$lintChunkMap,
-	$outputCounts,
-	$warnOnLargeInputText,
-} from '@stores/index.ts';
+import { $lintChunkMap, $option, $outputCounts } from '@stores/index.ts';
 import { Tally } from '@twocaretcat/tally-ts';
 import { logElapsedTime } from '@utils/index.ts';
 import { createJobRunner } from '@utils/job-runner.ts';
@@ -123,7 +119,7 @@ export async function analyzeText(
 	visibleRangeIndices: RangeIndices,
 ) {
 	// Warn the user if the input text is large
-	if ($warnOnLargeInputText.get() && text.length > INPUT.maxCharacters) {
+	if ($option.warnOnLargeInputText.get() && text.length > INPUT.maxCharacters) {
 		if (!confirm(msg)) {
 			$outputCounts.set(null);
 

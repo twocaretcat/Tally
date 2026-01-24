@@ -30,6 +30,9 @@ const optionMap = {
 	warnOnLargeInputText: {
 		defaultValue: true,
 	},
+	enableGrammarChecking: {
+		defaultValue: false,
+	},
 	enableDebugLogging: {
 		defaultValue: false,
 	},

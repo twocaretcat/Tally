@@ -172,6 +172,10 @@ const messages: LocaleMessages = {
 			warnOnLargeInputText: {
 				label: 'Warn on large input text',
 			},
+			enableGrammarChecking: {
+				label: 'Enable grammar checking',
+				tooltip: 'Grammar checking is not available for this language',
+			},
 			enableDebugLogging: {
 				label: 'Enable debug logging',
 			},

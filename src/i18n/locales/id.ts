@@ -131,6 +131,10 @@ const messages: LocaleMessages = {
 			warnOnLargeInputText: {
 				label: 'Peringatkan saat input berukuran besar',
 			},
+			enableGrammarChecking: {
+				label: 'Aktifkan pemeriksaan tata bahasa',
+				tooltip: 'Pemeriksaan tata bahasa tidak tersedia untuk bahasa ini',
+			},
 			enableDebugLogging: {
 				label: 'Aktifkan logging debug',
 			},

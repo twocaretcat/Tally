@@ -166,6 +166,10 @@ const messages: LocaleMessages = {
 			warnOnLargeInputText: {
 				label: 'التحذير عند إدخال نص كبير',
 			},
+			enableGrammarChecking: {
+				label: 'تمكين التدقيق النحوي',
+				tooltip: 'التدقيق النحوي غير متاح لهذه اللغة',
+			},
 			enableDebugLogging: {
 				label: 'تفعيل تسجيل التصحيح',
 			},

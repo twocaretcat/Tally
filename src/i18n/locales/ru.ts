@@ -127,6 +127,10 @@ const messages: LocaleMessages = {
 			warnOnLargeInputText: {
 				label: 'Предупреждать при вводе большого количества текста',
 			},
+			enableGrammarChecking: {
+				label: 'Включить проверку грамматики',
+				tooltip: 'Проверка грамматики недоступна для этого языка',
+			},
 			enableDebugLogging: {
 				label: 'Включить ведение журнала отладки',
 			},

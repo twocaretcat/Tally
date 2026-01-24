@@ -126,6 +126,10 @@ const messages: LocaleMessages = {
 			warnOnLargeInputText: {
 				label: '大文本输入时警告',
 			},
+			enableGrammarChecking: {
+				label: '启用语法检查',
+				tooltip: '此语言不支持语法检查',
+			},
 			enableDebugLogging: {
 				label: '启用调试日志',
 			},

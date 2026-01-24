@@ -131,6 +131,11 @@ const messages: LocaleMessages = {
 			warnOnLargeInputText: {
 				label: "Avertir en cas d'entrée volumineuse",
 			},
+			enableGrammarChecking: {
+				label: 'Activer la vérification grammaticale',
+				tooltip:
+					"La vérification grammaticale n'est pas disponible pour cette langue",
+			},
 			enableDebugLogging: {
 				label: 'Activer les logs de débogage',
 			},

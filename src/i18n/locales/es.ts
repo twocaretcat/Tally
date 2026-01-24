@@ -131,6 +131,10 @@ const messages: LocaleMessages = {
 			warnOnLargeInputText: {
 				label: 'Advertir sobre entradas de gran tamaño',
 			},
+			enableGrammarChecking: {
+				label: 'Activar revisión gramatical',
+				tooltip: 'La revisión gramatical no está disponible para este idioma',
+			},
 			enableDebugLogging: {
 				label: 'Habilitar registros de depuración',
 			},

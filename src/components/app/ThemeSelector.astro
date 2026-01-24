@@ -2,7 +2,7 @@
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { THEME } from '@config/theme.ts';
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
@@ -17,7 +17,7 @@ import SponsorIcon from './SponsorIcon.astro';
 type Props = WithChildren<false>;
 
 const type = 'radio' as const;
-const msg = getLocaleMessages(Astro).themes;
+const msg = getLocaleMessages(getLocale(Astro)).themes;
 ---
 
 <InputGroup

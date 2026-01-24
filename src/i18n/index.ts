@@ -36,41 +36,50 @@ function loadModuleById(localeId: LocaleId) {
 }
 
 /**
- * Gets the current locale ID from the Astro context or document.
+ * Validates and narrows a locale identifier.
  *
- * @param astro - Optional Astro global context (server-side)
- * @returns The current locale ID
- * @throws {Error} If the locale is not supported
+ * @param localeId - Locale ID to validate.
+ * @returns The validated locale ID.
+ * @throws {Error} If the locale is missing or not supported.
  */
-export function getLocale(astro?: AstroGlobal): LocaleId {
-	if (astro) {
-		const localeId = astro.currentLocale;
-
-		if (!localeId || !LOCALE.map[localeId as LocaleId]) {
-			throw new Error(
-				`Expected locale to be one of ${localeIds}, but got '${localeId}'`,
-			);
-		}
-
-		return localeId as LocaleId;
+function validateLocale(localeId: string | undefined): LocaleId {
+	if (!localeId || !(localeId in LOCALE.map)) {
+		throw new Error(
+			`Expected locale to be one of ${localeIds}, but got '${localeId}'`,
+		);
 	}
 
-	return document.documentElement.lang as LocaleId;
+	return localeId as LocaleId;
 }
 
 /**
- * Gets translation strings for the current or specified locale.
+ * Gets the current locale ID from the Astro context or the document.
  *
- * @param arg - Optional Astro context or locale ID
- * @returns The locale messages object
+ * @param astro - Optional Astro global context (server-side).
+ * @returns The current locale ID.
+ * @throws {Error} If the locale cannot be determined or is unsupported.
  */
-export function getLocaleMessages(astro?: AstroGlobal): LocaleMessages;
-export function getLocaleMessages(localeId?: LocaleId): LocaleMessages;
-export function getLocaleMessages(
-	arg?: AstroGlobal | LocaleId,
-): LocaleMessages {
-	const localeId = typeof arg === 'string' ? arg : getLocale(arg);
+export function getLocale(astro?: AstroGlobal) {
+	if (astro) return validateLocale(astro.currentLocale);
 
+	if (typeof document === 'undefined') {
+		throw new Error(
+			'Unable to determine locale. Either pass an Astro object or call this function on the client to get it from the document',
+		);
+	}
+
+	return validateLocale(document.documentElement.lang);
+}
+
+/**
+ * Retrieves translation messages for a locale.
+ *
+ * Falls back to the default locale if no messages are defined.
+ *
+ * @param localeId - Locale ID to retrieve messages for.
+ * @returns The locale messages object.
+ */
+export function getLocaleMessages(localeId: LocaleId): LocaleMessages {
 	return localeMessageMap[localeId] ?? localeMessageMap[LOCALE.defaultValue];
 }
 

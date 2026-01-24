@@ -2,7 +2,7 @@
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { OPTION } from '@config/option.ts';
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
@@ -15,7 +15,8 @@ import Button from './Button.astro';
 type Props = WithChildren<false>;
 
 const type = 'checkbox' as const;
-const msg = getLocaleMessages(Astro).options;
+const currentLocaleId = getLocale(Astro);
+const msg = getLocaleMessages(currentLocaleId).options;
 ---
 
 <InputGroup id={OPTION.id} title={msg.title} role="group">

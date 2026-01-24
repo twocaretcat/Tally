@@ -6,9 +6,10 @@ import {
 	$persistedTheme,
 	$theme,
 } from '@stores/index.ts';
-import { analyzeText } from '../actions/analyzer.ts';
-import { toggleDebugLogging } from '../actions/logger.ts';
+import { analyzeText } from '@actions/analyzer.ts';
+import { toggleDebugLogging } from '@actions/logger.ts';
 import { THEME } from '@config/theme.ts';
+import { clearLintChunks } from '@actions/analyzer.ts';
 
 /**
  * Persists theme changes to localStorage, skipping sponsor-only themes.
@@ -49,6 +50,26 @@ $option.rememberInputText.subscribe((rememberInputText) => {
 	const text = rememberInputText ? $input.get().text : INPUT.defaultValue;
 
 	$persistedInputText.set(text);
+});
+
+/**
+ * Reacts to changes in the grammar-checking option.
+ *
+ * Clears existing lint chunks when disabled, and triggers text analysis
+ * for the current input when enabled.
+ *
+ * @param enableGrammarChecking - Whether grammar checking is enabled.
+ */
+$option.enableGrammarChecking.subscribe((enableGrammarChecking) => {
+	if (!enableGrammarChecking) {
+		clearLintChunks();
+
+		return;
+	}
+
+	const { text, visibleRangeIndices } = $input.get();
+
+	analyzeText(text, visibleRangeIndices);
 });
 
 /**

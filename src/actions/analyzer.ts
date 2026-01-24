@@ -1,4 +1,5 @@
 import { INPUT } from '@config/input.ts';
+import { LOCALE } from '@config/locale.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { $lintChunkMap, $option, $outputCounts } from '@stores/index.ts';
 import { Tally } from '@twocaretcat/tally-ts';
@@ -29,12 +30,16 @@ const CHUNK_KEYS: readonly [LintChunkKey, LintChunkKey, LintChunkKey] = [
 ];
 
 const currentLocaleId = getLocale();
+const localeSupportsLinting = LOCALE.map[currentLocaleId].lintable;
 const msg = getLocaleMessages(currentLocaleId).input.largeInputWarning.message;
 const tally = new Tally({ locales: currentLocaleId });
 const linter = new WorkerLinter({ binary, dialect: Dialect.American });
 const lintJobRunner = createJobRunner(
 	async (key: keyof LintChunkMap, start: number, text: string) => {
 		const startTs = performance.now();
+
+		// If grammar checking was disabled while this job was queued, discard the results
+		if (!doLint()) return;
 
 		$lintChunkMap.setKey(key, {
 			start,
@@ -44,6 +49,26 @@ const lintJobRunner = createJobRunner(
 		logElapsedTime(`Analyzed ${key} text chunk`, startTs);
 	},
 );
+
+/**
+ * Determines whether linting should be performed.
+ *
+ * Linting is enabled only when the current locale supports it and
+ * grammar checking is turned on.
+ *
+ * @returns `true` if linting should run; otherwise `false`.
+ */
+const doLint = () =>
+	localeSupportsLinting && $option.enableGrammarChecking.get();
+
+/**
+ * Clears all lint chunks from the current lint state.
+ */
+export function clearLintChunks() {
+	$lintChunkMap.setKey('visible', undefined);
+	$lintChunkMap.setKey('trailing', undefined);
+	$lintChunkMap.setKey('leading', undefined);
+}
 
 /**
  * Computes start indices for chunk boundaries, optionally merging
@@ -128,6 +153,12 @@ export async function analyzeText(
 	}
 
 	$outputCounts.set(countText(text));
+
+	if (!doLint()) {
+		clearLintChunks();
+
+		return;
+	}
 
 	const chunkStartIndices = computeChunkStartIndices(
 		[...visibleRangeIndices, text.length],

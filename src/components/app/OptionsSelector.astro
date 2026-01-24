@@ -1,8 +1,11 @@
 ---
 import HiddenInput from '@components/ui/HiddenInput.astro';
+import Icon from '@components/ui/Icon.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
-import { OPTION } from '@config/option.ts';
+import { LOCALE } from '@config/locale.ts';
+import { OPTION, type OptionId } from '@config/option.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
+import { GlobeX } from '@lucide/astro';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
@@ -17,35 +20,75 @@ type Props = WithChildren<false>;
 const type = 'checkbox' as const;
 const currentLocaleId = getLocale(Astro);
 const msg = getLocaleMessages(currentLocaleId).options;
+
+/**
+ * Computes UI attributes for an option toggle.
+ *
+ * Disables grammar checking when the current locale does not support linting.
+ *
+ * @param id - Option identifier.
+ * @param defaultValue - Default checked state for the option.
+ * @returns Attributes controlling title, checked state, and disabled state.
+ */
+function getConditionalOptionAttributes(id: OptionId, defaultValue: boolean) {
+	if (id === 'enableGrammarChecking' && !LOCALE.map[currentLocaleId].lintable) {
+		return {
+			title: msg.map.enableGrammarChecking.tooltip,
+			checked: false,
+			disabled: true,
+		};
+	}
+
+	return {
+		title: undefined,
+		checked: defaultValue,
+		disabled: false,
+	};
+}
 ---
 
 <InputGroup id={OPTION.id} title={msg.title} role="group">
 	{
-		entriesOf(OPTION.map).map(([id, { defaultValue }]) => (
-			<Button as="label" {type}>
-				<HiddenInput
-					slot="input"
-					name={OPTION.id}
-					checked={defaultValue}
-					{id}
-					{type}
-				/>
-				{msg.map[id].label}
-			</Button>
-		))
+		entriesOf(OPTION.map).map(([id, { defaultValue }]) => {
+			const { title, checked, disabled } = getConditionalOptionAttributes(
+				id,
+				defaultValue,
+			);
+
+			return (
+				<Button as="label" {type} {title}>
+					<HiddenInput
+						slot="input"
+						name={OPTION.id}
+						{checked}
+						{disabled}
+						{id}
+						{type}
+					/>
+					{msg.map[id].label}
+					{disabled && <Icon icon={GlobeX} />}
+				</Button>
+			);
+		})
 	}
 </InputGroup>
 
 <script>
+	import { LOCALE } from '@config/locale.ts';
+	import { getLocale } from '@i18n/index.ts';
 	import { $option } from '@stores/index.ts';
 	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
 
+	const currentLocaleId = getLocale();
+
 	for (const [id, store] of entriesOf($option)) {
+		const disabled =
+			id === 'enableGrammarChecking' && !LOCALE.map[currentLocaleId].lintable;
 		const checkbox = getDefinedElementById<HTMLInputElement>(id);
 
 		// Update checkboxes when the option changes
 		store.subscribe((value) => {
-			checkbox.checked = value;
+			checkbox.checked = disabled ? false : value;
 		});
 
 		// Update theme when a theme radio input is changed

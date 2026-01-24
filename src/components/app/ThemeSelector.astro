@@ -17,7 +17,7 @@ import SponsorIcon from './SponsorIcon.astro';
 type Props = WithChildren<false>;
 
 const type = 'radio' as const;
-const msg = getLocaleMessages(getLocale(Astro)).themes;
+const msg = getLocaleMessages(getLocale(Astro)).option.theme;
 ---
 
 <InputGroup

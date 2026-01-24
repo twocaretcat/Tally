@@ -9,6 +9,7 @@ import type { LocaleMessages } from '../types.ts';
 const TAGLINE = 'Счётчик слов' as const;
 const DESCRIPTION =
 	'Ваш любимый счётчик слов в тёмном режиме, теперь с ещё большим количеством тем!' as const;
+const AUTO_LABEL = 'Авто' as const;
 
 const messages: LocaleMessages = {
 	site: {
@@ -115,71 +116,83 @@ const messages: LocaleMessages = {
 			tooltip: 'Посмотреть больше моих проектов',
 		},
 	},
-	locales: {
-		title: 'Язык',
-	},
-	options: {
-		title: 'Настройки',
-		map: {
-			rememberInputText: {
-				label: 'Запоминать введённый текст',
-			},
-			warnOnLargeInputText: {
-				label: 'Предупреждать при вводе большого количества текста',
-			},
-			enableGrammarChecking: {
-				label: 'Включить проверку грамматики',
-				tooltip: 'Проверка грамматики недоступна для этого языка',
-			},
-			enableDebugLogging: {
-				label: 'Включить ведение журнала отладки',
+	option: {
+		locale: {
+			title: 'Язык',
+		},
+		general: {
+			title: 'Настройки',
+			map: {
+				rememberInputText: {
+					label: 'Запоминать введённый текст',
+				},
+				warnOnLargeInputText: {
+					label: 'Предупреждать при вводе большого количества текста',
+				},
+				enableLinting: {
+					label: 'Включить проверку грамматики',
+				},
+				enableDebugLogging: {
+					label: 'Включить ведение журнала отладки',
+				},
 			},
 		},
-	},
-	themes: {
-		title: 'Тема',
-		map: {
-			auto: {
-				label: 'Авто',
+		lintingLocale: {
+			title: 'TODO',
+			unsupportedWarning: {
+				tooltip: 'Проверка грамматики недоступна для этого языка',
 			},
-			amoled: {
-				label: 'AMOLED',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
 			},
-			light: {
-				label: 'Светлая',
-			},
-			dark: {
-				label: 'Тёмная',
-			},
-			teal: {
-				label: 'Бирюзовый',
-			},
-			dusk: {
-				label: 'Сумерки',
-			},
-			solarizedLight: {
-				label: 'Solarized Светлая',
-			},
-			solarizedDark: {
-				label: 'Solarized Тёмная',
-			},
-			gruvboxLight: {
-				label: 'Gruvbox Светлая',
-			},
-			gruvboxDark: {
-				label: 'Gruvbox Тёмная',
-			},
-			catppuccinLatte: {
-				label: 'Catppuccin Latte',
-			},
-			catppuccinMocha: {
-				label: 'Catppuccin Mocha',
-			},
-			nord: {
-				label: 'Nord',
-			},
-			dracula: {
-				label: 'Dracula',
+		},
+		theme: {
+			title: 'Тема',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
+				amoled: {
+					label: 'AMOLED',
+				},
+				light: {
+					label: 'Светлая',
+				},
+				dark: {
+					label: 'Тёмная',
+				},
+				teal: {
+					label: 'Бирюзовый',
+				},
+				dusk: {
+					label: 'Сумерки',
+				},
+				solarizedLight: {
+					label: 'Solarized Светлая',
+				},
+				solarizedDark: {
+					label: 'Solarized Тёмная',
+				},
+				gruvboxLight: {
+					label: 'Gruvbox Светлая',
+				},
+				gruvboxDark: {
+					label: 'Gruvbox Тёмная',
+				},
+				catppuccinLatte: {
+					label: 'Catppuccin Latte',
+				},
+				catppuccinMocha: {
+					label: 'Catppuccin Mocha',
+				},
+				nord: {
+					label: 'Nord',
+				},
+				dracula: {
+					label: 'Dracula',
+				},
 			},
 		},
 	},

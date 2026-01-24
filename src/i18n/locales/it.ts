@@ -9,6 +9,7 @@ import type { LocaleMessages } from '../types.ts';
 const TAGLINE = 'Contatore di parole' as const;
 const DESCRIPTION =
 	'Il tuo contatore di parole preferito in modalità scura, ora con ancora più temi!' as const;
+const AUTO_LABEL = 'Automatico' as const;
 
 const messages: LocaleMessages = {
 	site: {
@@ -119,72 +120,84 @@ const messages: LocaleMessages = {
 			tooltip: 'Vedi altri miei progetti',
 		},
 	},
-	locales: {
-		title: 'Lingua',
-	},
-	options: {
-		title: 'Opzioni',
-		map: {
-			rememberInputText: {
-				label: 'Ricorda il testo inserito',
+	option: {
+		locale: {
+			title: 'Lingua',
+		},
+		general: {
+			title: 'Opzioni',
+			map: {
+				rememberInputText: {
+					label: 'Ricorda il testo inserito',
+				},
+				warnOnLargeInputText: {
+					label: 'Avvisa per input di grandi dimensioni',
+				},
+				enableLinting: {
+					label: 'Abilita il controllo grammaticale',
+				},
+				enableDebugLogging: {
+					label: 'Abilita log di debug',
+				},
 			},
-			warnOnLargeInputText: {
-				label: 'Avvisa per input di grandi dimensioni',
-			},
-			enableGrammarChecking: {
-				label: 'Abilita il controllo grammaticale',
+		},
+		lintingLocale: {
+			title: 'TODO',
+			unsupportedWarning: {
 				tooltip:
 					'Il controllo grammaticale non è disponibile per questa lingua',
 			},
-			enableDebugLogging: {
-				label: 'Abilita log di debug',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
 			},
 		},
-	},
-	themes: {
-		title: 'Tema',
-		map: {
-			auto: {
-				label: 'Automatico',
-			},
-			amoled: {
-				label: 'AMOLED',
-			},
-			light: {
-				label: 'Chiaro',
-			},
-			dark: {
-				label: 'Scuro',
-			},
-			teal: {
-				label: 'Turchese',
-			},
-			dusk: {
-				label: 'Crepuscolo',
-			},
-			solarizedLight: {
-				label: 'Solarized Chiaro',
-			},
-			solarizedDark: {
-				label: 'Solarized Scuro',
-			},
-			gruvboxLight: {
-				label: 'Gruvbox Chiaro',
-			},
-			gruvboxDark: {
-				label: 'Gruvbox Scuro',
-			},
-			catppuccinLatte: {
-				label: 'Catppuccin Latte',
-			},
-			catppuccinMocha: {
-				label: 'Catppuccin Mocha',
-			},
-			nord: {
-				label: 'Nord',
-			},
-			dracula: {
-				label: 'Dracula',
+		theme: {
+			title: 'Tema',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
+				amoled: {
+					label: 'AMOLED',
+				},
+				light: {
+					label: 'Chiaro',
+				},
+				dark: {
+					label: 'Scuro',
+				},
+				teal: {
+					label: 'Turchese',
+				},
+				dusk: {
+					label: 'Crepuscolo',
+				},
+				solarizedLight: {
+					label: 'Solarized Chiaro',
+				},
+				solarizedDark: {
+					label: 'Solarized Scuro',
+				},
+				gruvboxLight: {
+					label: 'Gruvbox Chiaro',
+				},
+				gruvboxDark: {
+					label: 'Gruvbox Scuro',
+				},
+				catppuccinLatte: {
+					label: 'Catppuccin Latte',
+				},
+				catppuccinMocha: {
+					label: 'Catppuccin Mocha',
+				},
+				nord: {
+					label: 'Nord',
+				},
+				dracula: {
+					label: 'Dracula',
+				},
 			},
 		},
 	},

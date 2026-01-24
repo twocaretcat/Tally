@@ -18,7 +18,7 @@ type Props = WithChildren<false>;
 
 const type = 'radio' as const;
 const currentLocaleId = getLocale(Astro);
-const msg = getLocaleMessages(currentLocaleId).locales;
+const msg = getLocaleMessages(currentLocaleId).option.locale;
 ---
 
 <InputGroup

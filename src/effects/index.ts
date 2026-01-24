@@ -58,10 +58,10 @@ $option.rememberInputText.subscribe((rememberInputText) => {
  * Clears existing lint chunks when disabled, and triggers text analysis
  * for the current input when enabled.
  *
- * @param enableGrammarChecking - Whether grammar checking is enabled.
+ * @param enableLinting - Whether grammar checking is enabled.
  */
-$option.enableGrammarChecking.subscribe((enableGrammarChecking) => {
-	if (!enableGrammarChecking) {
+$option.enableLinting.subscribe((enableLinting) => {
+	if (!enableLinting) {
 		clearLintChunks();
 
 		return;

@@ -58,8 +58,7 @@ const lintJobRunner = createJobRunner(
  *
  * @returns `true` if linting should run; otherwise `false`.
  */
-const doLint = () =>
-	localeSupportsLinting && $option.enableGrammarChecking.get();
+const doLint = () => localeSupportsLinting && $option.enableLinting.get();
 
 /**
  * Clears all lint chunks from the current lint state.

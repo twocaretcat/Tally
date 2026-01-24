@@ -9,6 +9,7 @@ import type { LocaleMessages } from '../types.ts';
 const TAGLINE = 'Penghitung kata' as const;
 const DESCRIPTION =
 	'Penghitung kata favorit Anda dalam mode gelap — kini dengan lebih banyak tema!' as const;
+const AUTO_LABEL = 'Otomatis' as const;
 
 const messages: LocaleMessages = {
 	site: {
@@ -119,71 +120,83 @@ const messages: LocaleMessages = {
 			tooltip: 'Lihat proyek lain dari saya',
 		},
 	},
-	locales: {
-		title: 'Bahasa',
-	},
-	options: {
-		title: 'Opsi',
-		map: {
-			rememberInputText: {
-				label: 'Simpan teks masukan',
-			},
-			warnOnLargeInputText: {
-				label: 'Peringatkan saat input berukuran besar',
-			},
-			enableGrammarChecking: {
-				label: 'Aktifkan pemeriksaan tata bahasa',
-				tooltip: 'Pemeriksaan tata bahasa tidak tersedia untuk bahasa ini',
-			},
-			enableDebugLogging: {
-				label: 'Aktifkan logging debug',
+	option: {
+		locale: {
+			title: 'Bahasa',
+		},
+		general: {
+			title: 'Opsi',
+			map: {
+				rememberInputText: {
+					label: 'Simpan teks masukan',
+				},
+				warnOnLargeInputText: {
+					label: 'Peringatkan saat input berukuran besar',
+				},
+				enableLinting: {
+					label: 'Aktifkan pemeriksaan tata bahasa',
+				},
+				enableDebugLogging: {
+					label: 'Aktifkan logging debug',
+				},
 			},
 		},
-	},
-	themes: {
-		title: 'Tema',
-		map: {
-			auto: {
-				label: 'Otomatis',
+		lintingLocale: {
+			title: 'TODO',
+			unsupportedWarning: {
+				tooltip: 'Pemeriksaan tata bahasa tidak tersedia untuk bahasa ini',
 			},
-			amoled: {
-				label: 'AMOLED',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
 			},
-			light: {
-				label: 'Terang',
-			},
-			dark: {
-				label: 'Gelap',
-			},
-			teal: {
-				label: 'Teal',
-			},
-			dusk: {
-				label: 'Senja',
-			},
-			solarizedLight: {
-				label: 'Solarized Terang',
-			},
-			solarizedDark: {
-				label: 'Solarized Gelap',
-			},
-			gruvboxLight: {
-				label: 'Gruvbox Terang',
-			},
-			gruvboxDark: {
-				label: 'Gruvbox Gelap',
-			},
-			catppuccinLatte: {
-				label: 'Catppuccin Latte',
-			},
-			catppuccinMocha: {
-				label: 'Catppuccin Mocha',
-			},
-			nord: {
-				label: 'Nord',
-			},
-			dracula: {
-				label: 'Dracula',
+		},
+		theme: {
+			title: 'Tema',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
+				amoled: {
+					label: 'AMOLED',
+				},
+				light: {
+					label: 'Terang',
+				},
+				dark: {
+					label: 'Gelap',
+				},
+				teal: {
+					label: 'Teal',
+				},
+				dusk: {
+					label: 'Senja',
+				},
+				solarizedLight: {
+					label: 'Solarized Terang',
+				},
+				solarizedDark: {
+					label: 'Solarized Gelap',
+				},
+				gruvboxLight: {
+					label: 'Gruvbox Terang',
+				},
+				gruvboxDark: {
+					label: 'Gruvbox Gelap',
+				},
+				catppuccinLatte: {
+					label: 'Catppuccin Latte',
+				},
+				catppuccinMocha: {
+					label: 'Catppuccin Mocha',
+				},
+				nord: {
+					label: 'Nord',
+				},
+				dracula: {
+					label: 'Dracula',
+				},
 			},
 		},
 	},

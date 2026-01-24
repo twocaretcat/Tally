@@ -8,7 +8,7 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Penghitung kata' as const;
 const DESCRIPTION =
-	'Penghitung kata favorit Anda dalam mode gelap — kini dengan lebih banyak tema!' as const;
+	'Penghitung kata favorit Anda dalam mode gelap, sekarang dengan pemeriksaan tata bahasa!' as const;
 const AUTO_LABEL = 'Otomatis' as const;
 
 const messages: LocaleMessages = {
@@ -142,7 +142,7 @@ const messages: LocaleMessages = {
 			},
 		},
 		lintingLocale: {
-			title: 'TODO',
+			title: 'Bahasa untuk pemeriksaan tata bahasa',
 			unsupportedWarning: {
 				tooltip: 'Pemeriksaan tata bahasa tidak tersedia untuk bahasa ini',
 			},

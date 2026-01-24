@@ -8,7 +8,7 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Contador de palabras' as const;
 const DESCRIPTION =
-	'Tu contador de palabras favorito en modo oscuro, ¡ahora con aún más temas!' as const;
+	'¡Tu contador de palabras favorito en modo oscuro, ahora con revisión gramatical!' as const;
 const AUTO_LABEL = 'Automático' as const;
 
 const messages: LocaleMessages = {
@@ -142,7 +142,7 @@ const messages: LocaleMessages = {
 			},
 		},
 		lintingLocale: {
-			title: 'TODO',
+			title: 'Idioma para la revisión gramatical',
 			unsupportedWarning: {
 				tooltip: 'La revisión gramatical no está disponible para este idioma',
 			},

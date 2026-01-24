@@ -7,7 +7,8 @@ import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = '字数统计工具' as const;
-const DESCRIPTION = '您最喜爱的深色模式字数统计工具，现拥有更多主题！' as const;
+const DESCRIPTION =
+	'您最喜爱的深色模式字数统计工具，现新增语法检查功能！' as const;
 const AUTO_LABEL = '自动' as const;
 
 const messages: LocaleMessages = {
@@ -137,7 +138,7 @@ const messages: LocaleMessages = {
 			},
 		},
 		lintingLocale: {
-			title: 'TODO',
+			title: '语法检查语言',
 			unsupportedWarning: {
 				tooltip: '此语言不支持语法检查',
 			},

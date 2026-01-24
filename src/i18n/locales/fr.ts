@@ -8,7 +8,7 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Compteur de mots' as const;
 const DESCRIPTION =
-	'Votre compteur de mots préféré en mode sombre, désormais avec encore plus de thèmes !' as const;
+	'Votre compteur de mots préféré en mode sombre, désormais avec correction grammaticale !' as const;
 const AUTO_LABEL = 'Automatique' as const;
 
 const messages: LocaleMessages = {
@@ -142,7 +142,7 @@ const messages: LocaleMessages = {
 			},
 		},
 		lintingLocale: {
-			title: 'TODO',
+			title: 'Langue de vérification grammaticale',
 			unsupportedWarning: {
 				tooltip:
 					"La vérification grammaticale n'est pas disponible pour cette langue",

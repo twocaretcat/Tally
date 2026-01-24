@@ -8,7 +8,7 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'عداد الكلمات' as const;
 const DESCRIPTION =
-	'عداد الكلمات المفضل لديك بالوضع المظلم، الآن مع المزيد من الثيمات!' as const;
+	'عداد الكلمات المفضل لديك في الوضع الداكن، الآن مع التدقيق النحوي!' as const;
 const AUTO_LABEL = 'تلقائي' as const;
 
 /**
@@ -177,7 +177,7 @@ const messages: LocaleMessages = {
 			},
 		},
 		lintingLocale: {
-			title: 'TODO',
+			title: 'لغة التدقيق النحوي',
 			unsupportedWarning: {
 				tooltip: 'التدقيق النحوي غير متاح لهذه اللغة',
 			},

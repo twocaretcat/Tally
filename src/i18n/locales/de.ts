@@ -8,7 +8,7 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Wortzähler' as const;
 const DESCRIPTION =
-	'Dein bevorzugter Wortzähler im Dunkelmodus — jetzt mit noch mehr Themes!' as const;
+	'Dein Lieblings-Wortzähler im Dunkelmodus, jetzt mit Grammatikprüfung!' as const;
 const AUTO_LABEL = 'Automatisch' as const;
 
 const messages: LocaleMessages = {
@@ -138,7 +138,7 @@ const messages: LocaleMessages = {
 			},
 		},
 		lintingLocale: {
-			title: 'TODO',
+			title: 'Sprache für die Grammatikprüfung',
 			unsupportedWarning: {
 				tooltip: 'Die Grammatikprüfung ist für diese Sprache nicht verfügbar',
 			},

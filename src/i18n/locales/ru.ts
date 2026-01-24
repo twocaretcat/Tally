@@ -8,7 +8,7 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Счётчик слов' as const;
 const DESCRIPTION =
-	'Ваш любимый счётчик слов в тёмном режиме, теперь с ещё большим количеством тем!' as const;
+	'Ваш любимый счётчик слов в тёмном режиме, теперь с проверкой грамматики!' as const;
 const AUTO_LABEL = 'Авто' as const;
 
 const messages: LocaleMessages = {
@@ -138,7 +138,7 @@ const messages: LocaleMessages = {
 			},
 		},
 		lintingLocale: {
-			title: 'TODO',
+			title: 'Язык проверки грамматики',
 			unsupportedWarning: {
 				tooltip: 'Проверка грамматики недоступна для этого языка',
 			},

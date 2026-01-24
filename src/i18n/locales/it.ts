@@ -8,7 +8,7 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Contatore di parole' as const;
 const DESCRIPTION =
-	'Il tuo contatore di parole preferito in modalità scura, ora con ancora più temi!' as const;
+	'Il tuo contatore di parole preferito in modalità scura, ora con controllo grammaticale!' as const;
 const AUTO_LABEL = 'Automatico' as const;
 
 const messages: LocaleMessages = {
@@ -142,7 +142,7 @@ const messages: LocaleMessages = {
 			},
 		},
 		lintingLocale: {
-			title: 'TODO',
+			title: 'Lingua per il controllo grammaticale',
 			unsupportedWarning: {
 				tooltip:
 					'Il controllo grammaticale non è disponibile per questa lingua',

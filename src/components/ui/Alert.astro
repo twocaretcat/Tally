@@ -1,5 +1,5 @@
 ---
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import {
 	Info,
 	OctagonX,
@@ -43,7 +43,7 @@ const iconMap = {
 let { type, title, icon, ...restProps } = Astro.props;
 
 type ??= 'note';
-title ??= getLocaleMessages(Astro).alert[type].title;
+title ??= getLocaleMessages(getLocale(Astro)).alert[type].title;
 icon ??= iconMap[type];
 ---
 

@@ -2,7 +2,7 @@
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { THEME } from '@config/theme.ts';
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
@@ -17,7 +17,7 @@ import SponsorIcon from './SponsorIcon.astro';
 type Props = WithChildren<false>;
 
 const type = 'radio' as const;
-const msg = getLocaleMessages(Astro).themes;
+const msg = getLocaleMessages(getLocale(Astro)).themes;
 ---
 
 <InputGroup
@@ -32,7 +32,7 @@ const msg = getLocaleMessages(Astro).themes;
 				<HiddenInput
 					slot="input"
 					name={THEME.id}
-					checked={id === THEME.default.id}
+					checked={id === THEME.defaultValue.id}
 					{id}
 					{type}
 				/>
@@ -71,11 +71,15 @@ const msg = getLocaleMessages(Astro).themes;
 	$theme.subscribe((value) => {
 		if (value in themeRadioMap) {
 			themeRadioMap[value].checked = true;
-		} else {
-			themeRadioMap[THEME.default.id].checked = true;
 
-			$theme.set(THEME.default.id);
+			return;
 		}
+
+		const defaultId = THEME.defaultValue.id;
+
+		themeRadioMap[defaultId].checked = true;
+
+		$theme.set(defaultId);
 	});
 
 	// Update theme when a theme radio input is changed

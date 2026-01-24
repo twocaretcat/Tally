@@ -1,6 +1,6 @@
 ---
 import Icon from '@components/ui/Icon.astro';
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { HeartHandshake } from '@lucide/astro';
 import type { ComponentProps } from 'astro/types';
 
@@ -12,7 +12,7 @@ import type { ComponentProps } from 'astro/types';
  */
 type Props = Omit<ComponentProps<typeof Icon>, 'icon'>;
 
-const msg = getLocaleMessages(Astro).icon.sponsorOnly.label;
+const msg = getLocaleMessages(getLocale(Astro)).icon.sponsorOnly.label;
 
 const props = Astro.props;
 ---

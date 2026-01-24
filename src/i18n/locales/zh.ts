@@ -120,11 +120,15 @@ const messages: LocaleMessages = {
 	options: {
 		title: '选项',
 		map: {
+			rememberInputText: {
+				label: '记住输入文本',
+			},
 			warnOnLargeInputText: {
 				label: '大文本输入时警告',
 			},
-			rememberInputText: {
-				label: '记住输入文本',
+			enableGrammarChecking: {
+				label: '启用语法检查',
+				tooltip: '此语言不支持语法检查',
 			},
 			enableDebugLogging: {
 				label: '启用调试日志',

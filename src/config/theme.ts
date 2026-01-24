@@ -18,12 +18,12 @@ type ThemeMap = Record<string, Theme>;
  * The complete theme configuration structure.
  *
  * @property id - The localStorage key for theme persistence
- * @property default - The default theme ID and color
+ * @property defaultValue - The default theme ID and color
  * @property map - Map of all available themes
  */
 type ThemeConfig = {
 	id: string;
-	default: {
+	defaultValue: {
 		id: ThemeId;
 		color: string;
 	};
@@ -59,7 +59,7 @@ const themeMap = {
  */
 export const THEME = {
 	id: 'theme',
-	default: {
+	defaultValue: {
 		id: 'auto',
 		color: '#151515',
 	},

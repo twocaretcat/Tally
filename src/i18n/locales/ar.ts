@@ -160,11 +160,15 @@ const messages: LocaleMessages = {
 		title: 'الخيارات',
 		// Option names
 		map: {
+			rememberInputText: {
+				label: 'تذكر نص الإدخال',
+			},
 			warnOnLargeInputText: {
 				label: 'التحذير عند إدخال نص كبير',
 			},
-			rememberInputText: {
-				label: 'تذكر نص الإدخال',
+			enableGrammarChecking: {
+				label: 'تمكين التدقيق النحوي',
+				tooltip: 'التدقيق النحوي غير متاح لهذه اللغة',
 			},
 			enableDebugLogging: {
 				label: 'تفعيل تسجيل التصحيح',

@@ -24,7 +24,7 @@ const props = Astro.props;
 ---
 
 <!doctype html>
-<html lang={currentLocaleId} {dir} data-theme={THEME.default.id}>
+<html lang={currentLocaleId} {dir} data-theme={THEME.defaultValue.id}>
 	<Head {...props}>
 		<slot name="head" />
 	</Head>

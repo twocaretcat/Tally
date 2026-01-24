@@ -1,6 +1,14 @@
 import * as stores from '@stores/index.ts';
 import { logger } from '@nanostores/logger';
 
+const allStores = (() => {
+	const { $option, ...restStores } = stores;
+
+	return {
+		...$option,
+		...restStores,
+	};
+})();
 const originalDebugFn = console.debug;
 
 let destroyLogger: () => void;
@@ -15,7 +23,7 @@ let destroyLogger: () => void;
  */
 export function toggleDebugLogging(enable: boolean) {
 	if (enable) {
-		destroyLogger = logger(stores);
+		destroyLogger = logger(allStores);
 
 		console.debug = originalDebugFn;
 	} else {

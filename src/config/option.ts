@@ -1,12 +1,10 @@
 /**
  * Configuration for a single user preference option.
  *
- * @property id - The option identifier and localStorage key
- * @property default - The default boolean value
+ * @property defaultValue - The default boolean value
  */
 type Option = {
-	id: string;
-	default: boolean;
+	defaultValue: boolean;
 };
 
 /**
@@ -26,17 +24,17 @@ type OptionConfig = {
 };
 
 const optionMap = {
-	warnOnLargeInputText: {
-		id: 'warnOnLargeInputText',
-		default: true,
-	},
 	rememberInputText: {
-		id: 'rememberInputText',
-		default: false,
+		defaultValue: false,
+	},
+	warnOnLargeInputText: {
+		defaultValue: true,
+	},
+	enableGrammarChecking: {
+		defaultValue: false,
 	},
 	enableDebugLogging: {
-		id: 'enableDebugLogging',
-		default: false,
+		defaultValue: false,
 	},
 } as const satisfies OptionMap;
 
@@ -51,4 +49,4 @@ export const OPTION = {
 /**
  * Union type of all valid option IDs.
  */
-export type OptionId = (typeof optionMap)[keyof typeof optionMap]['id'];
+export type OptionId = keyof typeof optionMap;

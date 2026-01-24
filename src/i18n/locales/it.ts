@@ -125,11 +125,16 @@ const messages: LocaleMessages = {
 	options: {
 		title: 'Opzioni',
 		map: {
+			rememberInputText: {
+				label: 'Ricorda il testo inserito',
+			},
 			warnOnLargeInputText: {
 				label: 'Avvisa per input di grandi dimensioni',
 			},
-			rememberInputText: {
-				label: 'Ricorda il testo inserito',
+			enableGrammarChecking: {
+				label: 'Abilita il controllo grammaticale',
+				tooltip:
+					'Il controllo grammaticale non è disponibile per questa lingua',
 			},
 			enableDebugLogging: {
 				label: 'Abilita log di debug',

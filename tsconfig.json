@@ -4,6 +4,7 @@
 	"exclude": ["dist"],
 	"compilerOptions": {
 		"paths": {
+			"@actions/*": ["./src/actions/*"],
 			"@components/*": ["./src/components/*"],
 			"@config/*": ["./src/config/*"],
 			"@effects/*": ["./src/effects/*"],

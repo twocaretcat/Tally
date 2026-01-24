@@ -166,11 +166,15 @@ const messages: LocaleMessages = {
 		title: 'Options',
 		// Option names
 		map: {
+			rememberInputText: {
+				label: 'Remember input text',
+			},
 			warnOnLargeInputText: {
 				label: 'Warn on large input text',
 			},
-			rememberInputText: {
-				label: 'Remember input text',
+			enableGrammarChecking: {
+				label: 'Enable grammar checking',
+				tooltip: 'Grammar checking is not available for this language',
 			},
 			enableDebugLogging: {
 				label: 'Enable debug logging',

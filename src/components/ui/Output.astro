@@ -1,7 +1,7 @@
 ---
 import { INPUT } from '@config/input.ts';
 import type { OutputId } from '@config/output.ts';
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { wKey } from '@utils/index.ts';
 import type { HTMLAttributes } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
@@ -20,7 +20,7 @@ interface Props extends WithChildren<
 	id: OutputId;
 }
 
-const msg = getLocaleMessages(Astro).output.placeholder;
+const msg = getLocaleMessages(getLocale(Astro)).output.placeholder;
 
 const { id, ...restProps } = Astro.props;
 ---

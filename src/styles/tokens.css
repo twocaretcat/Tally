@@ -8,7 +8,7 @@
 	--mix-lg: 50%;
 
 	/* Opacity */
-	--o-md: 0.7;
+	--o-md: 0.5;
 
 	/* Padding */
 	--p-xs: calc(var(--p-sm) / 2);

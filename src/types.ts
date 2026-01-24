@@ -44,14 +44,11 @@ type LintChunk = {
 
 /**
  * Lint chunks partitioned by their position relative to the visible text.
+ *
+ * - `visible`: lints within the visible range
+ * - `leading`: lints before the visible range
+ * - `trailing`: lints after the visible range
  */
 export type LintChunkMap = {
-	/** Lints that occur within the visible range. */
-	visible: LintChunk;
-
-	/** Lints that occur after the visible range. */
-	trailing: LintChunk | undefined;
-
-	/** Lints that occur before the visible range. */
-	leading: LintChunk | undefined;
+	[Key in 'visible' | 'trailing' | 'leading']: LintChunk | undefined;
 };

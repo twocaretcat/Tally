@@ -1,7 +1,7 @@
 ---
 import ButtonLink from '@components/ui/ButtonLink.astro';
 import Card from '@components/ui/Card.astro';
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { Scale } from '@lucide/astro';
 import type { ComponentProps } from 'astro/types';
 
@@ -15,7 +15,7 @@ import type { ComponentProps } from 'astro/types';
  */
 type Props = Omit<ComponentProps<typeof ButtonLink>, 'icon' | 'tooltip'>;
 
-const msg = getLocaleMessages(Astro).icon.license.label;
+const msg = getLocaleMessages(getLocale(Astro)).icon.license.label;
 
 const props = Astro.props;
 ---

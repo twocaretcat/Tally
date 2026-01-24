@@ -44,7 +44,7 @@ export const ASTRO_SNAPSHOT_CONFIG: Config = {
 
 const localIds = keysOf(LOCALE.map);
 const sharedI18nConfig = {
-	defaultLocale: LOCALE.default,
+	defaultLocale: LOCALE.defaultValue,
 	locales: Object.fromEntries(localIds.map((id) => [id, id])),
 } as const;
 

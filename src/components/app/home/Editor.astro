@@ -1,7 +1,7 @@
 ---
 import Card from '@components/ui/Card.astro';
 import { INPUT } from '@config/input';
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import type { WithChildren } from '../../../types.ts';
 
 /**
@@ -9,7 +9,7 @@ import type { WithChildren } from '../../../types.ts';
  */
 type Props = WithChildren<false>;
 
-const { label, placeholder } = getLocaleMessages(Astro).input;
+const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 ---
 
 <Card

@@ -108,6 +108,12 @@ const showEnabledIcon = showDisabledIcon || type === 'radio';
 			background-color: var(--bg-1) !important;
 			box-shadow: initial !important;
 		}
+
+		&:has(input:disabled) {
+			opacity: var(--o-md) !important;
+			background-color: var(--bg-1) !important;
+			box-shadow: initial !important;
+		}
 	}
 
 	span {

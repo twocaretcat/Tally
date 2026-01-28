@@ -141,8 +141,8 @@ const messages: LocaleMessages = {
 				},
 			},
 		},
-		lintingLocale: {
-			title: 'Bahasa untuk pemeriksaan tata bahasa',
+		lintingRegion: {
+			title: 'Wilayah pemeriksaan tata bahasa',
 			unsupportedWarning: {
 				tooltip: 'Pemeriksaan tata bahasa tidak tersedia untuk bahasa ini',
 			},

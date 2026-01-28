@@ -141,8 +141,8 @@ const messages: LocaleMessages = {
 				},
 			},
 		},
-		lintingLocale: {
-			title: 'Idioma para la revisión gramatical',
+		lintingRegion: {
+			title: 'Región de revisión gramatical',
 			unsupportedWarning: {
 				tooltip: 'La revisión gramatical no está disponible para este idioma',
 			},

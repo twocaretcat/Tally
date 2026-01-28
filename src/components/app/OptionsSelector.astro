@@ -1,12 +1,12 @@
 ---
+import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import Icon from '@components/ui/Icon.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
-import { LOCALE } from '@config/locale.ts';
 import { OPTION, type OptionId } from '@config/option.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { GlobeX } from '@lucide/astro';
-import { entriesOf } from '@utils/index.ts';
+import { buildId, entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
 
@@ -19,6 +19,7 @@ type Props = WithChildren<false>;
 
 const type = 'checkbox' as const;
 const currentLocaleId = getLocale(Astro);
+const localeSupportsLinting = doesLocaleSupportLinting(currentLocaleId);
 const msg = getLocaleMessages(currentLocaleId).option;
 
 /**
@@ -31,9 +32,9 @@ const msg = getLocaleMessages(currentLocaleId).option;
  * @returns Attributes controlling title, checked state, and disabled state.
  */
 function getConditionalOptionAttributes(id: OptionId, defaultValue: boolean) {
-	if (id === 'enableLinting' && !LOCALE.map[currentLocaleId].lintable) {
+	if (id === 'enableLinting' && !localeSupportsLinting) {
 		return {
-			title: msg.lintingLocale.unsupportedWarning.tooltip,
+			title: msg.lintingRegion.unsupportedWarning.tooltip,
 			checked: false,
 			disabled: true,
 		};
@@ -60,9 +61,9 @@ function getConditionalOptionAttributes(id: OptionId, defaultValue: boolean) {
 					<HiddenInput
 						slot="input"
 						name={OPTION.id}
+						id={buildId(OPTION.id, id)}
 						{checked}
 						{disabled}
-						{id}
 						{type}
 					/>
 					{msg.general.map[id].label}
@@ -74,17 +75,20 @@ function getConditionalOptionAttributes(id: OptionId, defaultValue: boolean) {
 </InputGroup>
 
 <script>
-	import { LOCALE } from '@config/locale.ts';
+	import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+	import { OPTION } from '@config/option.ts';
 	import { getLocale } from '@i18n/index.ts';
 	import { $option } from '@stores/index.ts';
-	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { buildId, entriesOf, getDefinedElementById } from '@utils/index.ts';
 
 	const currentLocaleId = getLocale();
+	const localeSupportsLinting = doesLocaleSupportLinting(currentLocaleId);
 
 	for (const [id, store] of entriesOf($option)) {
-		const disabled =
-			id === 'enableLinting' && !LOCALE.map[currentLocaleId].lintable;
-		const checkbox = getDefinedElementById<HTMLInputElement>(id);
+		const disabled = id === 'enableLinting' && !localeSupportsLinting;
+		const checkbox = getDefinedElementById<HTMLInputElement>(
+			buildId(OPTION.id, id),
+		);
 
 		// Update checkboxes when the option changes
 		store.subscribe((value) => {

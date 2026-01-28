@@ -137,8 +137,8 @@ const messages: LocaleMessages = {
 				},
 			},
 		},
-		lintingLocale: {
-			title: 'Sprache für die Grammatikprüfung',
+		lintingRegion: {
+			title: 'Region für die Grammatikprüfung',
 			unsupportedWarning: {
 				tooltip: 'Die Grammatikprüfung ist für diese Sprache nicht verfügbar',
 			},

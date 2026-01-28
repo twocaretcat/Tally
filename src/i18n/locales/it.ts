@@ -141,8 +141,8 @@ const messages: LocaleMessages = {
 				},
 			},
 		},
-		lintingLocale: {
-			title: 'Lingua per il controllo grammaticale',
+		lintingRegion: {
+			title: 'Regione per il controllo grammaticale',
 			unsupportedWarning: {
 				tooltip:
 					'Il controllo grammaticale non è disponibile per questa lingua',

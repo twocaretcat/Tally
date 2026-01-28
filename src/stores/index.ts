@@ -7,6 +7,20 @@ import { atom, map } from 'nanostores';
 import { mapEntries } from 'radashi';
 import type { LintChunkMap, RangeIndices } from '../types.ts';
 import { persistentBooleanAtom } from './utils.ts';
+import {
+	LINTING,
+	type LintingLanguageId,
+	type LintingRegionId,
+} from '@config/linting.ts';
+import { buildId } from '@utils/index.ts';
+import { getLocale } from '@i18n/index.ts';
+import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+
+const currentLocaleId = getLocale();
+const localeSupportsLinting = doesLocaleSupportLinting(currentLocaleId);
+const defaultLintingRegion = localeSupportsLinting
+	? LINTING.locale.map[currentLocaleId].defaultValue
+	: undefined;
 
 /**
  * Map of option IDs to persistent boolean atoms.
@@ -15,6 +29,33 @@ export const $option = mapEntries(OPTION.map, (id, { defaultValue }) => [
 	id,
 	persistentBooleanAtom(id, defaultValue),
 ]);
+
+/**
+ * Map of locale IDs to persisted linting region selections.
+ *
+ * Each locale stores its selected region in localStorage with
+ * a locale-specific key.
+ */
+export const $persistedLintingRegion = mapEntries(
+	LINTING.locale.map,
+	(langId, regionMap) => [
+		langId,
+		persistentAtom<LintingRegionId<typeof langId>>(
+			buildId(LINTING.id, LINTING.locale.id, langId),
+			regionMap.defaultValue,
+		),
+	],
+);
+
+/**
+ * Currently active linting region (dialect).
+ *
+ * Derived from the selected locale and persisted region,
+ * or `undefined` when not yet resolved.
+ */
+export const $lintingRegion = atom<
+	LintingRegionId<LintingLanguageId> | undefined
+>(defaultLintingRegion);
 
 /**
  * The currently selected theme ID.

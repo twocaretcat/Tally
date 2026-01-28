@@ -141,8 +141,8 @@ const messages: LocaleMessages = {
 				},
 			},
 		},
-		lintingLocale: {
-			title: 'Langue de vérification grammaticale',
+		lintingRegion: {
+			title: 'Région de vérification grammaticale',
 			unsupportedWarning: {
 				tooltip:
 					"La vérification grammaticale n'est pas disponible pour cette langue",

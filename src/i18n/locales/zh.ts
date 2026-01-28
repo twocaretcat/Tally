@@ -137,8 +137,8 @@ const messages: LocaleMessages = {
 				},
 			},
 		},
-		lintingLocale: {
-			title: '语法检查语言',
+		lintingRegion: {
+			title: '语法检查区域',
 			unsupportedWarning: {
 				tooltip: '此语言不支持语法检查',
 			},

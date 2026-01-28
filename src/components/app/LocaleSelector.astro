@@ -3,7 +3,7 @@ import InputGroup from '@components/ui/InputGroup.astro';
 import LinkWrapper from '@components/ui/LinkWrapper.astro';
 import { LOCALE } from '@config/locale.ts';
 import { getLocale, getLocaleInfo, getLocaleMessages } from '@i18n/index.ts';
-import { entriesOf } from '@utils/index.ts';
+import { buildId, entriesOf } from '@utils/index.ts';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
@@ -42,7 +42,10 @@ const msg = getLocaleMessages(currentLocaleId).option.locale;
 				const { flag, languageName, regionName } = info;
 
 				return (
-					<LinkWrapper to={getRelativeLocaleUrl(id)} {id}>
+					<LinkWrapper
+						to={getRelativeLocaleUrl(id)}
+						id={buildId(LOCALE.id, id)}
+					>
 						<Button
 							as="div"
 							role={type}
@@ -62,10 +65,10 @@ const msg = getLocaleMessages(currentLocaleId).option.locale;
 
 <script>
 	import { LOCALE } from '@config/locale.ts';
-	import { getDefinedElementById, keysOf } from '@utils/index.ts';
+	import { buildId, getDefinedElementById, keysOf } from '@utils/index.ts';
 
-	const anchors = keysOf(LOCALE.map).map(
-		getDefinedElementById<HTMLAnchorElement>,
+	const anchors = keysOf(LOCALE.map).map((id) =>
+		getDefinedElementById<HTMLAnchorElement>(buildId(LOCALE.id, id)),
 	);
 
 	for (const anchor of anchors) {

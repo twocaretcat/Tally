@@ -184,8 +184,8 @@ const messages: LocaleMessages = {
 			},
 		},
 		// TODO: Create `linting` section to nest this under
-		lintingLocale: {
-			title: 'TODO',
+		lintingRegion: {
+			title: 'Grammar Checking Region',
 			unsupportedWarning: {
 				tooltip: 'Grammar checking is not available for this language',
 			},

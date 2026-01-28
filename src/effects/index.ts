@@ -1,6 +1,7 @@
 import { INPUT } from '@config/input.ts';
 import {
 	$input,
+	$lintingRegion,
 	$option,
 	$persistedInputText,
 	$persistedTheme,
@@ -9,7 +10,7 @@ import {
 import { analyzeText } from '@actions/analyzer.ts';
 import { toggleDebugLogging } from '@actions/logger.ts';
 import { THEME } from '@config/theme.ts';
-import { clearLintChunks } from '@actions/analyzer.ts';
+import { toggleLinting, updateLintingRegion } from '@actions/linting/linter';
 
 /**
  * Persists theme changes to localStorage, skipping sponsor-only themes.
@@ -53,26 +54,22 @@ $option.rememberInputText.subscribe((rememberInputText) => {
 });
 
 /**
- * Reacts to changes in the grammar-checking option.
+ * Subscribes to grammar-checking option changes.
  *
- * Clears existing lint chunks when disabled, and triggers text analysis
- * for the current input when enabled.
- *
- * @param enableLinting - Whether grammar checking is enabled.
+ * Enables or disables linting behavior when the option is toggled.
  */
-$option.enableLinting.subscribe((enableLinting) => {
-	if (!enableLinting) {
-		clearLintChunks();
-
-		return;
-	}
-
-	const { text, visibleRangeIndices } = $input.get();
-
-	analyzeText(text, visibleRangeIndices);
-});
+$option.enableLinting.subscribe(toggleLinting);
 
 /**
- * Toggles debug logging on or off whenever the option changes.
+ * Subscribes to debug-logging option changes.
+ *
+ * Toggles debug output whenever the option value changes.
  */
 $option.enableDebugLogging.subscribe(toggleDebugLogging);
+
+/**
+ * Reacts to changes in the active linting region.
+ *
+ * Updates linting configuration to reflect the selected region.
+ */
+$lintingRegion.subscribe(updateLintingRegion);

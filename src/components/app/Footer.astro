@@ -7,6 +7,7 @@ import type { HTMLAttributes } from 'astro/types';
 import { getEntry } from 'astro:content';
 import { assert } from 'radashi';
 import type { WithChildren } from '../../types.ts';
+import LintingRegionSelector from './LintingRegionSelector.astro';
 import LocaleSelector from './LocaleSelector.astro';
 import OptionsSelector from './OptionsSelector.astro';
 import ThemeSelector from './ThemeSelector.astro';
@@ -36,6 +37,7 @@ const props = Astro.props;
 	<section {...wKey('preferences', 'section')}>
 		{hasMultipleLocales && <LocaleSelector />}
 		<OptionsSelector />
+		<LintingRegionSelector />
 		<ThemeSelector />
 	</section>
 </footer>

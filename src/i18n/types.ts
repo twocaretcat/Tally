@@ -48,7 +48,7 @@ type OptionMap = {
 /**
  * A map of option IDs to their localized labels.
  */
-type LintingLocaleMap = {
+type LintingRegionMap = {
 	auto: WithLabel;
 };
 
@@ -105,9 +105,9 @@ export type LocaleMessages = {
 		general: WithTitle & {
 			map: OptionMap;
 		};
-		lintingLocale: WithTitle & {
+		lintingRegion: WithTitle & {
 			unsupportedWarning: WithTooltip;
-			map: LintingLocaleMap;
+			map: LintingRegionMap;
 		};
 		theme: WithTitle & {
 			map: ThemeMap;

@@ -137,8 +137,8 @@ const messages: LocaleMessages = {
 				},
 			},
 		},
-		lintingLocale: {
-			title: 'Язык проверки грамматики',
+		lintingRegion: {
+			title: 'Регион проверки грамматики',
 			unsupportedWarning: {
 				tooltip: 'Проверка грамматики недоступна для этого языка',
 			},

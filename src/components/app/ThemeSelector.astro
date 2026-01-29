@@ -85,5 +85,8 @@ const msg = getLocaleMessages(getLocale(Astro)).option.theme;
 	// Update theme when a theme radio input is changed
 	for (const [id, radio] of entriesOf(themeRadioMap)) {
 		radio.addEventListener('change', () => $theme.set(id));
+
+		radio.disabled = false;
+		radio.ariaBusy = String(false);
 	}
 </script>

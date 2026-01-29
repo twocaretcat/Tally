@@ -112,6 +112,9 @@ const props = [
 		// Update linting region when a linting region radio input is changed
 		for (const [id, radio] of entriesOf(localeRadioMap)) {
 			radio.addEventListener('change', () => $lintingRegion.set(id));
+
+			radio.disabled = false;
+			radio.ariaBusy = String(false);
 		}
 	}
 </script>

@@ -10,7 +10,8 @@ type Props = WithChildren<false, HTMLAttributes<'input'>>;
 const props = Astro.props;
 ---
 
-<input {...props} />
+<!-- Assume a loading state by default and re-enable after data has been loaded with JS -->
+<input aria-busy="true" disabled {...props} />
 
 <style>
 	input {

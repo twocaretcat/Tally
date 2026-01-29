@@ -63,7 +63,6 @@ function getConditionalOptionAttributes(id: OptionId, defaultValue: boolean) {
 						name={OPTION.id}
 						id={buildId(OPTION.id, id)}
 						{checked}
-						{disabled}
 						{type}
 					/>
 					{msg.general.map[id].label}
@@ -95,9 +94,12 @@ function getConditionalOptionAttributes(id: OptionId, defaultValue: boolean) {
 			checkbox.checked = disabled ? false : value;
 		});
 
-		// Update theme when a theme radio input is changed
+		// Update option when a option radio input is changed
 		checkbox.addEventListener('change', () => {
 			store.set(checkbox.checked);
 		});
+
+		checkbox.disabled = disabled;
+		checkbox.ariaBusy = String(false);
 	}
 </script>

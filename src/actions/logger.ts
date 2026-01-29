@@ -2,10 +2,11 @@ import * as stores from '@stores/index.ts';
 import { logger } from '@nanostores/logger';
 
 const allStores = (() => {
-	const { $option, ...restStores } = stores;
+	const { $option, $persistedLintingRegion, ...restStores } = stores;
 
 	return {
 		...$option,
+		...$persistedLintingRegion,
 		...restStores,
 	};
 })();

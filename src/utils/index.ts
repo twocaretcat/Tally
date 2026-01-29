@@ -68,6 +68,16 @@ export function getDefinedElementById<T extends HTMLElement = HTMLElement>(
 }
 
 /**
+ * Builds a hyphen-separated DOM-safe ID from multiple parts.
+ *
+ * @param args - ID segments to concatenate.
+ * @returns A hyphen-joined ID string.
+ */
+export function buildId(...args: string[]) {
+	return args.join('-') as `${string}-${string}`;
+}
+
+/**
  * Generates a view transition name from the provided keys for cross-document view transitions.
  *
  * @param keys - One or more strings to join as the transition name (null/undefined values are filtered out)

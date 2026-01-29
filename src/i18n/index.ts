@@ -176,6 +176,28 @@ export function getLocaleInfo(localeId: LocaleId, regionId?: RegionId) {
 }
 
 /**
+ * Retrieves the user's preferred locales from the browser.
+ *
+ * Normalizes each locale to its base language and optional region.
+ *
+ * @returns An array of preferred locales with language and region IDs.
+ */
+export function getPreferredLocales() {
+	const localeIds = navigator.languages || [navigator.language];
+
+	return localeIds.map((localeId) => {
+		const locale = new Intl.Locale(localeId);
+		const languageId = locale.minimize().language;
+		const regionId = locale.region;
+
+		return {
+			languageId,
+			regionId,
+		};
+	});
+}
+
+/**
  * Determines the best matching locale based on the user's browser language preferences.
  *
  * Iterates through the user's language preferences and returns the first supported
@@ -184,14 +206,12 @@ export function getLocaleInfo(localeId: LocaleId, regionId?: RegionId) {
  * @returns The best matching locale ID, or the default locale
  */
 export function getBestMatchingLocale() {
-	const userLocaleIds = navigator.languages || [navigator.language];
+	const { map } = LOCALE;
 
-	// Check each user language preference
-	for (const localeId of userLocaleIds) {
-		const preferredLangCode = new Intl.Locale(localeId).minimize().language;
-		// See if we have a match for just the language code
-		if (LOCALE.map[preferredLangCode as LocaleId]) {
-			return preferredLangCode as LocaleId;
+	// See if we have a match for just the language code
+	for (const { languageId } of getPreferredLocales()) {
+		if (languageId in map) {
+			return languageId as keyof typeof map;
 		}
 	}
 

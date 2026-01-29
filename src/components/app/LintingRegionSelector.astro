@@ -1,0 +1,120 @@
+---
+import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+import HiddenInput from '@components/ui/HiddenInput.astro';
+import InputGroup from '@components/ui/InputGroup.astro';
+import { LINTING } from '@config/linting.ts';
+import { getLocale, getLocaleInfo, getLocaleMessages } from '@i18n/index.ts';
+import { buildId, keysOf } from '@utils/index.ts';
+import type { WithChildren } from '../../types.ts';
+import Button from './Button.astro';
+
+/**
+ * Props for the linting region selector component.
+ *
+ * Children are explicitly disallowed; options are generated from configuration.
+ */
+type Props = WithChildren<false>;
+
+const type = 'radio' as const;
+
+const currentLocaleId = getLocale(Astro);
+const msg = getLocaleMessages(currentLocaleId).option.lintingRegion;
+const localeSupportsLinting = doesLocaleSupportLinting(currentLocaleId);
+
+if (!localeSupportsLinting) return;
+
+const { auto, ...restProps } = LINTING.locale.map[currentLocaleId].map;
+const props = [
+	{
+		regionId: 'auto',
+		flag: undefined,
+		regionName: msg.map.auto.label,
+	},
+	...keysOf(restProps)
+		.map((regionId) => {
+			const { flag = '', regionName = '' } = getLocaleInfo(
+				currentLocaleId,
+				regionId,
+			);
+
+			return {
+				regionId,
+				flag,
+				regionName,
+			};
+		})
+		.sort((a, b) => a.regionName.localeCompare(b.regionName, currentLocaleId)),
+];
+---
+
+{
+	localeSupportsLinting && (
+		<InputGroup
+			id={LINTING.id}
+			title={msg.title}
+			role="radiogroup"
+			aria-required="true"
+		>
+			{props.map(({ regionId, flag, regionName }) => (
+				<Button as="label" {type}>
+					<HiddenInput
+						slot="input"
+						name={buildId(LINTING.id, LINTING.locale.id)}
+						id={buildId(LINTING.id, LINTING.locale.id, regionId)}
+						checked={
+							regionId === LINTING.locale.map[currentLocaleId].defaultValue
+						}
+						{type}
+					/>
+					{[flag, regionName].filter(Boolean).join(' ')}
+				</Button>
+			))}
+		</InputGroup>
+	)
+}
+
+<script>
+	import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+	import { LINTING } from '@config/linting.ts';
+	import { getLocale } from '@i18n/index.ts';
+	import { $lintingRegion } from '@stores/index.ts';
+	import { buildId, entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { mapEntries } from 'radashi';
+
+	const currentLocaleId = getLocale();
+
+	if (doesLocaleSupportLinting(currentLocaleId)) {
+		const localeRadioMap = mapEntries(
+			LINTING.locale.map[currentLocaleId].map,
+			(regionId) => [
+				regionId,
+				getDefinedElementById<HTMLInputElement>(
+					buildId(LINTING.id, LINTING.locale.id, regionId),
+				),
+			],
+		);
+
+		// Update linting region radio inputs when the linting region changes
+		$lintingRegion.subscribe((value) => {
+			if (value && value in localeRadioMap) {
+				localeRadioMap[value].checked = true;
+
+				return;
+			}
+
+			const defaultId = LINTING.locale.map[currentLocaleId].defaultValue;
+
+			localeRadioMap[defaultId].checked = true;
+
+			$lintingRegion.set(defaultId);
+		});
+
+		// Update linting region when a linting region radio input is changed
+		for (const [id, radio] of entriesOf(localeRadioMap)) {
+			radio.addEventListener('change', () => $lintingRegion.set(id));
+
+			radio.disabled = false;
+			radio.ariaBusy = String(false);
+		}
+	}
+</script>

@@ -3,7 +3,7 @@ import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { THEME } from '@config/theme.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
-import { entriesOf } from '@utils/index.ts';
+import { buildId, entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 import Button from './Button.astro';
 import ExperimentalIcon from './ExperimentalIcon.astro';
@@ -17,7 +17,7 @@ import SponsorIcon from './SponsorIcon.astro';
 type Props = WithChildren<false>;
 
 const type = 'radio' as const;
-const msg = getLocaleMessages(getLocale(Astro)).themes;
+const msg = getLocaleMessages(getLocale(Astro)).option.theme;
 ---
 
 <InputGroup
@@ -32,8 +32,8 @@ const msg = getLocaleMessages(getLocale(Astro)).themes;
 				<HiddenInput
 					slot="input"
 					name={THEME.id}
+					id={buildId(THEME.id, id)}
 					checked={id === THEME.defaultValue.id}
-					{id}
 					{type}
 				/>
 				{msg.map[id].label}
@@ -59,12 +59,12 @@ const msg = getLocaleMessages(getLocale(Astro)).themes;
 <script>
 	import { THEME } from '@config/theme.ts';
 	import { $theme } from '@stores/index.ts';
-	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { buildId, entriesOf, getDefinedElementById } from '@utils/index.ts';
 	import { mapEntries } from 'radashi';
 
 	const themeRadioMap = mapEntries(THEME.map, (themeId) => [
 		themeId,
-		getDefinedElementById<HTMLInputElement>(themeId),
+		getDefinedElementById<HTMLInputElement>(buildId(THEME.id, themeId)),
 	]);
 
 	// Update theme radio inputs when the theme changes
@@ -85,5 +85,8 @@ const msg = getLocaleMessages(getLocale(Astro)).themes;
 	// Update theme when a theme radio input is changed
 	for (const [id, radio] of entriesOf(themeRadioMap)) {
 		radio.addEventListener('change', () => $theme.set(id));
+
+		radio.disabled = false;
+		radio.ariaBusy = String(false);
 	}
 </script>

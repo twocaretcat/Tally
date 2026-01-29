@@ -8,7 +8,8 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Compteur de mots' as const;
 const DESCRIPTION =
-	'Votre compteur de mots préféré en mode sombre, désormais avec encore plus de thèmes !' as const;
+	'Votre compteur de mots préféré en mode sombre, désormais avec correction grammaticale !' as const;
+const AUTO_LABEL = 'Automatique' as const;
 
 const messages: LocaleMessages = {
 	site: {
@@ -119,72 +120,84 @@ const messages: LocaleMessages = {
 			tooltip: 'Voir d’autres projets de ma part',
 		},
 	},
-	locales: {
-		title: 'Langue',
-	},
-	options: {
-		title: 'Options',
-		map: {
-			rememberInputText: {
-				label: 'Se souvenir du texte saisi',
+	option: {
+		locale: {
+			title: 'Langue',
+		},
+		general: {
+			title: 'Options',
+			map: {
+				rememberInputText: {
+					label: 'Se souvenir du texte saisi',
+				},
+				warnOnLargeInputText: {
+					label: "Avertir en cas d'entrée volumineuse",
+				},
+				enableLinting: {
+					label: 'Activer la vérification grammaticale',
+				},
+				enableDebugLogging: {
+					label: 'Activer les logs de débogage',
+				},
 			},
-			warnOnLargeInputText: {
-				label: "Avertir en cas d'entrée volumineuse",
-			},
-			enableGrammarChecking: {
-				label: 'Activer la vérification grammaticale',
+		},
+		lintingRegion: {
+			title: 'Région de vérification grammaticale',
+			unsupportedWarning: {
 				tooltip:
 					"La vérification grammaticale n'est pas disponible pour cette langue",
 			},
-			enableDebugLogging: {
-				label: 'Activer les logs de débogage',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
 			},
 		},
-	},
-	themes: {
-		title: 'Thème',
-		map: {
-			auto: {
-				label: 'Automatique',
-			},
-			amoled: {
-				label: 'AMOLED',
-			},
-			light: {
-				label: 'Clair',
-			},
-			dark: {
-				label: 'Sombre',
-			},
-			teal: {
-				label: 'Sarcelle',
-			},
-			dusk: {
-				label: 'Crépuscule',
-			},
-			solarizedLight: {
-				label: 'Solarized Clair',
-			},
-			solarizedDark: {
-				label: 'Solarized Sombre',
-			},
-			gruvboxLight: {
-				label: 'Gruvbox Clair',
-			},
-			gruvboxDark: {
-				label: 'Gruvbox Sombre',
-			},
-			catppuccinLatte: {
-				label: 'Catppuccin Latte',
-			},
-			catppuccinMocha: {
-				label: 'Catppuccin Mocha',
-			},
-			nord: {
-				label: 'Nord',
-			},
-			dracula: {
-				label: 'Dracula',
+		theme: {
+			title: 'Thème',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
+				amoled: {
+					label: 'AMOLED',
+				},
+				light: {
+					label: 'Clair',
+				},
+				dark: {
+					label: 'Sombre',
+				},
+				teal: {
+					label: 'Sarcelle',
+				},
+				dusk: {
+					label: 'Crépuscule',
+				},
+				solarizedLight: {
+					label: 'Solarized Clair',
+				},
+				solarizedDark: {
+					label: 'Solarized Sombre',
+				},
+				gruvboxLight: {
+					label: 'Gruvbox Clair',
+				},
+				gruvboxDark: {
+					label: 'Gruvbox Sombre',
+				},
+				catppuccinLatte: {
+					label: 'Catppuccin Latte',
+				},
+				catppuccinMocha: {
+					label: 'Catppuccin Mocha',
+				},
+				nord: {
+					label: 'Nord',
+				},
+				dracula: {
+					label: 'Dracula',
+				},
 			},
 		},
 	},

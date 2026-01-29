@@ -7,7 +7,9 @@ import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = '字数统计工具' as const;
-const DESCRIPTION = '您最喜爱的深色模式字数统计工具，现拥有更多主题！' as const;
+const DESCRIPTION =
+	'您最喜爱的深色模式字数统计工具，现新增语法检查功能！' as const;
+const AUTO_LABEL = '自动' as const;
 
 const messages: LocaleMessages = {
 	site: {
@@ -114,71 +116,83 @@ const messages: LocaleMessages = {
 			tooltip: '查看我的更多项目',
 		},
 	},
-	locales: {
-		title: '语言',
-	},
-	options: {
-		title: '选项',
-		map: {
-			rememberInputText: {
-				label: '记住输入文本',
-			},
-			warnOnLargeInputText: {
-				label: '大文本输入时警告',
-			},
-			enableGrammarChecking: {
-				label: '启用语法检查',
-				tooltip: '此语言不支持语法检查',
-			},
-			enableDebugLogging: {
-				label: '启用调试日志',
+	option: {
+		locale: {
+			title: '语言',
+		},
+		general: {
+			title: '选项',
+			map: {
+				rememberInputText: {
+					label: '记住输入文本',
+				},
+				warnOnLargeInputText: {
+					label: '大文本输入时警告',
+				},
+				enableLinting: {
+					label: '启用语法检查',
+				},
+				enableDebugLogging: {
+					label: '启用调试日志',
+				},
 			},
 		},
-	},
-	themes: {
-		title: '主题',
-		map: {
-			auto: {
-				label: '自动',
+		lintingRegion: {
+			title: '语法检查区域',
+			unsupportedWarning: {
+				tooltip: '此语言不支持语法检查',
 			},
-			amoled: {
-				label: 'AMOLED',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
 			},
-			light: {
-				label: '浅色',
-			},
-			dark: {
-				label: '深色',
-			},
-			teal: {
-				label: '蓝绿色',
-			},
-			dusk: {
-				label: '黄昏',
-			},
-			solarizedLight: {
-				label: 'Solarized 浅色',
-			},
-			solarizedDark: {
-				label: 'Solarized 深色',
-			},
-			gruvboxLight: {
-				label: 'Gruvbox 浅色',
-			},
-			gruvboxDark: {
-				label: 'Gruvbox 深色',
-			},
-			catppuccinLatte: {
-				label: 'Catppuccin Latte',
-			},
-			catppuccinMocha: {
-				label: 'Catppuccin Mocha',
-			},
-			nord: {
-				label: 'Nord',
-			},
-			dracula: {
-				label: 'Dracula',
+		},
+		theme: {
+			title: '主题',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
+				amoled: {
+					label: 'AMOLED',
+				},
+				light: {
+					label: '浅色',
+				},
+				dark: {
+					label: '深色',
+				},
+				teal: {
+					label: '蓝绿色',
+				},
+				dusk: {
+					label: '黄昏',
+				},
+				solarizedLight: {
+					label: 'Solarized 浅色',
+				},
+				solarizedDark: {
+					label: 'Solarized 深色',
+				},
+				gruvboxLight: {
+					label: 'Gruvbox 浅色',
+				},
+				gruvboxDark: {
+					label: 'Gruvbox 深色',
+				},
+				catppuccinLatte: {
+					label: 'Catppuccin Latte',
+				},
+				catppuccinMocha: {
+					label: 'Catppuccin Mocha',
+				},
+				nord: {
+					label: 'Nord',
+				},
+				dracula: {
+					label: 'Dracula',
+				},
 			},
 		},
 	},

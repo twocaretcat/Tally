@@ -11,6 +11,8 @@ const TAGLINE = 'Word Counter' as const;
 // A short description of the site
 const DESCRIPTION =
 	'Your favorite dark mode word counter, now with even more themes!' as const;
+// A label for automatic options
+const AUTO_LABEL = 'Auto' as const;
 
 /**
  * English locale strings for the entire application.
@@ -157,78 +159,91 @@ const messages: LocaleMessages = {
 			tooltip: 'View more projects by me',
 		},
 	},
-	locales: {
-		// Section title for language selector
-		title: 'Language',
-	},
-	options: {
-		// Section title for user preferences
-		title: 'Options',
-		// Option names
-		map: {
-			rememberInputText: {
-				label: 'Remember input text',
-			},
-			warnOnLargeInputText: {
-				label: 'Warn on large input text',
-			},
-			enableGrammarChecking: {
-				label: 'Enable grammar checking',
-				tooltip: 'Grammar checking is not available for this language',
-			},
-			enableDebugLogging: {
-				label: 'Enable debug logging',
+	option: {
+		locale: {
+			// Section title for language selector
+			title: 'Language',
+		},
+		general: {
+			// Section title for user preferences
+			title: 'Options',
+			// Option names
+			map: {
+				rememberInputText: {
+					label: 'Remember input text',
+				},
+				warnOnLargeInputText: {
+					label: 'Warn on large input text',
+				},
+				enableLinting: {
+					label: 'Enable grammar checking',
+				},
+				enableDebugLogging: {
+					label: 'Enable debug logging',
+				},
 			},
 		},
-	},
-	themes: {
-		// Section title for theme selector
-		title: 'Theme',
-		// Theme names
-		map: {
-			// Automatic theme based on system preference
-			auto: {
-				label: 'Auto',
+		// TODO: Create `linting` section to nest this under
+		lintingRegion: {
+			title: 'Grammar Checking Region',
+			unsupportedWarning: {
+				tooltip: 'Grammar checking is not available for this language',
 			},
-			// Pure black theme for OLED displays
-			amoled: {
-				label: 'AMOLED',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
 			},
-			light: {
-				label: 'Light',
-			},
-			dark: {
-				label: 'Dark',
-			},
-			teal: {
-				label: 'Teal',
-			},
-			dusk: {
-				label: 'Dusk',
-			},
-			solarizedLight: {
-				label: 'Solarized Light',
-			},
-			solarizedDark: {
-				label: 'Solarized Dark',
-			},
-			gruvboxLight: {
-				label: 'Gruvbox Light',
-			},
-			gruvboxDark: {
-				label: 'Gruvbox Dark',
-			},
-			catppuccinLatte: {
-				label: 'Catppuccin Latte',
-			},
-			catppuccinMocha: {
-				label: 'Catppuccin Mocha',
-			},
-			nord: {
-				label: 'Nord',
-			},
-			dracula: {
-				label: 'Dracula',
+		},
+		theme: {
+			// Section title for theme selector
+			title: 'Theme',
+			// Theme names
+			map: {
+				// Automatic theme based on system preference
+				auto: {
+					label: AUTO_LABEL,
+				},
+				// Pure black theme for OLED displays
+				amoled: {
+					label: 'AMOLED',
+				},
+				light: {
+					label: 'Light',
+				},
+				dark: {
+					label: 'Dark',
+				},
+				teal: {
+					label: 'Teal',
+				},
+				dusk: {
+					label: 'Dusk',
+				},
+				solarizedLight: {
+					label: 'Solarized Light',
+				},
+				solarizedDark: {
+					label: 'Solarized Dark',
+				},
+				gruvboxLight: {
+					label: 'Gruvbox Light',
+				},
+				gruvboxDark: {
+					label: 'Gruvbox Dark',
+				},
+				catppuccinLatte: {
+					label: 'Catppuccin Latte',
+				},
+				catppuccinMocha: {
+					label: 'Catppuccin Mocha',
+				},
+				nord: {
+					label: 'Nord',
+				},
+				dracula: {
+					label: 'Dracula',
+				},
 			},
 		},
 	},

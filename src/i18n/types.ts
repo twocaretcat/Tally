@@ -43,8 +43,13 @@ type OutputMap = {
  */
 type OptionMap = {
 	[id in OptionId]: WithLabel;
-} & {
-	enableGrammarChecking: WithLabel & WithTooltip;
+};
+
+/**
+ * A map of option IDs to their localized labels.
+ */
+type LintingRegionMap = {
+	auto: WithLabel;
 };
 
 /**
@@ -95,11 +100,17 @@ export type LocaleMessages = {
 		sponsor: ButtonLink;
 		moreProjects: ButtonLink;
 	};
-	locales: WithTitle;
-	options: WithTitle & {
-		map: OptionMap;
-	};
-	themes: WithTitle & {
-		map: ThemeMap;
+	option: {
+		locale: WithTitle;
+		general: WithTitle & {
+			map: OptionMap;
+		};
+		lintingRegion: WithTitle & {
+			unsupportedWarning: WithTooltip;
+			map: LintingRegionMap;
+		};
+		theme: WithTitle & {
+			map: ThemeMap;
+		};
 	};
 };

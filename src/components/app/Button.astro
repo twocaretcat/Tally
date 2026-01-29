@@ -115,6 +115,10 @@ const showEnabledIcon = showDisabledIcon || type === 'radio';
 			box-shadow: initial !important;
 			cursor: not-allowed;
 		}
+
+		&:has(input[aria-busy='true']) {
+			cursor: wait;
+		}
 	}
 
 	span {

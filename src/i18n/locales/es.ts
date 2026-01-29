@@ -8,7 +8,8 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Contador de palabras' as const;
 const DESCRIPTION =
-	'Tu contador de palabras favorito en modo oscuro, ¡ahora con aún más temas!' as const;
+	'¡Tu contador de palabras favorito en modo oscuro, ahora con revisión gramatical!' as const;
+const AUTO_LABEL = 'Automático' as const;
 
 const messages: LocaleMessages = {
 	site: {
@@ -119,71 +120,83 @@ const messages: LocaleMessages = {
 			tooltip: 'Ver más proyectos míos',
 		},
 	},
-	locales: {
-		title: 'Idioma',
-	},
-	options: {
-		title: 'Opciones',
-		map: {
-			rememberInputText: {
-				label: 'Recordar texto de entrada',
-			},
-			warnOnLargeInputText: {
-				label: 'Advertir sobre entradas de gran tamaño',
-			},
-			enableGrammarChecking: {
-				label: 'Activar revisión gramatical',
-				tooltip: 'La revisión gramatical no está disponible para este idioma',
-			},
-			enableDebugLogging: {
-				label: 'Habilitar registros de depuración',
+	option: {
+		locale: {
+			title: 'Idioma',
+		},
+		general: {
+			title: 'Opciones',
+			map: {
+				rememberInputText: {
+					label: 'Recordar texto de entrada',
+				},
+				warnOnLargeInputText: {
+					label: 'Advertir sobre entradas de gran tamaño',
+				},
+				enableLinting: {
+					label: 'Activar revisión gramatical',
+				},
+				enableDebugLogging: {
+					label: 'Habilitar registros de depuración',
+				},
 			},
 		},
-	},
-	themes: {
-		title: 'Tema',
-		map: {
-			auto: {
-				label: 'Automático',
+		lintingRegion: {
+			title: 'Región de revisión gramatical',
+			unsupportedWarning: {
+				tooltip: 'La revisión gramatical no está disponible para este idioma',
 			},
-			amoled: {
-				label: 'AMOLED',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
 			},
-			light: {
-				label: 'Claro',
-			},
-			dark: {
-				label: 'Oscuro',
-			},
-			teal: {
-				label: 'Turquesa',
-			},
-			dusk: {
-				label: 'Crepúsculo',
-			},
-			solarizedLight: {
-				label: 'Solarized Claro',
-			},
-			solarizedDark: {
-				label: 'Solarized Oscuro',
-			},
-			gruvboxLight: {
-				label: 'Gruvbox Claro',
-			},
-			gruvboxDark: {
-				label: 'Gruvbox Oscuro',
-			},
-			catppuccinLatte: {
-				label: 'Catppuccin Latte',
-			},
-			catppuccinMocha: {
-				label: 'Catppuccin Mocha',
-			},
-			nord: {
-				label: 'Nord',
-			},
-			dracula: {
-				label: 'Drácula',
+		},
+		theme: {
+			title: 'Tema',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
+				amoled: {
+					label: 'AMOLED',
+				},
+				light: {
+					label: 'Claro',
+				},
+				dark: {
+					label: 'Oscuro',
+				},
+				teal: {
+					label: 'Turquesa',
+				},
+				dusk: {
+					label: 'Crepúsculo',
+				},
+				solarizedLight: {
+					label: 'Solarized Claro',
+				},
+				solarizedDark: {
+					label: 'Solarized Oscuro',
+				},
+				gruvboxLight: {
+					label: 'Gruvbox Claro',
+				},
+				gruvboxDark: {
+					label: 'Gruvbox Oscuro',
+				},
+				catppuccinLatte: {
+					label: 'Catppuccin Latte',
+				},
+				catppuccinMocha: {
+					label: 'Catppuccin Mocha',
+				},
+				nord: {
+					label: 'Nord',
+				},
+				dracula: {
+					label: 'Drácula',
+				},
 			},
 		},
 	},

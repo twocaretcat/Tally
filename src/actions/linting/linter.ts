@@ -2,9 +2,9 @@ import { getLocale } from '@i18n/index.ts';
 import {
 	$input,
 	$lintChunkMap,
+	$lintingRegion,
 	$option,
 	$persistedLintingRegion,
-	type $lintingRegion,
 } from '@stores/index.ts';
 import { logElapsedTime } from '@utils/index.ts';
 import { createJobRunner } from '@utils/job-runner.ts';
@@ -38,27 +38,22 @@ type LintChunkKey = keyof LintChunkMap;
 const doLint = () => localeSupportsLinting && $option.enableLinting.get();
 
 /**
- * Resolves and applies the linting dialect for a locale and region.
- *
- * Automatically selects the best matching region when `auto` is specified.
+ * Resolve and return the corresponding linting dialect for a given locale and region.
  *
  * @param localeId - Linting language ID.
  * @param regionId - Selected linting region or `auto`.
  */
-async function setDialect<T extends LintingLanguageId>(
+function resolveDialect<T extends LintingLanguageId>(
 	localeId: T,
 	regionId: LintingRegionId<T>,
-) {
+): Dialect {
 	const resolvedRegionId =
 		regionId === 'auto' ? getBestMatchingLintingRegion(localeId) : regionId;
-
 	const lintingLocaleConfig = LINTING.locale.map[localeId];
-	const dialect =
-		lintingLocaleConfig.map[
-			resolvedRegionId as keyof typeof lintingLocaleConfig.map
-		];
 
-	return linter.setDialect(dialect);
+	return lintingLocaleConfig.map[
+		resolvedRegionId as keyof typeof lintingLocaleConfig.map
+	];
 }
 
 /**
@@ -74,7 +69,7 @@ export async function updateLintingRegion(
 ) {
 	if (!regionId || !localeSupportsLinting) return;
 
-	await setDialect(currentLocaleId, regionId);
+	await linter.setDialect(resolveDialect(currentLocaleId, regionId));
 
 	const { text, visibleRangeIndices } = $input.get();
 
@@ -169,8 +164,16 @@ const CHUNK_KEYS: readonly [LintChunkKey, LintChunkKey, LintChunkKey] = [
 ];
 
 const currentLocaleId = getLocale();
+const currentLintingRegionId = $lintingRegion.get();
 const localeSupportsLinting = doesLocaleSupportLinting(currentLocaleId);
-const linter = new WorkerLinter({ binary, dialect: Dialect.American });
+const dialect =
+	localeSupportsLinting && currentLintingRegionId
+		? resolveDialect(currentLocaleId, currentLintingRegionId)
+		: Dialect.American;
+const linter = new WorkerLinter({
+	binary,
+	dialect,
+});
 const lintJobRunner = createJobRunner(
 	async (key: keyof LintChunkMap, start: number, text: string) => {
 		const startTs = performance.now();

@@ -18,9 +18,24 @@ import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
 
 const currentLocaleId = getLocale();
 const localeSupportsLinting = doesLocaleSupportLinting(currentLocaleId);
-const defaultLintingRegion = localeSupportsLinting
-	? LINTING.locale.map[currentLocaleId].defaultValue
-	: undefined;
+
+/**
+ * Resolves the default linting region for the current locale.
+ *
+ * Prefers a persisted user selection and falls back to the
+ * locale’s configured default. Returns `undefined` when
+ * linting is not supported.
+ *
+ * @returns The default linting region, or `undefined`.
+ */
+function getDefaultLintingRegion() {
+	if (!localeSupportsLinting) return;
+
+	return (
+		$persistedLintingRegion[currentLocaleId].get() ??
+		LINTING.locale.map[currentLocaleId].defaultValue
+	);
+}
 
 /**
  * Map of option IDs to persistent boolean atoms.
@@ -55,7 +70,7 @@ export const $persistedLintingRegion = mapEntries(
  */
 export const $lintingRegion = atom<
 	LintingRegionId<LintingLanguageId> | undefined
->(defaultLintingRegion);
+>(getDefaultLintingRegion());
 
 /**
  * The currently selected theme ID.

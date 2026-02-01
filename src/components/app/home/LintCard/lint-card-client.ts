@@ -1,4 +1,4 @@
-import { getDefinedElementById } from '@utils/index.ts';
+import { getDefinedElementById } from '@utils/dom.ts';
 import type { Lint } from 'harper.js';
 import { assert } from 'radashi';
 import { CLASS } from './lint-card.ts';

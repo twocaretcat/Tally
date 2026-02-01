@@ -1,4 +1,4 @@
-import { $lintPopover } from '@stores/index.ts';
+import { $lintPopover } from '@stores/state.ts';
 import type { Lint } from 'harper.js';
 
 /**

@@ -1,9 +1,9 @@
 ---
 import Icon from '@components/ui/Icon.astro';
 import { Check, X } from '@lucide/astro';
-import { clsx } from '@utils/index.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { clsx } from '@utils/dom.ts';
 import type { HTMLTag, Polymorphic } from 'astro/types';
-import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for a multi-functional button component.
@@ -26,7 +26,6 @@ import type { WithChildren } from '../../types.ts';
  * cross icons are rendered automatically.
  * @property children - Default slot content used as the button label.
  */
-
 type Props<Tag extends HTMLTag = 'button'> = WithChildren<
 	true,
 	Polymorphic<{

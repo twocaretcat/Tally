@@ -1,11 +1,12 @@
 ---
-import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+import { doesLocaleSupportLinting } from '@actions/analysis/linting/utils.ts';
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { LINTING } from '@config/linting.ts';
 import { getLocale, getLocaleInfo, getLocaleMessages } from '@i18n/index.ts';
-import { buildId, keysOf } from '@utils/index.ts';
-import type { WithChildren } from '../../types.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { buildId } from '@utils/dom.ts';
+import { keysOf } from '@utils/object.ts';
 import Button from './Button.astro';
 
 /**
@@ -74,11 +75,12 @@ const props = [
 }
 
 <script>
-	import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+	import { doesLocaleSupportLinting } from '@actions/analysis/linting/utils.ts';
 	import { LINTING } from '@config/linting.ts';
 	import { getLocale } from '@i18n/index.ts';
-	import { $lintingRegion } from '@stores/index.ts';
-	import { buildId, entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { $lintingRegion } from '@stores/options.ts';
+	import { buildId, getDefinedElementById } from '@utils/dom.ts';
+	import { entriesOf } from '@utils/object.ts';
 	import { mapEntries } from 'radashi';
 
 	const currentLocaleId = getLocale();

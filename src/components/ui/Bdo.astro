@@ -3,8 +3,8 @@
  * Renders a `<bdo>` element while forwarding all standard HTML attributes.
  * Content passed between the component’s tags is injected via the default slot.
  */
+import type { WithChildren } from '@type/utils.ts';
 import type { HTMLAttributes } from 'astro/types';
-import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for a `<bdo>` element. Requires children content. Accepts all standard HTML attributes for `<bdo>` elements. This is used by Markdoc.

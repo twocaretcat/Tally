@@ -1,5 +1,5 @@
 import { getPreferredLocales } from '@i18n/index.ts';
-import type { WithOptionalItems } from '../../types.ts';
+import type { WithOptionalItems } from '@type/utils.ts';
 import {
 	LINTING,
 	type LintingLanguageId,

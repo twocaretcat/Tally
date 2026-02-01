@@ -3,7 +3,7 @@ import LintPopover from '@components/app/home/LintPopover/LintPopover.astro';
 import Card from '@components/ui/Card.astro';
 import { INPUT } from '@config/input';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
-import type { WithChildren } from '../../../types.ts';
+import type { WithChildren } from '@type/utils.ts';
 
 /**
  * The main counter input textarea.
@@ -146,15 +146,12 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 	} from '@components/app/home/LintPopover/lint-popover-client.ts';
 	import { INPUT } from '@config/input.ts';
 	import { LINT_KINDS, type LintKind } from '@lib/harper.ts';
-	import { $input, $lintChunkMap } from '@stores/index.ts';
+	import { $input, $lintChunkMap } from '@stores/state.ts';
+	import type { LintChunkMap, RangeIndices } from '@type/linting.ts';
+	import { addScrollStartListener, getDefinedElementById } from '@utils/dom.ts';
 	import { immediateDebounce } from '@utils/immediate-debounce.ts';
-	import {
-		addScrollStartListener,
-		addValueToMapSet,
-		getDefinedElementById,
-	} from '@utils/index.ts';
+	import { addValueToMapSet } from '@utils/object.ts';
 	import { type Lint } from 'harper.js';
-	import type { LintChunkMap, RangeIndices } from '../../../types.ts';
 
 	/**
 	 * Creates a Range object for a text node.

@@ -1,8 +1,8 @@
 ---
-import { isExternalUrl } from '@utils/index.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { isExternalUrl } from '@utils/string.ts';
 import type { HTMLAttributes } from 'astro/types';
 import { assert } from 'radashi';
-import type { WithChildren } from '../../types.ts';
 
 type AnchorAttributes = HTMLAttributes<'a'>;
 

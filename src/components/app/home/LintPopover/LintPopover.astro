@@ -61,8 +61,8 @@ import { ID } from './lint-popover.ts';
 
 <script>
 	import { updateLintCardById } from '@components/app/home/LintCard/lint-card-client.ts';
-	import { $lintPopover } from '@stores/index.ts';
-	import { getDefinedElementById } from '@utils/index.ts';
+	import { $lintPopover } from '@stores/state.ts';
+	import { getDefinedElementById } from '@utils/dom.ts';
 	import { ID } from './lint-popover.ts';
 
 	const lintPopover = getDefinedElementById(ID.lintPopover);

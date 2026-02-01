@@ -13,6 +13,8 @@
 			"@layouts/*": ["./src/layouts/*"],
 			"@lib/*": ["./src/lib/*"],
 			"@stores/*": ["./src/stores/*"],
+			// `type` is singular here because `types` is already a global
+			"@type/*": ["./src/types/*"],
 			"@utils/*": ["./src/utils/*"]
 		}
 	}

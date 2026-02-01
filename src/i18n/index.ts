@@ -1,8 +1,8 @@
-import type { AstroGlobal } from 'astro';
 import { LOCALE, type LocaleId, type RegionId } from '@config/locale.ts';
-import { keysOf } from '@utils/index.ts';
-import type { LocaleMessages } from './types.ts';
+import { keysOf } from '@utils/object.ts';
+import type { AstroGlobal } from 'astro';
 import { assert, identity, objectify } from 'radashi';
+import type { LocaleMessages } from './types.ts';
 
 const localeIds = keysOf(LOCALE.map);
 

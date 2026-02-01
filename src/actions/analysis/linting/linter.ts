@@ -1,15 +1,13 @@
 import { getLocale } from '@i18n/index.ts';
+import { $input, $lintChunkMap } from '@stores/state.ts';
 import {
-	$input,
-	$lintChunkMap,
 	$lintingRegion,
 	$option,
 	$persistedLintingRegion,
-} from '@stores/index.ts';
-import { logElapsedTime } from '@utils/index.ts';
+} from '@stores/options.ts';
 import { createJobRunner } from '@utils/job-runner.ts';
 import { Dialect, WorkerLinter, binary } from 'harper.js';
-import type { LintChunkMap, RangeIndices } from '../../types.ts';
+import type { LintChunkMap, RangeIndices } from '@type/linting.ts';
 import {
 	LINTING,
 	type LintingLanguageId,
@@ -20,7 +18,7 @@ import {
 	doesLocaleSupportLinting,
 	getBestMatchingLintingRegion,
 } from './utils.ts';
-import { doContinueAnalyzing } from '@actions/analyzer.ts';
+import { doContinueAnalyzingAfterPrompt, logElapsedTime } from '../utils.ts';
 
 /**
  * Keys identifying the different lint chunk groups.
@@ -81,7 +79,7 @@ export async function updateLintingRegion(
 /**
  * Clears all lint chunks from the current lint state.
  */
-function clearLintChunks() {
+export function clearLintChunks() {
 	$lintChunkMap.setKey('visible', undefined);
 	$lintChunkMap.setKey('trailing', undefined);
 	$lintChunkMap.setKey('leading', undefined);
@@ -120,11 +118,10 @@ export function lintText(
 	visibleRangeIndices: RangeIndices,
 	skipLargeInputWarning: boolean = false,
 ) {
-	if (!skipLargeInputWarning && !doContinueAnalyzing(text.length)) {
-		return;
-	}
-
-	if (!doLint()) {
+	if (
+		!doLint() ||
+		(!skipLargeInputWarning && !doContinueAnalyzingAfterPrompt(text.length))
+	) {
 		clearLintChunks();
 
 		return;

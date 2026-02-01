@@ -27,7 +27,6 @@
  *
  * This function is a modified version of the Radashi v12.1.0 debounce function, which is licensed under the MIT license. This version executes the function immediately if there is no delay pending in order to reduce input latency. It also removes unused options to reduce the bundle size.
  */
-
 declare const setTimeout: (fn: () => void, ms: number) => unknown;
 declare const clearTimeout: (timer: unknown) => void;
 

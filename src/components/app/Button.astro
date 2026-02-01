@@ -27,7 +27,7 @@ import type { WithChildren } from '../../types.ts';
  * @property children - Default slot content used as the button label.
  */
 
-type Props<Tag extends HTMLTag = HTMLTag> = WithChildren<
+type Props<Tag extends HTMLTag = 'button'> = WithChildren<
 	true,
 	Polymorphic<{
 		as: Tag;

@@ -3,7 +3,7 @@
 
 :root {
 	/* Color mix ratios */
-	--mix-sm: 2.5%;
+	--mix-sm: 5%;
 	--mix-md: 10%;
 	--mix-lg: 50%;
 
@@ -17,6 +17,7 @@
 	--p-lg: calc(var(--p-md) * 2);
 
 	/* Font size */
+	--f-sm: calc(var(--f-md) / 1.2);
 	--f-md: 1em;
 	--f-lg: calc(var(--f-md) * 1.5);
 	--f-xl: calc(var(--f-lg) * 1.25);
@@ -34,6 +35,7 @@
 	--b-lg: calc(var(--b-md) * 2);
 
 	/* Border radius */
+	--r-sm: var(--p-xs);
 	--r-md: var(--p-sm);
 
 	/* Transition duration */

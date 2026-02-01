@@ -1,0 +1,79 @@
+---
+import Card from '@components/ui/Card.astro';
+import Icon from '@components/ui/Icon.astro';
+import Strong from '@components/ui/Strong.astro';
+import { BookAlert } from '@lucide/astro';
+import { CLASS } from './lint-card.ts';
+
+/**
+ * Props for a lint card component.
+ *
+ * @property id - Unique DOM ID for the card.
+ */
+type Props = {
+	id: string;
+};
+
+const { id } = Astro.props;
+---
+
+<Card role="group" {id}>
+	<header>
+		<Strong class="lint-kind">
+			<Icon icon={BookAlert} />
+			<span class={CLASS.lintKindText}></span>
+		</Strong>
+		<slot />
+	</header>
+	<section>
+		<div class={CLASS.lintMessage}></div>
+	</section>
+</Card>
+
+<style>
+	.card[role='group'] {
+		display: flex;
+		flex-direction: column;
+		padding: var(--p-sm);
+		background-color: var(--bg-3);
+		color: var(--fg);
+		white-space: nowrap;
+	}
+
+	header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--p-sm);
+	}
+
+	.lint-kind {
+		display: inline-flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--p-xs);
+		margin-inline-start: var(--p-sm);
+		font-family: var(--f-header);
+		color: var(--lint-card-color);
+		transition-duration: var(--d-md);
+	}
+
+	section {
+		margin: var(--p-sm);
+	}
+
+	.lint-message {
+		margin: 0;
+		font-size: var(--f-sm);
+
+		> p {
+			margin: 0;
+
+			> code {
+				padding: var(--p-xs);
+				background-color: var(--bg-2);
+				border-radius: var(--r-sm);
+			}
+		}
+	}
+</style>

@@ -16,30 +16,30 @@
 	--l-bg-1: oklch(92.2% 0 0); /* Neutral 200  */
 	--l-bg-2: oklch(98.5% 0 0); /* Neutral 50 */
 	--l-fg: oklch(14.5% 0 0); /* Neutral 950 */
-	--l-p: oklch(45.7% 0.24 277.023); /* Indigo 700 */
-	--l-w: oklch(55.5% 0.163 48.998); /* Amber 700 */
-	--l-e: oklch(50.5% 0.213 27.518); /* Red 700 */
+	--l-p: oklch(51.1% 0.262 276.966); /* Indigo 600 */
+	--l-w: oklch(66.6% 0.179 58.318); /* Amber 600 */
+	--l-e: oklch(57.7% 0.245 27.325); /* Red 600 */
 	--l-s-mix: 30%;
-	--l-Agreement: oklch(53.2% 0.157 131.589); /* Lime 700 */
-	--l-BoundaryError: oklch(55.5% 0.163 48.998); /* Amber 700 */
-	--l-Capitalization: oklch(49.1% 0.27 292.581); /* Violet 700 */
-	--l-Eggcorn: oklch(55.3% 0.195 38.402); /* Orange 700 */
-	--l-Enhancement: oklch(45.7% 0.24 277.023); /* Indigo 700 */
-	--l-Formatting: oklch(49.6% 0.265 301.924); /* Purple 700 */
-	--l-Grammar: oklch(50.5% 0.213 27.518); /* Red 700 */
-	--l-Malapropism: oklch(52.5% 0.223 3.958); /* Pink 700 */
-	--l-Miscellaneous: oklch(51.1% 0.096 186.391); /* Teal 700 */
-	--l-Nonstandard: oklch(52% 0.105 223.128); /* Cyan 700 */
-	--l-Punctuation: oklch(55.5% 0.163 48.998); /* Amber 700 */
-	--l-Readability: oklch(52.7% 0.154 150.069); /* Green 700 */
-	--l-Redundancy: oklch(48.8% 0.243 264.376); /* Blue 700 */
-	--l-Regionalism: oklch(49.6% 0.265 301.924); /* Purple 700 */
-	--l-Repetition: oklch(50.8% 0.118 165.612); /* Emerald 700 */
-	--l-Spelling: oklch(51.4% 0.222 16.935); /* Rose 700 */
-	--l-Style: oklch(55.4% 0.135 66.442); /* Yellow 700 */
-	--l-Typo: oklch(55.3% 0.195 38.402); /* Orange 700 */
-	--l-Usage: oklch(50% 0.134 242.749); /* Sky 700 */
-	--l-WordChoice: oklch(51.8% 0.253 323.949); /* Fuchsia 700 */
+	--l-Agreement: oklch(64.8% 0.2 131.684); /* Lime 600 */
+	--l-BoundaryError: oklch(66.6% 0.179 58.318); /* Amber 600 */
+	--l-Capitalization: oklch(54.1% 0.281 293.009); /* Violet 600 */
+	--l-Eggcorn: oklch(64.6% 0.222 41.116); /* Orange 600 */
+	--l-Enhancement: oklch(51.1% 0.262 276.966); /* Indigo 600 */
+	--l-Formatting: oklch(55.8% 0.288 302.321); /* Purple 600 */
+	--l-Grammar: oklch(57.7% 0.245 27.325); /* Red 600 */
+	--l-Malapropism: oklch(59.2% 0.249 0.584); /* Pink 600 */
+	--l-Miscellaneous: oklch(60% 0.118 184.704); /* Teal 600 */
+	--l-Nonstandard: oklch(60.9% 0.126 221.723); /* Cyan 600 */
+	--l-Punctuation: oklch(66.6% 0.179 58.318); /* Amber 600 */
+	--l-Readability: oklch(62.7% 0.194 149.214); /* Green 600 */
+	--l-Redundancy: oklch(54.6% 0.245 262.881); /* Blue 600 */
+	--l-Regionalism: oklch(55.8% 0.288 302.321); /* Purple 600 */
+	--l-Repetition: oklch(59.6% 0.145 163.225); /* Emerald 600 */
+	--l-Spelling: oklch(58.6% 0.253 17.585); /* Rose 600 */
+	--l-Style: oklch(68.1% 0.162 75.834); /* Yellow 600 */
+	--l-Typo: oklch(64.6% 0.222 41.116); /* Orange 600 */
+	--l-Usage: oklch(58.8% 0.158 241.966); /* Sky 600 */
+	--l-WordChoice: oklch(59.1% 0.293 322.896); /* Fuchsia 600 */
 }
 
 /* Auto (dark) theme / Dark theme */

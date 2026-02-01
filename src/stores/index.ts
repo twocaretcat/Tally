@@ -15,6 +15,7 @@ import {
 import { buildId } from '@utils/index.ts';
 import { getLocale } from '@i18n/index.ts';
 import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+import type { Lint } from 'harper.js';
 
 const currentLocaleId = getLocale();
 const localeSupportsLinting = doesLocaleSupportLinting(currentLocaleId);
@@ -138,4 +139,16 @@ export const $lintChunkMap = map<LintChunkMap>({
 	},
 	trailing: undefined,
 	leading: undefined,
+});
+
+/**
+ * State for the active lint popover.
+ *
+ * Holds the relative position of the position on the screen and associated lint item, or `null`
+ * when no popover is visible.
+ */
+export const $lintPopover = atom<{ x: number; y: number; lint: Lint | null }>({
+	x: 50,
+	y: 50,
+	lint: null,
 });

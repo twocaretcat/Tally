@@ -7,9 +7,10 @@ import { SITE } from '@config/site.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { Link } from '@lucide/astro';
-import { buildPagePath, keysOf } from '@utils/index.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { keysOf } from '@utils/object.ts';
+import { buildPagePath } from '@utils/string.ts';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for the social media preview image layout.

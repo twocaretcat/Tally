@@ -1,6 +1,6 @@
 ---
 import { OUTPUT } from '@config/output.ts';
-import type { WithChildren } from '../../../types.ts';
+import type { WithChildren } from '@type/utils.ts';
 import OutputGroup from './OutputGroup.astro';
 
 /**
@@ -15,8 +15,9 @@ type Props = WithChildren<false>;
 	import { CLASS } from '@config/class.ts';
 	import { OUTPUT, type OutputId } from '@config/output.ts';
 	import { getLocale, getLocaleMessages } from '@i18n/index.ts';
-	import { $outputCounts } from '@stores/index.ts';
-	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { $outputCounts } from '@stores/state.ts';
+	import { getDefinedElementById } from '@utils/dom.ts';
+	import { entriesOf } from '@utils/object.ts';
 
 	type OutputMap = { [key in OutputId]: HTMLOutputElement };
 

@@ -2,11 +2,12 @@
 import Article from '@components/ui/Article.astro';
 import { LOCALE } from '@config/locale.ts';
 import { getLocale } from '@i18n/index.ts';
-import { keysOf, wKey } from '@utils/index.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { wKey } from '@utils/dom.ts';
+import { keysOf } from '@utils/object.ts';
 import type { HTMLAttributes } from 'astro/types';
 import { getEntry } from 'astro:content';
 import { assert } from 'radashi';
-import type { WithChildren } from '../../types.ts';
 import LintingRegionSelector from './LintingRegionSelector.astro';
 import LocaleSelector from './LocaleSelector.astro';
 import OptionsSelector from './OptionsSelector.astro';

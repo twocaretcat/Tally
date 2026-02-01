@@ -3,8 +3,9 @@ import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { THEME } from '@config/theme.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
-import { buildId, entriesOf } from '@utils/index.ts';
-import type { WithChildren } from '../../types.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { buildId } from '@utils/dom.ts';
+import { entriesOf } from '@utils/object.ts';
 import Button from './Button.astro';
 import ExperimentalIcon from './ExperimentalIcon.astro';
 import SponsorIcon from './SponsorIcon.astro';
@@ -58,8 +59,9 @@ const msg = getLocaleMessages(getLocale(Astro)).option.theme;
 
 <script>
 	import { THEME } from '@config/theme.ts';
-	import { $theme } from '@stores/index.ts';
-	import { buildId, entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { $theme } from '@stores/options.ts';
+	import { buildId, getDefinedElementById } from '@utils/dom.ts';
+	import { entriesOf } from '@utils/object.ts';
 	import { mapEntries } from 'radashi';
 
 	const themeRadioMap = mapEntries(THEME.map, (themeId) => [

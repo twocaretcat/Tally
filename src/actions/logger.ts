@@ -1,13 +1,16 @@
-import * as stores from '@stores/index.ts';
+import * as stateStores from '@stores/state.ts';
+import * as optionStores from '@stores/options.ts';
 import { logger } from '@nanostores/logger';
 
 const allStores = (() => {
-	const { $option, $persistedLintingRegion, ...restStores } = stores;
+	const { $option, $persistedLintingRegion, ...restOptionStores } =
+		optionStores;
 
 	return {
 		...$option,
 		...$persistedLintingRegion,
-		...restStores,
+		...restOptionStores,
+		...stateStores,
 	};
 })();
 const originalDebugFn = console.debug;

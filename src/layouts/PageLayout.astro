@@ -1,7 +1,7 @@
 ---
 import { THEME } from '@config/theme.ts';
+import type { WithChildren } from '@type/utils.ts';
 import type { ComponentProps } from 'astro/types';
-import type { WithChildren } from '../types.ts';
 import BaseLayout from './BaseLayout.astro';
 
 /**
@@ -41,8 +41,10 @@ const props = Astro.props;
 	import { INPUT } from '@config/input.ts';
 	import { type OptionId } from '@config/option.ts';
 	import { THEME, type ThemeId } from '@config/theme.ts';
-	import { $input, $option, $theme } from '@stores/index.ts';
-	import { decodeQueryParam, entriesOf, parseBoolean } from '@utils/index.ts';
+	import { $option, $theme } from '@stores/options.ts';
+	import { $input } from '@stores/state.ts';
+	import { entriesOf } from '@utils/object.ts';
+	import { decodeQueryParam, parseBoolean } from '@utils/string.ts';
 	import { isResultOk, mapEntries } from 'radashi';
 
 	/**

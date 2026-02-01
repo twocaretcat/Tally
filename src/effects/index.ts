@@ -1,16 +1,18 @@
 import { INPUT } from '@config/input.ts';
+import { $input, $persistedInputText } from '@stores/state.ts';
 import {
-	$input,
 	$lintingRegion,
 	$option,
-	$persistedInputText,
 	$persistedTheme,
 	$theme,
-} from '@stores/index.ts';
-import { analyzeText } from '@actions/analyzer.ts';
-import { toggleDebugLogging } from '@actions/logger.ts';
+} from '@stores/options.ts';
+import { analyzeText } from '@actions/analysis/analyzer';
+import { toggleDebugLogging } from '@actions/logger';
 import { THEME } from '@config/theme.ts';
-import { toggleLinting, updateLintingRegion } from '@actions/linting/linter';
+import {
+	toggleLinting,
+	updateLintingRegion,
+} from '@actions/analysis/linting/linter.ts';
 
 /**
  * Persists theme changes to localStorage, skipping sponsor-only themes.

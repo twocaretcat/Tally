@@ -1,13 +1,14 @@
 ---
-import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+import { doesLocaleSupportLinting } from '@actions/analysis/linting/utils.ts';
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import Icon from '@components/ui/Icon.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { OPTION, type OptionId } from '@config/option.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { GlobeX } from '@lucide/astro';
-import { buildId, entriesOf } from '@utils/index.ts';
-import type { WithChildren } from '../../types.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { buildId } from '@utils/dom.ts';
+import { entriesOf } from '@utils/object.ts';
 import Button from './Button.astro';
 
 /**
@@ -74,11 +75,12 @@ function getConditionalOptionAttributes(id: OptionId, defaultValue: boolean) {
 </InputGroup>
 
 <script>
-	import { doesLocaleSupportLinting } from '@actions/linting/utils.ts';
+	import { doesLocaleSupportLinting } from '@actions/analysis/linting/utils.ts';
 	import { OPTION } from '@config/option.ts';
 	import { getLocale } from '@i18n/index.ts';
-	import { $option } from '@stores/index.ts';
-	import { buildId, entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { $option } from '@stores/options.ts';
+	import { buildId, getDefinedElementById } from '@utils/dom.ts';
+	import { entriesOf } from '@utils/object.ts';
 
 	const currentLocaleId = getLocale();
 	const localeSupportsLinting = doesLocaleSupportLinting(currentLocaleId);

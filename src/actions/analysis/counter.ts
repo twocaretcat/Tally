@@ -1,10 +1,16 @@
 import { getLocale } from '@i18n/index.ts';
-import { $outputCounts } from '@stores/index.ts';
+import { $outputCounts } from '@stores/state.ts';
 import { Tally } from '@twocaretcat/tally-ts';
-import { logElapsedTime } from '@utils/index.ts';
-import { doContinueAnalyzing } from './analyzer.ts';
+import { doContinueAnalyzingAfterPrompt, logElapsedTime } from './utils.ts';
 
 const tally = new Tally({ locales: getLocale() });
+
+/**
+ * Clears the output counts store.
+ */
+export function clearCounts() {
+	$outputCounts.set(null);
+}
 
 /**
  * Computes counts (character, word, etc.) for the given text and updates the output store.
@@ -16,7 +22,9 @@ export function countText(
 	text: string,
 	skipLargeInputWarning: boolean = false,
 ) {
-	if (!skipLargeInputWarning && !doContinueAnalyzing(text.length)) {
+	if (!skipLargeInputWarning && !doContinueAnalyzingAfterPrompt(text.length)) {
+		clearCounts();
+
 		return;
 	}
 

@@ -13,10 +13,10 @@ import { INPUT } from '@config/input.ts';
 import { LOCALE } from '@config/locale.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import PageLayout from '@layouts/PageLayout.astro';
-import { keysOf } from '@utils/index.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { keysOf } from '@utils/object.ts';
 import { getEntry } from 'astro:content';
 import { assert } from 'radashi';
-import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for the main counting page.

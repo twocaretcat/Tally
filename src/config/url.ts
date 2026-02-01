@@ -1,4 +1,4 @@
-import type { HttpsUrl } from '../types.ts';
+import type { HttpsUrl } from '@type/string.ts';
 
 /**
  * Configuration object for external resources with a homepage

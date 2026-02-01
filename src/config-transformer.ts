@@ -1,10 +1,12 @@
+// This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
 import type { Config } from '@twocaretcat/astro-snapshot';
 import { mapEntries, objectify } from 'radashi';
 import { LOCALE } from './config/locale.ts';
 import { SCREENSHOT } from './config/screenshot.ts';
 import { SITE } from './config/site.ts';
 import { SOCIAL_PREVIEW } from './config/social-preview.ts';
-import { buildPagePath, keysOf } from './utils/index.ts';
+import { keysOf } from './utils/object.ts';
+import { buildPagePath } from './utils/string.ts';
 
 /**
  * Configuration for the Astro Snapshot integration.

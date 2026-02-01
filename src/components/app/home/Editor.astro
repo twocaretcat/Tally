@@ -1,8 +1,9 @@
 ---
+import LintPopover from '@components/app/home/LintPopover/LintPopover.astro';
 import Card from '@components/ui/Card.astro';
 import { INPUT } from '@config/input';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
-import type { WithChildren } from '../../../types.ts';
+import type { WithChildren } from '@type/utils.ts';
 
 /**
  * The main counter input textarea.
@@ -20,6 +21,7 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 	role="textbox"
 	autofocus
 />
+<LintPopover />
 
 <style>
 	/* There's currently no way to style these all at once :( */
@@ -138,12 +140,18 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 </style>
 
 <script>
+	import {
+		clearLintPopover,
+		updateLintPopover,
+	} from '@components/app/home/LintPopover/lint-popover-client.ts';
 	import { INPUT } from '@config/input.ts';
 	import { LINT_KINDS, type LintKind } from '@lib/harper.ts';
-	import { $input, $lintChunkMap } from '@stores/index.ts';
+	import { $input, $lintChunkMap } from '@stores/state.ts';
+	import type { LintChunkMap, RangeIndices } from '@type/linting.ts';
+	import { addScrollStartListener, getDefinedElementById } from '@utils/dom.ts';
 	import { immediateDebounce } from '@utils/immediate-debounce.ts';
-	import { addValueToMapSet, getDefinedElementById } from '@utils/index.ts';
-	import type { LintChunkMap, RangeIndices } from '../../../types.ts';
+	import { addValueToMapSet } from '@utils/object.ts';
+	import { type Lint } from 'harper.js';
 
 	/**
 	 * Creates a Range object for a text node.
@@ -163,6 +171,22 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 	}
 
 	/**
+	 * Finds the lint of a range that intersects with the given coordinates. If no range is found, returns undefined.
+	 *
+	 * @param x The x coordinate of the point.
+	 * @param y The y coordinate of the point.
+	 * @returns The lint of the range that intersects with the given coordinates.
+	 */
+	function findIntersectingRangeLint(x: number, y: number) {
+		const pos = document.caretPositionFromPoint(x, y);
+
+		// Prevent clicks from being associated with a range when they are beyond the end of the input
+		if (!pos || pos.offset === pos.offsetNode.nodeValue?.length) return;
+
+		return allLints[pos.offset];
+	}
+
+	/**
 	 * Updates CSS Custom Highlights for lint issues in the input text.
 	 *
 	 * @param lintChunkMap - Map of lint chunks to highlight
@@ -174,6 +198,8 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 
 		const inputLength = textNode.nodeValue?.length ?? 0;
 		const newLintKindToHighlightMap = new Map<LintKind, Highlight>();
+
+		allLints = [];
 
 		for (const lintChunk of Object.values(lintChunkMap)) {
 			if (!lintChunk) continue;
@@ -191,6 +217,10 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 				const range = createRange(textNode, start, end);
 
 				addValueToMapSet(newLintKindToHighlightMap, lintKind, range, Highlight);
+
+				for (let i = start; i <= end; i++) {
+					allLints[i] = lint;
+				}
 			}
 		}
 
@@ -281,6 +311,8 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 	const updateInputText = immediateDebounce({ delay: 35 }, async () => {
 		const textNode = getTextNode();
 
+		clearLintPopover();
+
 		// Setting the initial input value is handled by the preload script on the counter page
 		$input.set({
 			text: getText(textNode),
@@ -290,9 +322,20 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 
 	const input = getDefinedElementById<HTMLDivElement>(INPUT.id);
 
+	// Sparse array which maps an index in the input text to a lint (if any)
+	// This gives us really predictable (and freaky) performance when looking up what the user clicked on
+	let allLints: Lint[] = [];
+
 	$lintChunkMap.subscribe(updateHighlights);
 
 	input.addEventListener('input', updateInputText);
+	input.addEventListener('click', ({ clientX, clientY }) => {
+		const lint = findIntersectingRangeLint(clientX, clientY);
+
+		updateLintPopover(lint, clientX, clientY);
+	});
+
+	addScrollStartListener(input, clearLintPopover);
 
 	// Wait till the page has loaded before 'enabling' the input
 	input.contentEditable = 'plaintext-only';

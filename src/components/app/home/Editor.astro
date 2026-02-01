@@ -1,9 +1,9 @@
 ---
+import LintPopover from '@components/app/home/LintPopover/LintPopover.astro';
 import Card from '@components/ui/Card.astro';
 import { INPUT } from '@config/input';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import type { WithChildren } from '../../../types.ts';
-import LintPopover from './LintPopover.astro';
 
 /**
  * The main counter input textarea.
@@ -143,12 +143,16 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 	import {
 		clearLintPopover,
 		updateLintPopover,
-	} from '@actions/linting/popover.ts';
+	} from '@components/app/home/LintPopover/lint-popover-client.ts';
 	import { INPUT } from '@config/input.ts';
 	import { LINT_KINDS, type LintKind } from '@lib/harper.ts';
 	import { $input, $lintChunkMap } from '@stores/index.ts';
 	import { immediateDebounce } from '@utils/immediate-debounce.ts';
-	import { addValueToMapSet, getDefinedElementById } from '@utils/index.ts';
+	import {
+		addScrollStartListener,
+		addValueToMapSet,
+		getDefinedElementById,
+	} from '@utils/index.ts';
 	import { type Lint } from 'harper.js';
 	import type { LintChunkMap, RangeIndices } from '../../../types.ts';
 
@@ -333,7 +337,8 @@ const { label, placeholder } = getLocaleMessages(getLocale(Astro)).input;
 
 		updateLintPopover(lint, clientX, clientY);
 	});
-	input.addEventListener('scroll', clearLintPopover);
+
+	addScrollStartListener(input, clearLintPopover);
 
 	// Wait till the page has loaded before 'enabling' the input
 	input.contentEditable = 'plaintext-only';

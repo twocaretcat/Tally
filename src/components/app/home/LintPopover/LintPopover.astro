@@ -1,20 +1,19 @@
 ---
+import Button from '@components/app/Button.astro';
+import LintCard from '@components/app/home/LintCard/LintCard.astro';
 import Icon from '@components/ui/Icon.astro';
 import IoGroup from '@components/ui/IoGroup.astro';
 import { X } from '@lucide/astro';
-import Button from '../Button.astro';
-import LintCard from './LintCard/LintCard.astro';
-
-const id = 'lintPopover' as const;
+import { ID } from './lint-popover.ts';
 ---
 
-<div id="lintPopoverAnchor" aria-hidden="true"></div>
-<aside {id} popover role="dialog">
-	<LintCard id="lintPopoverCard">
+<div id={ID.lintPopoverAnchor} aria-hidden="true"></div>
+<aside id={ID.lintPopover} popover role="dialog">
+	<LintCard id={ID.lintPopoverCard}>
 		<IoGroup>
 			<Button
 				aria-label="Close"
-				popovertarget={id}
+				popovertarget={ID.lintPopover}
 				popovertargetaction="hide"
 				title="Close"
 			>
@@ -27,7 +26,7 @@ const id = 'lintPopover' as const;
 <style>
 	#lintPopoverAnchor {
 		position: absolute;
-		anchor-name: --issue-anchor;
+		anchor-name: --lint-popover-anchor;
 		transition-duration: var(--d-md);
 		transition-property: top, left;
 	}
@@ -35,7 +34,7 @@ const id = 'lintPopover' as const;
 	[popover] {
 		position: absolute;
 		position-area: block-end;
-		position-anchor: --issue-anchor;
+		position-anchor: --lint-popover-anchor;
 		position-try-fallbacks:
 			block-end inline-start,
 			block-end inline-end;
@@ -61,12 +60,13 @@ const id = 'lintPopover' as const;
 </style>
 
 <script>
+	import { updateLintCardById } from '@components/app/home/LintCard/lint-card-client.ts';
 	import { $lintPopover } from '@stores/index.ts';
 	import { getDefinedElementById } from '@utils/index.ts';
-	import { updateLintCardById } from './LintCard/lint-card.ts';
+	import { ID } from './lint-popover.ts';
 
-	const lintPopover = getDefinedElementById('lintPopover');
-	const lintPopoverAnchor = getDefinedElementById('lintPopoverAnchor');
+	const lintPopover = getDefinedElementById(ID.lintPopover);
+	const lintPopoverAnchor = getDefinedElementById(ID.lintPopoverAnchor);
 
 	$lintPopover.subscribe(({ x, y, lint }) => {
 		if (!lint) {
@@ -75,7 +75,7 @@ const id = 'lintPopover' as const;
 			return;
 		}
 
-		updateLintCardById('lintPopoverCard', lint);
+		updateLintCardById(ID.lintPopoverCard, lint);
 
 		lintPopoverAnchor.style.left = `${x}%`;
 		lintPopoverAnchor.style.top = `${y}%`;

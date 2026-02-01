@@ -106,6 +106,34 @@ export function clsx(...classes: (string | undefined | null)[]) {
 }
 
 /**
+ * Invokes a callback once at the start of each scroll interaction.
+ *
+ * Attaches a one-time `scroll` listener that is re-armed after `scrollend`,
+ * allowing the callback to fire only on the initial scroll event per gesture.
+ *
+ * @param element - Element to observe for scroll interactions.
+ * @param callback - Function called at the start of scrolling.
+ */
+export function addScrollStartListener<T extends HTMLElement = HTMLElement>(
+	element: T,
+	callback: () => void,
+) {
+	function addScrollListener() {
+		element.addEventListener('scroll', callback, {
+			once: true,
+		});
+	}
+
+	element.addEventListener('scrollend', () => {
+		element.removeEventListener('scroll', callback);
+
+		addScrollListener();
+	});
+
+	addScrollListener();
+}
+
+/**
  * Checks if a URL string is an external HTTPS URL.
  *
  * @param urlString - The URL string to check

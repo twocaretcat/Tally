@@ -1,16 +1,29 @@
 ## À propos
 
-**{% $msg.site.title %}** est un outil en ligne gratuit pour compter le nombre de caractères, mots, paragraphes et lignes dans votre texte. Il peut également afficher le nombre de différents types de caractères comme les lettres, chiffres, espaces, signes de ponctuation et symboles/caractères spéciaux. Assurez-vous d'avoir le bon nombre de mots pour votre essai ou votre publication en les comptant instantanément avec **{% $site.title %}**.
+**{% $msg.site.title %}** est un outil en ligne gratuit pour compter le nombre de caractères, mots, paragraphes et lignes dans votre texte. Il peut aussi afficher des décomptes pour différents types de caractères comme les lettres, chiffres, espaces, signes de ponctuation et symboles/caractères spéciaux.
+
+Vous cherchez une alternative open-source à Grammarly, QuillBot ou GrammarChecker ? **{% $site.title %}** inclut également un vérificateur grammatical qui peut vous aider à repérer et comprendre les fautes d'orthographe et les erreurs grammaticales dans votre texte.
+
+**{% $site.title %}** fonctionne entièrement dans votre navigateur, sans comptes, sans publicités et sans suivi intrusif. Contrairement à beaucoup d'outils, il prend en charge plusieurs langues, calcule les statistiques en temps réel et propose une interface moderne et personnalisable (y compris le mode sombre). Assurez-vous d'avoir le bon nombre de mots pour votre essai ou publication en les comptant instantanément avec **{% $site.title %}**.
 
 ### Fonctionnalités
 
-- **🧮 Voir les métriques du texte :** Comptez le nombre de caractères, mots, phrases, paragraphes et lignes dans votre texte.
-- **📊 Composition des caractères :** Affiche le nombre d'espaces, chiffres, lettres, signes de ponctuation et symboles/caractères spéciaux présents dans l'entrée.
-- **🚀 Mises à jour en temps réel :** Optimisé pour la rapidité, **{% $site.title %}** met à jour les comptes en temps réel pendant que vous tapez.
-- **🌍 Support multilingue :** Segmentation précise des mots et caractères pour de nombreuses langues et écritures.
+- **🧮 Comptage :** Calculer diverses statistiques pour votre texte.
+  - **Général :** Compter les caractères, mots, phrases, paragraphes et lignes.
+  - **Caractères par type :** Compter les espaces, chiffres, lettres, signes de ponctuation et symboles/caractères spéciaux.
+- **📚 Vérification grammaticale<sup>1</sup> :** Repérer et comprendre les fautes d'orthographe et les erreurs grammaticales.
+- **🚀 Mises à jour en temps réel :** Voir les statistiques se mettre à jour instantanément pendant la saisie.
+- **🌍 Support multilingue :** Travailler avec précision sur des textes en de nombreuses langues et écritures.
 - **🎨 Thèmes :** Préservez vos yeux avec le mode sombre intégré, ou essayez l'un des autres thèmes inclus.
+- **🎛️ Options :** Personnalisez votre expérience avec plusieurs options.
+  - **Avertir en cas de texte d'entrée volumineux :** Évitez de coller par accident de grandes quantités de texte.
+  - **Se souvenir du texte saisi :** Enregistrez votre texte localement pour reprendre là où vous vous étiez arrêté.
+  - **Activer la vérification grammaticale :** Vérifier votre texte pour les fautes d'orthographe et de grammaire
+  - **Activer le debug logging :** Afficher les logs de débogage dans la console pour le dépannage.
 - **🆓 100 % gratuit et sans publicité :** Utilisez l'outil sans distractions, sans suivi intrusif ni paywall — pas de pubs, pas d'inscription, pas de limitations.
 - **👨🏻‍💻 Open-source :** Vous savez coder ? Aidez à améliorer **{% $site.title %}** en contribuant au projet sur GitHub, ou copiez-le pour créer votre propre version !
+
+<sup>1</sup> _La prise en charge de la vérification grammaticale est limitée à l'anglais pour le moment._
 
 ### Cas d'utilisation
 
@@ -23,4 +36,4 @@
 
 ### Comment ça marche
 
-La fonctionnalité de comptage est fournie par la bibliothèque associée [tally-ts]($url.tallyTs.homepage). Reportez-vous à sa documentation pour en savoir plus sur le fonctionnement de l'algorithme de comptage.
+La fonctionnalité de comptage est fournie par [tally-ts]($url.tallyTs.homepage), une bibliothèque interne pour calculer les statistiques de texte. Consultez sa documentation pour plus d'informations sur le fonctionnement de l'algorithme de comptage.

@@ -10,7 +10,7 @@ import type { LocaleMessages } from '../types.ts';
 const TAGLINE = 'Word Counter' as const;
 // A short description of the site
 const DESCRIPTION =
-	'Your favorite dark mode word counter, now with even more themes!' as const;
+	'Your favorite dark mode word counter, now with grammar checking!' as const;
 // A label for automatic options
 const AUTO_LABEL = 'Auto' as const;
 

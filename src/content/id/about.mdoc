@@ -1,16 +1,29 @@
 ## Tentang
 
-**{% $msg.site.title %}** adalah alat online gratis untuk menghitung jumlah karakter, kata, paragraf, dan baris dalam teks Anda. Alat ini juga dapat menampilkan jumlah berbagai jenis karakter seperti huruf, angka, spasi, tanda baca, dan simbol/karakter khusus. Pastikan jumlah kata untuk esai atau kiriman Anda benar dengan menghitungnya secara instan menggunakan **{% $site.title %}**.
+**{% $msg.site.title %}** adalah alat daring gratis untuk menghitung jumlah karakter, kata, paragraf, dan baris dalam teks Anda. Alat ini juga dapat menampilkan penghitungan untuk berbagai jenis karakter seperti huruf, angka, spasi, tanda baca, dan simbol/karakter khusus.
+
+Mencari alternatif open-source untuk Grammarly, QuillBot, atau GrammarChecker? **{% $site.title %}** juga menyertakan pemeriksa tata bahasa yang dapat membantu Anda menemukan dan memahami kesalahan ejaan dan tata bahasa dalam teks.
+
+**{% $site.title %}** berjalan sepenuhnya di peramban Anda, tanpa akun, iklan, atau pelacakan yang melanggar privasi. Tidak seperti banyak alat lain, ia mendukung banyak bahasa, menghitung secara real-time, dan menawarkan antarmuka modern yang dapat diubah tema (termasuk mode gelap). Pastikan jumlah kata untuk esai atau posting Anda benar dengan menghitungnya langsung menggunakan **{% $site.title %}**.
 
 ### Fitur
 
-- **🧮 Lihat metrik teks:** Hitung jumlah karakter, kata, kalimat, paragraf, dan baris dalam teks Anda.
-- **📊 Komposisi karakter:** Tampilkan jumlah spasi, angka, huruf, tanda baca, dan simbol/karakter khusus dalam masukan.
-- **🚀 Pembaruan waktu nyata:** Dioptimalkan untuk kecepatan — **{% $site.title %}** memperbarui hitungan saat Anda mengetik.
-- **🌍 Dukungan multibahasa:** Segmentasi kata dan karakter yang akurat untuk banyak bahasa dan sistem penulisan.
+- **🧮 Penghitungan:** Hitung berbagai statistik untuk teks Anda.
+  - **Umum:** Hitung karakter, kata, kalimat, paragraf, dan baris.
+  - **Karakter menurut tipe:** Hitung spasi, digit, huruf, tanda baca, dan simbol/karakter khusus.
+- **📚 Pemeriksaan tata bahasa<sup>1</sup>:** Temukan dan pahami kesalahan ejaan dan tata bahasa.
+- **🚀 Pembaruan waktu nyata:** Lihat statistik teks diperbarui instan saat Anda mengetik.
+- **🌍 Dukungan multibahasa:** Bekerja akurat dengan teks dalam banyak bahasa dan skrip.
 - **🎨 Tema:** Lindungi mata Anda dengan mode gelap bawaan, atau coba salah satu tema lain yang tersedia.
+- **🎛️ Opsi:** Sesuaikan pengalaman Anda dengan berbagai pilihan.
+  - **Peringatkan saat teks input besar:** Hindari tanpa sengaja menempelkan sejumlah besar teks.
+  - **Ingat teks input:** Simpan teks Anda secara lokal untuk melanjutkan nanti.
+  - **Aktifkan pemeriksaan tata bahasa:** Periksa teks untuk kesalahan ejaan dan tata bahasa.
+  - **Aktifkan debug logging:** Cetak log debug ke konsol untuk tujuan pemecahan masalah.
 - **🆓 100% Gratis & Tanpa Iklan:** Gunakan alat ini tanpa gangguan, pelacakan privasi yang invasif, atau paywall — tanpa iklan, tanpa pendaftaran, tanpa batasan.
 - **👨🏻‍💻 Open-source:** Bisa coding? Bantu tingkatkan **{% $site.title %}** dengan berkontribusi di GitHub, atau salin dan buat versi Anda sendiri!
+
+<sup>1</sup> _Dukungan pemeriksaan tata bahasa saat ini terbatas pada bahasa Inggris._
 
 ### Kasus penggunaan
 
@@ -23,4 +36,4 @@
 
 ### Cara Kerjanya
 
-Fungsi penghitungan disediakan oleh pustaka terkait [tally-ts]($url.tallyTs.homepage). Lihat dokumentasinya untuk informasi lebih lanjut tentang bagaimana algoritme penghitungan bekerja.
+Fungsi penghitungan disediakan oleh [tally-ts]($url.tallyTs.homepage), sebuah pustaka internal untuk menghitung statistik teks. Lihat dokumentasinya untuk informasi lebih lanjut tentang cara kerja algoritma penghitungan.

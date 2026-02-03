@@ -1,16 +1,29 @@
 ## About
 
-**{% $msg.site.title %}** is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, punctuation, and symbols/special characters. Make sure you have the right number of words for your essay or post by counting them instantly with **{% $site.title %}**.
+**{% $msg.site.title %}** is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, punctuation, and symbols/special characters.
+
+Looking for an open-source alternative to Grammarly, QuillBot, or GrammarChecker? **{% $site.title %}** also includes a grammar checker that can help you find and understand spelling mistakes and grammatical errors in your text.
+
+**{% $site.title %}** runs entirely in your browser, with no accounts, ads, or privacy-invasive tracking. Unlike many tools, it supports multiple languages, computes counts in real-time, and offers a modern, themeable interface (including dark mode). Make sure you have the right number of words for your essay or post by counting them instantly with **{% $site.title %}**.
 
 ### Features
 
-- **🧮 View text metrics:** Count the number of characters, words, sentences, paragraphs, and lines in your text.
-- **📊 View character composition:** View the number of spaces, digits, letters, punctuation, and symbols/special characters in the input.
-- **🚀 Real-time updates:** Optimized for speed, **{% $site.title %}** updates the counts in real-time as you type.
-- **🌍 Multilingual support:** Accurate word and character segmentation across many languages and scripts.
+- **🧮 Counting:** Compute various counts for your text.
+  - **General:** Count characters, words, sentences, paragraphs, and lines.
+  - **Characters by type:** Count spaces, digits, letters, punctuation, and symbols/special characters.
+- **📚 Grammar checking<sup>1</sup>:** Find and understand spelling mistakes and grammatical errors.
+- **🚀 Real-time updates:** Watch text statistics update instantly as you type.
+- **🌍 Multilingual support:** Work accurately with text in many languages and scripts.
 - **🎨 Themes:** Save your eyes with the built-in dark mode, or try one of the other included themes.
+- **🎛️ Options:** Customize your experience with various options.
+  - **Warn on large input text:** Avoid accidentally pasting large amounts of text.
+  - **Remember input text:** Save your text locally to continue where you left off.
+  - **Enable grammar checking:** Check your text for spelling and grammar errors.
+  - **Enable debug logging:** Print debug logs to the console for troubleshooting purposes.
 - **🆓 100% Free & Ad-Free:** Use the tool without distractions, privacy-invasive tracking, or paywalls — no ads, no sign-ups, no limitations.
 - **👨🏻‍💻 Open-source:** Know how to code? Help make **{% $site.title %}** better by contributing to the project on GitHub, or copy it and make your own version!
+
+<sup>1</sup> _Grammar checking support is limited to English for now._
 
 ### Use Cases
 
@@ -23,4 +36,4 @@
 
 ### How it Works
 
-Counting functionality is provided by the related [tally-ts]($url.tallyTs.homepage) library. Refer to its documentation for more information on how the counting algorithm works.
+Counting functionality is provided by [tally-ts]($url.tallyTs.homepage), an in-house library for computing text statistics. Refer to its documentation for more information on how the counting algorithm works.

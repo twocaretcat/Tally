@@ -15,7 +15,7 @@
 		<a href="https://tally.johng.io" title="Project URL"><img src="https://img.shields.io/website?url=https%3A%2F%2Ftally.johng.io&up_message=tally.johng.io%20%E2%86%97" alt="Project URL" title="Project URL"></a>
 	</p>
 	<p class="projectDesc">
-		Your favorite dark mode word counter, now with even more themes! Count the number of characters, words, sentences, paragraphs, and lines in your text instantly with Tally
+		Your favorite dark mode word counter, now with grammar checking! Count the number of characters, words, sentences, paragraphs, and lines in your text instantly with Tally
 	</p>
 	<br/>
 </div>
@@ -24,24 +24,28 @@
 
 **Tally - Word Counter** is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, punctuation, and symbols/special characters.
 
-**Tally** runs entirely in your browser, with no accounts, ads, or privacy-invasive tracking. Unlike many tools, it supports multiple languages, computes counts in real-time, and offers a modern, themeable interface (including dark mode).
+Looking for an open-source alternative to Grammarly, QuillBot, or GrammarChecker? **Tally** also includes a grammar checker that can help you find and understand spelling mistakes and grammatical errors in your text.
 
-Make sure you have the right number of words for your essay or post by counting them instantly with **Tally**.
+**Tally** runs entirely in your browser, with no accounts, ads, or privacy-invasive tracking. Unlike many tools, it supports multiple languages, computes counts in real-time, and offers a modern, themeable interface (including dark mode). Make sure you have the right number of words for your essay or post by counting them instantly with **Tally**.
 
 ### Features
 
-- **🧮 Text statistics:** Analyze your text in multiple ways
-  - **View general counts:** characters, words, sentences, paragraphs, and lines
-  - **View character counts by type:** spaces, digits, letters, punctuation, and symbols/special characters
-- **🚀 Real-time updates:** Optimized for speed, **Tally** updates the counts in real-time as you type
-- **🌍 Multilingual support:** Accurate token segmentation and classification across many languages and scripts
-- **🎨 Themes:** Save your eyes with the built-in dark mode, or try one of the other included themes
-- **🎛️ Options:** Customize your experience with various options
-  - **Warn on large input text:** Avoid accidentally pasting large amounts of text
-  - **Remember input text:** Save your text locally to continue where you left off
-  - **Enable debug logging:** Print debug logs to the console for troubleshooting purposes
-- **🆓 100% Free & Ad-Free:** Use the tool without distractions, privacy-invasive tracking, or paywalls — no ads, no sign-ups, no limitations
+- **🧮 Counting:** Compute various counts for your text.
+  - **General:** Count characters, words, sentences, paragraphs, and lines.
+  - **Characters by type:** Count spaces, digits, letters, punctuation, and symbols/special characters.
+- **📚 Grammar checking<sup>1</sup>:** Find and understand spelling mistakes and grammatical errors.
+- **🚀 Real-time updates:** Watch text statistics update instantly as you type.
+- **🌍 Multilingual support:** Work accurately with text in many languages and scripts.
+- **🎨 Themes:** Save your eyes with the built-in dark mode, or try one of the other included themes.
+- **🎛️ Options:** Customize your experience with various options.
+  - **Warn on large input text:** Avoid accidentally pasting large amounts of text.
+  - **Remember input text:** Save your text locally to continue where you left off.
+  - **Enable grammar checking:** Check your text for spelling and grammar errors.
+  - **Enable debug logging:** Print debug logs to the console for troubleshooting purposes.
+- **🆓 100% Free & Ad-Free:** Use the tool without distractions, privacy-invasive tracking, or paywalls — no ads, no sign-ups, no limitations.
 - **👨🏻‍💻 Open-source:** Know how to code? Help make **Tally** better by contributing to the project on GitHub, or copy it and make your own version!
+
+<sup>1</sup> _Grammar checking support is limited to English for now._
 
 ### Use Cases
 
@@ -64,7 +68,7 @@ Make sure you have the right number of words for your essay or post by counting 
 
 ### How it Works
 
-Counting functionality is provided by the related [tally-ts] library. Refer to its documentation for more information on how the counting algorithm works.
+Counting functionality is provided by [tally-ts], an in-house library for computing text statistics. Refer to its documentation for more information on how the counting algorithm works.
 
 ## 📦 Installation
 
@@ -97,12 +101,51 @@ Counting functionality is provided by the related [tally-ts] library. Refer to i
 
 You can access **Tally** at [tally.johng.io]. If your preferred language is supported, you will automatically be redirected to the appropriate page. If not, we'll show the English version, but you can always manually change the language later.
 
-Typing or pasting type into the editor will update the counts in real-time. The output counts are currently separated into 2 sections:
+### Editor
 
-- **General:** Counts for characters, words, sentences, paragraphs, and lines.
-- **Characters:** Breakdowns for different character types like spaces, letters, digits, punctuation, and symbols
+> [!TIP]
+> Need more space? You can drag the bottom-right corner of the editor to resize it.
 
-### Languages
+Typing or pasting type into the editor will update the text statistics in real-time.
+
+#### Grammar Checking
+
+> [!NOTE]
+> For the moment, Harper only supports English. If you'd like to see your language added, consider [contributing to Harper](https://github.com/Automattic/harper).
+
+**Tally** supports grammar checking, powered by [Harper](https://writewithharper.com/). This feature is enabled by default, but you can disable it in the options.
+
+| ![Screenshot of the editor with a popup explaining a spelling issue](docs/images/input/spelling-issue.png) | ![Screenshot of the editor with a popup explaining a repetition issue](docs/images/input/repetition-issue.png) |
+| ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| _Popup for a spelling issue - v4.15.0_                                                                     | _Popup for a repetition issue - v4.15.0_                                                                       |
+
+When enabled, any spelling or grammar errors will be highlighted in the editor. Clicking on an underlined word will show a popup with an explanation of the error.
+
+### Output Sections
+
+Output counts are currently separated into 2 sections.
+
+#### General Counts
+
+This section contains counts for characters, words, sentences, paragraphs, and lines.
+
+| ![Screenshot of the general counts section](docs/images/output/general-counts.png) |
+| ---------------------------------------------------------------------------------- |
+| _General counts - v4.15.0_                                                         |
+
+#### Character Counts
+
+This section shows breakdowns for different types of characters like spaces, letters, digits, punctuation, and symbols.
+
+| ![Screenshot of the character counts section](docs/images/output/character-counts.png) |
+| -------------------------------------------------------------------------------------- |
+| _Character counts - v4.15.0_                                                           |
+
+### Options
+
+You can find various options in the page footer that allow you to customize the behavior of Tally.
+
+#### Language
 
 > [!NOTE]
 > Some languages are marked as _**experimental**_. This means that the translations haven't been reviewed and/or counting accuracy has not been extensively tested for that language. If you encounter any issues with a language, please [open an issue](https://github.com/twocaretcat/Tally/issues).
@@ -111,40 +154,63 @@ You can change the language with the language selector. Choosing a language chan
 
 | ![Screenshot of Tally's available languages](docs/images/selector/locale.png) |
 | ----------------------------------------------------------------------------- |
-| _Locale selector - v4_                                                        |
+| _Locale selector - v4.15.0_                                                   |
 
 Tally uses a browser API to perform segmentation, so the accuracy of your preferred language mostly depends on the browser's support for that language. Most languages follow similar segmentation rules, so even if your language is not officially supported by **Tally**, you can likely still get accurate counts by selecting a related language.
 
-### Themes
+#### Theme
 
 You can change the site theme using the theme selector. If you select _**Auto**_, the site will automatically switch between light and dark themes based on your system preferences.
 
 | ![Screenshot of Tally's available themes](docs/images/selector/theme.png) |
 | ------------------------------------------------------------------------- |
-| _Theme selector - v4_                                                     |
+| _Theme selector - v4.15.0_                                                |
 
-### Options
+#### General
 
 | ![Screenshot of Tally's available options](docs/images/selector/option.png) |
 | --------------------------------------------------------------------------- |
-| _Option selector - v4_                                                      |
+| _Option selector - v4.15.0_                                                 |
 
-#### Remember Input Text
+##### Remember Input Text
 
 When you enable the _**Remember input text**_ option, any text you enter is stored in your browser and restored on reload. When it is disabled, the editor stops restoring text (and erases any previously stored input text). This is disabled by default.
 
-#### Warn on Large Input Text
+##### Warn on Large Input Text
 
-When you enable the _**Warn on large input text**_ option, the app will show a warning when you try to paste or type a large amount or text (currently 1,000,000 characters). You can choose to either continue or cancel the operation.
+When you enable the _**Warn on large input text**_ option, the app will show a warning when you try to paste or type a large amount or text (currently 100,000 characters). You can choose to either continue or cancel the operation.
+
+> [!TIP]
+> If you're running into performance issues with very large inputs, consider disabling grammar checking as this is the most expensive operation.
 
 It can take a while to process extremely large inputs, so this option helps you avoid accidentally freezing your browser. This is enabled by default.
 
-#### Enable Debug Logging
+##### Enable Grammar Checking
+
+> [!NOTE]
+> If you're using an unsupported language, this option will be disabled. If you're writing in English, change the site language to English to enable this option.
+
+When you enable the _**Enable grammar checking**_ option, the app will use checking to highlight potential grammatical errors in your text. This is enabled by default.
+
+##### Enable Debug Logging
 
 > [!TIP]
 > If you submit a bug report, please include a screenshot of the console output when debug logging is enabled to help us diagnose the issue.
 
 When you toggle _**Enable debug logging**_, the application emits extra diagnostic messages to the browser console to help you inspect internal state changes and other info for debugging purposes. This is disabled by default.
+
+#### Grammar Checking Region
+
+> [!NOTE]
+> If you're using an unsupported language, this option will be unavailable. If you're writing in English, change the site language to English to enable this option.
+
+Grammatical rules can vary from dialect to dialect (ex. British English vs. American English). This option lets you select the region you want to use for grammar/spell checking. By default, we try to guess your region based on your browser's language settings, but if you notice something is not correct, you can change it manually here.
+
+| ![Screenshot of Tally's available options](docs/images/selector/linting-region.png) |
+| ----------------------------------------------------------------------------------- |
+| _Grammar checking region selector - v4.15.0_                                        |
+
+The options available here will change based on the site language.
 
 ## 🤖 Advanced Usage
 
@@ -214,7 +280,7 @@ See the [contribution guide](../../contribute) for more details.
 
 ## 🧾 License
 
-Copyright © 2025 [John Goodliff](https://johng.io/r/tally) ([@twocaretcat](https://github.com/twocaretcat)).
+Copyright © 2026 [John Goodliff](https://johng.io/r/tally) ([@twocaretcat](https://github.com/twocaretcat)).
 
 This project is licensed under the AGPL-3.0 License. See the [license](LICENSE) for more details.
 

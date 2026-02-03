@@ -61,7 +61,8 @@ export default defineConfig({
 				},
 			},
 		}),
-		markdoc(),
+		// TODO: Create a custom Sup component so we don't need to allow HTML
+		markdoc({ allowHTML: true }),
 		robotsTxt({
 			sitemapBaseFileName: `${SITE.sitemapPrefix}-index`,
 		}),

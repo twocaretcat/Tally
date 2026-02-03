@@ -1,16 +1,29 @@
 ## Über
 
-**{% $msg.site.title %}** ist ein kostenloses Online-Tool, um die Anzahl der Zeichen, Wörter, Absätze und Zeilen in deinem Text zu zählen. Es kann außerdem die Anzahl verschiedener Zeichentypen anzeigen, wie Buchstaben, Ziffern, Leerzeichen, Interpunktionszeichen und Symbole/sonderzeichen. Stelle sicher, dass du die richtige Wortanzahl für deinen Aufsatz oder Beitrag hast, indem du sie sofort mit **{% $site.title %}** zählst.
+**{% $msg.site.title %}** ist ein kostenloses Online-Tool, um die Anzahl von Zeichen, Wörtern, Absätzen und Zeilen in deinem Text zu zählen. Es kann auch Zählungen für verschiedene Zeichenarten anzeigen, z. B. Buchstaben, Ziffern, Leerzeichen, Satzzeichen und Symbole/Sonderzeichen.
+
+Suchst du nach einer Open-Source-Alternative zu Grammarly, QuillBot oder GrammarChecker? **{% $site.title %}** enthält außerdem einen Grammatikprüfer, der dir hilft, Rechtschreibfehler und grammatikalische Fehler in deinem Text zu finden und zu verstehen.
+
+**{% $site.title %}** läuft vollständig in deinem Browser — ohne Konten, Werbung oder datenschutzverletzendes Tracking. Im Unterschied zu vielen Tools unterstützt es mehrere Sprachen, berechnet die Werte in Echtzeit und bietet eine moderne, themenfähige Oberfläche (inklusive Dunkelmodus). Stelle sicher, dass dein Essay oder Beitrag die richtige Wortanzahl hat, indem du ihn sofort mit **{% $site.title %}** zählst.
 
 ### Funktionen
 
-- **🧮 Text-Metriken anzeigen:** Zählt die Anzahl an Zeichen, Wörtern, Sätzen, Absätzen und Zeilen in deinem Text.
-- **📊 Zeichen-Zusammensetzung:** Zeigt die Anzahl der Leerzeichen, Ziffern, Buchstaben, Interpunktionszeichen und Symbole/sonderzeichen in der Eingabe.
-- **🚀 Echtzeit-Aktualisierung:** Für Geschwindigkeit optimiert – **{% $site.title %}** aktualisiert die Zählwerte in Echtzeit, während du tippst.
-- **🌍 Mehrsprachige Unterstützung:** Präzise Wort- und Zeichensegmentierung für viele Sprachen und Schriftsysteme.
-- **🎨 Designs:** Schone deine Augen mit dem integrierten Dunkelmodus oder probiere eines der anderen enthaltenen Themes.
+- **🧮 Zählen:** Verschiedene Zählwerte für deinen Text berechnen.
+  - **Allgemein:** Zeichen, Wörter, Sätze, Absätze und Zeilen zählen.
+  - **Zeichen nach Typ:** Leerzeichen, Ziffern, Buchstaben, Satzzeichen und Symbole/Sonderzeichen zählen.
+- **📚 Grammatikprüfung<sup>1</sup>:** Rechtschreib- und Grammatikfehler finden und verstehen.
+- **🚀 Echtzeit-Updates:** Statistiken aktualisieren sich sofort beim Tippen.
+- **🌍 Mehrsprachige Unterstützung:** Arbeite korrekt mit Texten in vielen Sprachen und Schriftsystemen.
+- **🎨 Themen:** Schone deine Augen mit dem eingebauten Dunkelmodus oder probiere eines der anderen Themes.
+- **🎛️ Optionen:** Passe deine Erfahrung mit verschiedenen Einstellungen an.
+  - **Warnen bei großem Eingabetext:** Vermeide versehentliches Einfügen großer Textmengen.
+  - **Eingabetext merken:** Speichere deinen Text lokal, um später weiterzumachen.
+  - **Grammatikprüfung aktivieren:** Prüfe auf Rechtschreib- und Grammatikfehler.
+  - **Debug-Logging aktivieren:** Debug-Logs zur Fehlerbehebung in der Konsole ausgeben.
 - **🆓 100 % kostenlos & werbefrei:** Nutze das Tool ohne Ablenkungen, ohne datenschutzverletzendes Tracking oder Paywalls — keine Werbung, keine Anmeldung, keine Einschränkungen.
 - **👨🏻‍💻 Open-Source:** Du programmierst gern? Hilf mit, **{% $site.title %}** zu verbessern, indem du zum Projekt auf GitHub beiträgst, oder kopiere es und baue deine eigene Version!
+
+<sup>1</sup> _Die Unterstützung der Grammatikprüfung beschränkt sich vorerst auf Englisch._
 
 ### Anwendungsfälle
 
@@ -23,4 +36,4 @@
 
 ### Funktionsweise
 
-Die Zählfunktionalität wird von der zugehörigen Bibliothek [tally-ts]($url.tallyTs.homepage) bereitgestellt. Siehe ihre Dokumentation für weitere Informationen darüber, wie der Zählalgorithmus funktioniert.
+Die Zählfunktion wird von [tally-ts]($url.tallyTs.homepage) bereitgestellt, einer internen Bibliothek zur Berechnung von Textstatistiken. Siehe die Dokumentation für Details zur Zähl-Algorithmik.

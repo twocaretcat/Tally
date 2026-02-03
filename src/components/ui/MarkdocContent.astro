@@ -1,8 +1,8 @@
 ---
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
+import type { WithChildren } from '@type/utils.ts';
 import type { CollectionEntry, CollectionKey } from 'astro:content';
 import { render } from 'astro:content';
-import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for rendering Markdoc content from a content collection.
@@ -13,7 +13,7 @@ interface Props extends WithChildren<false> {
 	entry: CollectionEntry<CollectionKey>;
 }
 
-const msg = getLocaleMessages(Astro);
+const msg = getLocaleMessages(getLocale(Astro));
 
 const { entry } = Astro.props;
 

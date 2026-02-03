@@ -2,9 +2,10 @@
 import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { THEME } from '@config/theme.ts';
-import { getLocaleMessages } from '@i18n/index.ts';
-import { entriesOf } from '@utils/index.ts';
-import type { WithChildren } from '../../types.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { buildId } from '@utils/dom.ts';
+import { entriesOf } from '@utils/object.ts';
 import Button from './Button.astro';
 import ExperimentalIcon from './ExperimentalIcon.astro';
 import SponsorIcon from './SponsorIcon.astro';
@@ -17,7 +18,7 @@ import SponsorIcon from './SponsorIcon.astro';
 type Props = WithChildren<false>;
 
 const type = 'radio' as const;
-const msg = getLocaleMessages(Astro).themes;
+const msg = getLocaleMessages(getLocale(Astro)).option.theme;
 ---
 
 <InputGroup
@@ -32,8 +33,8 @@ const msg = getLocaleMessages(Astro).themes;
 				<HiddenInput
 					slot="input"
 					name={THEME.id}
-					checked={id === THEME.default.id}
-					{id}
+					id={buildId(THEME.id, id)}
+					checked={id === THEME.defaultValue.id}
 					{type}
 				/>
 				{msg.map[id].label}
@@ -58,28 +59,36 @@ const msg = getLocaleMessages(Astro).themes;
 
 <script>
 	import { THEME } from '@config/theme.ts';
-	import { $theme } from '@stores/index.ts';
-	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { $theme } from '@stores/options.ts';
+	import { buildId, getDefinedElementById } from '@utils/dom.ts';
+	import { entriesOf } from '@utils/object.ts';
 	import { mapEntries } from 'radashi';
 
 	const themeRadioMap = mapEntries(THEME.map, (themeId) => [
 		themeId,
-		getDefinedElementById<HTMLInputElement>(themeId),
+		getDefinedElementById<HTMLInputElement>(buildId(THEME.id, themeId)),
 	]);
 
 	// Update theme radio inputs when the theme changes
 	$theme.subscribe((value) => {
 		if (value in themeRadioMap) {
 			themeRadioMap[value].checked = true;
-		} else {
-			themeRadioMap[THEME.default.id].checked = true;
 
-			$theme.set(THEME.default.id);
+			return;
 		}
+
+		const defaultId = THEME.defaultValue.id;
+
+		themeRadioMap[defaultId].checked = true;
+
+		$theme.set(defaultId);
 	});
 
 	// Update theme when a theme radio input is changed
 	for (const [id, radio] of entriesOf(themeRadioMap)) {
 		radio.addEventListener('change', () => $theme.set(id));
+
+		radio.disabled = false;
+		radio.ariaBusy = String(false);
 	}
 </script>

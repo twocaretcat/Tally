@@ -61,7 +61,8 @@ export default defineConfig({
 				},
 			},
 		}),
-		markdoc(),
+		// TODO: Create a custom Sup component so we don't need to allow HTML
+		markdoc({ allowHTML: true }),
 		robotsTxt({
 			sitemapBaseFileName: `${SITE.sitemapPrefix}-index`,
 		}),
@@ -108,4 +109,11 @@ export default defineConfig({
 			SVG: false,
 		}),
 	],
+	vite: {
+		optimizeDeps: {
+			// The WASM module isn't included in the pre-bundled output for some reason
+			// This breaks text linting in dev builds, so we disable optimization for the whole library
+			exclude: ['harper.js'],
+		},
+	},
 });

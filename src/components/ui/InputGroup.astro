@@ -1,5 +1,5 @@
 ---
-import { wKey } from '@utils/index.ts';
+import { buildId, wKey } from '@utils/dom.ts';
 import type { ComponentProps } from 'astro/types';
 import IoGroup from './IoGroup.astro';
 
@@ -9,12 +9,13 @@ import IoGroup from './IoGroup.astro';
  * @property title - The heading text for the input group
  */
 interface Props extends ComponentProps<typeof IoGroup> {
+	id: string;
 	title: Capitalize<string>;
 }
 
 const { id, title, ...restProps } = Astro.props;
 
-const headerId = `${id}-header` as const;
+const headerId = buildId(id, 'header');
 ---
 
 <hgroup {...wKey(id, 'hgroup')}>

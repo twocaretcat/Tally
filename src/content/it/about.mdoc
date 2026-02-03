@@ -1,16 +1,29 @@
 ## Informazioni
 
-**{% $msg.site.title %}** è uno strumento gratuito online per contare il numero di caratteri, parole, paragrafi e righe nel tuo testo. Può anche mostrare il conteggio di diversi tipi di caratteri come lettere, cifre, spazi, segni di punteggiatura e simboli/caratteri speciali. Assicurati di avere il numero corretto di parole per il tuo saggio o il tuo post contando istantaneamente con **{% $site.title %}**.
+**{% $msg.site.title %}** è uno strumento online gratuito per contare il numero di caratteri, parole, paragrafi e righe nel tuo testo. Può anche mostrare conteggi per diversi tipi di caratteri come lettere, cifre, spazi, punteggiatura e simboli/caratteri speciali.
+
+Cerchi un'alternativa open-source a Grammarly, QuillBot o GrammarChecker? **{% $site.title %}** include anche un correttore grammaticale che può aiutarti a trovare e comprendere errori ortografici e grammaticali nel tuo testo.
+
+**{% $site.title %}** funziona interamente nel tuo browser, senza account, pubblicità o tracciamento invasivo della privacy. A differenza di molti strumenti, supporta più lingue, calcola i conteggi in tempo reale e offre un'interfaccia moderna e tematizzabile (inclusa la modalità scura). Assicurati di avere il numero corretto di parole per il tuo saggio o post contando tutto istantaneamente con **{% $site.title %}**.
 
 ### Caratteristiche
 
-- **🧮 Visualizza metriche del testo:** Conta il numero di caratteri, parole, frasi, paragrafi e righe nel tuo testo.
-- **📊 Composizione dei caratteri:** Visualizza il numero di spazi, cifre, lettere, segni di punteggiatura e simboli/caratteri speciali nell'input.
-- **🚀 Aggiornamenti in tempo reale:** Ottimizzato per la velocità, **{% $site.title %}** aggiorna i conteggi in tempo reale mentre scrivi.
-- **🌍 Supporto multilingue:** Segmentazione accurata di parole e caratteri in molte lingue e sistemi di scrittura.
+- **🧮 Conteggio:** Calcola vari conteggi per il tuo testo.
+  - **Generale:** Conta caratteri, parole, frasi, paragrafi e righe.
+  - **Caratteri per tipo:** Conta spazi, cifre, lettere, punteggiatura e simboli/caratteri speciali.
+- **📚 Controllo grammaticale<sup>1</sup>:** Individua e comprendere errori ortografici e grammaticali.
+- **🚀 Aggiornamenti in tempo reale:** Guarda le statistiche aggiornarsi istantaneamente mentre scrivi.
+- **🌍 Supporto multilingue:** Lavora con precisione su testi in molte lingue e sistemi di scrittura.
 - **🎨 Temi:** Proteggi i tuoi occhi con la modalità scura integrata, oppure prova uno degli altri temi inclusi.
+- **🎛️ Opzioni:** Personalizza la tua esperienza con varie opzioni.
+  - **Avvisa su testo di input molto grande:** Evita di incollare grandi quantità di testo per errore.
+  - **Ricorda il testo di input:** Salva il testo localmente per riprendere da dove avevi interrotto.
+  - **Abilita il controllo grammaticale:** Controlla il testo per errori ortografici e grammaticali.
+  - **Abilita il debug logging:** Stampa i log di debug nella console per la risoluzione dei problemi.
 - **🆓 100% gratuito e senza pubblicità:** Usa lo strumento senza distrazioni, senza tracciamento invasivo della privacy o paywall — niente annunci, niente registrazioni, nessuna limitazione.
 - **👨🏻‍💻 Open-source:** Sai programmare? Aiuta a migliorare **{% $site.title %}** contribuendo al progetto su GitHub, oppure copialo e crea la tua versione!
+
+<sup>1</sup> _Il supporto per il controllo grammaticale è limitato all'inglese per ora._
 
 ### Casi d'uso
 
@@ -23,4 +36,4 @@
 
 ### Come funziona
 
-La funzionalità di conteggio è fornita dalla libreria correlata [tally-ts]($url.tallyTs.homepage). Consulta la sua documentazione per maggiori informazioni su come funziona l'algoritmo di conteggio.
+La funzionalità di conteggio è fornita da [tally-ts]($url.tallyTs.homepage), una libreria interna per il calcolo delle statistiche di testo. Consulta la documentazione per ulteriori dettagli sull'algoritmo di conteggio.

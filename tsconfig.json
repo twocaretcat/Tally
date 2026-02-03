@@ -4,13 +4,17 @@
 	"exclude": ["dist"],
 	"compilerOptions": {
 		"paths": {
+			"@actions/*": ["./src/actions/*"],
 			"@components/*": ["./src/components/*"],
 			"@config/*": ["./src/config/*"],
 			"@effects/*": ["./src/effects/*"],
 			"@i18n/*": ["./src/i18n/*"],
 			"@images/*": ["./src/images/*"],
 			"@layouts/*": ["./src/layouts/*"],
+			"@lib/*": ["./src/lib/*"],
 			"@stores/*": ["./src/stores/*"],
+			// `type` is singular here because `types` is already a global
+			"@type/*": ["./src/types/*"],
 			"@utils/*": ["./src/utils/*"]
 		}
 	}

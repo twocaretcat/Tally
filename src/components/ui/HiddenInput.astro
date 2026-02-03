@@ -1,6 +1,6 @@
 ---
+import type { WithChildren } from '@type/utils.ts';
 import type { HTMLAttributes } from 'astro/types';
-import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for a visually hidden input element (used for checkbox/radio styling).
@@ -10,7 +10,8 @@ type Props = WithChildren<false, HTMLAttributes<'input'>>;
 const props = Astro.props;
 ---
 
-<input {...props} />
+<!-- Assume a loading state by default and re-enable after data has been loaded with JS -->
+<input aria-busy="true" disabled {...props} />
 
 <style>
 	input {

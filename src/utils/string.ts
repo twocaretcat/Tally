@@ -1,63 +1,9 @@
 // This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
-import { assert, tryit, type Result } from 'radashi';
+import { tryit, type Result } from 'radashi';
 import { INPUT } from '../config/input.ts';
 import { SITE } from '../config/site.ts';
 import { THEME, type ThemeId } from '../config/theme.ts';
-import type { HttpsUrl } from '../types.ts';
-
-/**
- * Returns the keys of an object with proper type inference.
- *
- * @param obj - The object to extract keys from
- * @returns An array of the object's keys, typed as `keyof T`
- */
-export function keysOf<T extends object>(obj: T): (keyof T)[] {
-	return Object.keys(obj) as (keyof T)[];
-}
-
-/**
- * Returns the entries of an object with proper type inference.
- *
- * @param obj - The object to extract entries from
- * @returns An array of key-value pairs, properly typed
- */
-export function entriesOf<T extends object>(obj: T): [keyof T, T[keyof T]][] {
-	return Object.entries(obj) as [keyof T, T[keyof T]][];
-}
-
-/**
- * Gets a DOM element by ID and asserts it exists.
- *
- * @typeParam T - The expected HTML element type (default: HTMLElement)
- * @param id - The element ID to search for
- * @returns The DOM element
- * @throws {Error} If no element with the given ID exists
- */
-export function getDefinedElementById<T extends HTMLElement = HTMLElement>(
-	id: string,
-): T {
-	const element = document.getElementById(id) as T | null;
-
-	assert(element, `element with id '${id}' does not exist`);
-
-	return element;
-}
-
-/**
- * Generates a view transition name from the provided keys for cross-document view transitions.
- *
- * @param keys - One or more strings to join as the transition name (null/undefined values are filtered out)
- * @returns An object containing the style property with viewTransitionName
- */
-export function wKey(...keys: (string | undefined | null)[]) {
-	const key = keys.filter(Boolean).join('-');
-
-	return {
-		style: {
-			viewTransitionName: key,
-		},
-	};
-}
+import type { HttpsUrl } from '../types/string.ts';
 
 /**
  * Checks if a URL string is an external HTTPS URL.

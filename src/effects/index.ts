@@ -1,15 +1,18 @@
 import { INPUT } from '@config/input.ts';
+import { $input, $persistedInputText } from '@stores/state.ts';
 import {
-	$enableDebugLogging,
-	$inputText,
-	$persistedInputText,
+	$lintingRegion,
+	$option,
 	$persistedTheme,
-	$rememberInputText,
 	$theme,
-} from '@stores/index.ts';
-import { updateCounts } from '../actions/counter.ts';
-import { toggleDebugLogging } from '../actions/logger.ts';
+} from '@stores/options.ts';
+import { analyzeText } from '@actions/analysis/analyzer';
+import { toggleDebugLogging } from '@actions/logger';
 import { THEME } from '@config/theme.ts';
+import {
+	toggleLinting,
+	updateLintingRegion,
+} from '@actions/analysis/linting/linter.ts';
 
 /**
  * Persists theme changes to localStorage, skipping sponsor-only themes.
@@ -29,30 +32,46 @@ $theme.subscribe((themeId) => {
 });
 
 /**
- * Updates counts and optionally persists input text whenever it changes.
+ * Analyze input text and optionally persists the value whenever it changes.
  *
- * If `$rememberInputText` is enabled, saves the current input to `$persistedInputText`.
+ * If `rememberInputText` is enabled, saves the current input to `$persistedInputText`.
  */
-$inputText.subscribe((inputText) => {
-	updateCounts();
+$input.subscribe(async ({ text, visibleRangeIndices }) => {
+	analyzeText(text, visibleRangeIndices);
 
-	if ($rememberInputText.get()) {
-		$persistedInputText.set(inputText);
-	}
+	if (!$option.rememberInputText.get()) return;
+
+	$persistedInputText.set(text);
 });
 
 /**
  * Clears persisted input text when the remember option is disabled.
  *
- * Sets `$persistedInputText` to either the current input (if remembering) or the default empty value.
+ * Sets `persistedInputText` to either the current input (if remembering) or the default empty value.
  */
-$rememberInputText.subscribe((rememberInputText) => {
-	const value = rememberInputText ? $inputText.get() : INPUT.default;
+$option.rememberInputText.subscribe((rememberInputText) => {
+	const text = rememberInputText ? $input.get().text : INPUT.defaultValue;
 
-	$persistedInputText.set(value);
+	$persistedInputText.set(text);
 });
 
 /**
- * Toggles debug logging on or off whenever the option changes.
+ * Subscribes to grammar-checking option changes.
+ *
+ * Enables or disables linting behavior when the option is toggled.
  */
-$enableDebugLogging.subscribe(toggleDebugLogging);
+$option.enableLinting.subscribe(toggleLinting);
+
+/**
+ * Subscribes to debug-logging option changes.
+ *
+ * Toggles debug output whenever the option value changes.
+ */
+$option.enableDebugLogging.subscribe(toggleDebugLogging);
+
+/**
+ * Reacts to changes in the active linting region.
+ *
+ * Updates linting configuration to reflect the selected region.
+ */
+$lintingRegion.subscribe(updateLintingRegion);

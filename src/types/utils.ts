@@ -1,7 +1,9 @@
 /**
- * A string representing an external HTTPS URL.
+ * Transforms a tuple type so that each element may be `undefined`.
  */
-export type HttpsUrl = `https://${string}`;
+export type WithOptionalItems<T extends readonly unknown[]> = {
+	[K in keyof T]: T[K] | undefined;
+};
 
 /**
  * Utility type for controlling child content in Astro components.

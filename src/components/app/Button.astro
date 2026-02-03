@@ -1,8 +1,9 @@
 ---
 import Icon from '@components/ui/Icon.astro';
 import { Check, X } from '@lucide/astro';
+import type { WithChildren } from '@type/utils.ts';
+import { clsx } from '@utils/dom.ts';
 import type { HTMLTag, Polymorphic } from 'astro/types';
-import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for a multi-functional button component.
@@ -25,8 +26,7 @@ import type { WithChildren } from '../../types.ts';
  * cross icons are rendered automatically.
  * @property children - Default slot content used as the button label.
  */
-
-type Props<Tag extends HTMLTag = HTMLTag> = WithChildren<
+type Props<Tag extends HTMLTag = 'button'> = WithChildren<
 	true,
 	Polymorphic<{
 		as: Tag;
@@ -34,19 +34,22 @@ type Props<Tag extends HTMLTag = HTMLTag> = WithChildren<
 	}>
 >;
 
-const { as: Tag = 'button', type, ...restProps } = Astro.props;
+const {
+	as: Tag = 'button',
+	type,
+	class: className,
+	...restProps
+} = Astro.props;
 
 const showDisabledIcon = type === 'checkbox';
 const showEnabledIcon = showDisabledIcon || type === 'radio';
 ---
 
-<Tag {...restProps} class="button">
+<Tag {...restProps} class={clsx('button', className)}>
 	<slot name="input" />
 	{showEnabledIcon && <Icon icon={Check} role="presentation" />}
 	{showDisabledIcon && <Icon icon={X} role="presentation" />}
-	<span>
-		<slot />
-	</span>
+	<span><slot /></span>
 </Tag>
 
 <style>
@@ -59,6 +62,7 @@ const showEnabledIcon = showDisabledIcon || type === 'radio';
 		flex-grow: 1;
 		padding: var(--p-sm);
 		color: var(--fg);
+		border: none;
 		white-space: nowrap;
 		cursor: pointer;
 		transition-duration: var(--d-md);
@@ -102,6 +106,17 @@ const showEnabledIcon = showDisabledIcon || type === 'radio';
 		&:active {
 			background-color: var(--bg-1) !important;
 			box-shadow: initial !important;
+		}
+
+		&:has(input:disabled) {
+			opacity: var(--o-md) !important;
+			background-color: var(--bg-1) !important;
+			box-shadow: initial !important;
+			cursor: not-allowed;
+		}
+
+		&:has(input[aria-busy='true']) {
+			cursor: wait;
 		}
 	}
 

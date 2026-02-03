@@ -7,7 +7,7 @@ import iconIco from '@images/favicon.ico';
 import iconAppleSvg from '@images/icon-solid.svg';
 import iconSvg from '@images/icon.svg';
 import logoSvg from '@images/logo.svg';
-import { pathToAbsoluteUrl } from '@utils/index.ts';
+import { pathToAbsoluteUrl } from '@utils/string.ts';
 import { Head as CapoHead } from 'astro-capo';
 import { Font, getImage } from 'astro:assets';
 import JsonLd from './JsonLd.astro';
@@ -72,9 +72,12 @@ const pageCanonicalUrl = new URL(
 
 	<SocialImageMetadata />
 
-	<meta name="msapplication-navbutton-color" content={THEME.default.color} />
-	<meta name="msapplication-TileColor" content={THEME.default.color} />
-	<meta name="theme-color" content={THEME.default.color} />
+	<meta
+		name="msapplication-navbutton-color"
+		content={THEME.defaultValue.color}
+	/>
+	<meta name="msapplication-TileColor" content={THEME.defaultValue.color} />
+	<meta name="theme-color" content={THEME.defaultValue.color} />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
 	<!-- Icons -->
@@ -137,7 +140,7 @@ const pageCanonicalUrl = new URL(
 </CapoHead>
 
 <script>
-	import { $theme } from '@stores/index.ts';
+	import { $theme } from '@stores/options.ts';
 
 	// TODO: Move to constants
 	const META_TAG_SELECTOR_ATTRIBUTES = [

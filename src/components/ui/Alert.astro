@@ -1,13 +1,13 @@
 ---
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import {
 	Info,
 	OctagonX,
 	TriangleAlert,
 	type Icon as IconType,
 } from '@lucide/astro';
+import type { WithChildren } from '@type/utils.ts';
 import type { HTMLAttributes } from 'astro/types';
-import type { WithChildren } from '../../types.ts';
 import Icon from './Icon.astro';
 import Strong from './Strong.astro';
 
@@ -43,7 +43,7 @@ const iconMap = {
 let { type, title, icon, ...restProps } = Astro.props;
 
 type ??= 'note';
-title ??= getLocaleMessages(Astro).alert[type].title;
+title ??= getLocaleMessages(getLocale(Astro)).alert[type].title;
 icon ??= iconMap[type];
 ---
 

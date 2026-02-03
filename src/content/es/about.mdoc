@@ -1,16 +1,29 @@
 ## Acerca de
 
-**{% $msg.site.title %}** es una herramienta gratuita en línea para contar el número de caracteres, palabras, párrafos y líneas en tu texto. También puede mostrar recuentos para distintos tipos de caracteres como letras, dígitos, espacios, signos de puntuación y símbolos/caracteres especiales. Asegúrate de tener el número correcto de palabras para tu ensayo o publicación contándolas al instante con **{% $site.title %}**.
+**{% $msg.site.title %}** es una herramienta gratuita en línea para contar el número de caracteres, palabras, párrafos y líneas en tu texto. También puede mostrar recuentos para distintos tipos de caracteres, como letras, dígitos, espacios, puntuación y símbolos/caracteres especiales.
+
+¿Buscas una alternativa de código abierto a Grammarly, QuillBot o GrammarChecker? **{% $site.title %}** también incluye un corrector gramatical que puede ayudarte a encontrar y entender errores ortográficos y gramaticales en tu texto.
+
+**{% $site.title %}** funciona completamente en tu navegador, sin cuentas, anuncios ni seguimiento que comprometa la privacidad. A diferencia de muchas herramientas, soporta varios idiomas, calcula las métricas en tiempo real y ofrece una interfaz moderna y tematizable (incluido el modo oscuro). Asegúrate de tener el número correcto de palabras para tu ensayo o publicación contándolas al instante con **{% $site.title %}**.
 
 ### Características
 
-- **🧮 Ver métricas de texto:** Cuenta el número de caracteres, palabras, oraciones, párrafos y líneas en tu texto.
-- **📊 Composición de caracteres:** Muestra el número de espacios, dígitos, letras, signos de puntuación y símbolos/caracteres especiales en la entrada.
-- **🚀 Actualizaciones en tiempo real:** Optimizado para la velocidad, **{% $site.title %}** actualiza los recuentos en tiempo real mientras escribes.
-- **🌍 Soporte multilingüe:** Segmentación precisa de palabras y caracteres en muchos idiomas y escrituras.
+- **🧮 Conteo:** Calcula distintos recuentos para tu texto.
+  - **General:** Contar caracteres, palabras, oraciones, párrafos y líneas.
+  - **Caracteres por tipo:** Contar espacios, dígitos, letras, puntuación y símbolos/caracteres especiales.
+- **📚 Revisión gramatical<sup>1</sup>:** Encuentra y comprende errores ortográficos y gramaticales.
+- **🚀 Actualizaciones en tiempo real:** Observa cómo las estadísticas se actualizan al instante mientras escribes.
+- **🌍 Soporte multilingüe:** Trabaja con precisión con textos en muchos idiomas y escrituras.
 - **🎨 Temas:** Cuida tus ojos con el modo oscuro integrado o prueba alguno de los otros temas incluidos.
+- **🎛️ Opciones:** Personaliza tu experiencia con varias opciones.
+  - **Avisar con texto de entrada grande:** Evita pegar grandes cantidades de texto por accidente.
+  - **Recordar texto de entrada:** Guarda tu texto localmente para continuar donde lo dejaste.
+  - **Activar revisión gramatical:** Comprueba el texto en busca de errores ortográficos y gramaticales.
+  - **Activar registro de depuración:** Imprime registros de depuración en la consola para solucionar problemas.
 - **🆓 100% Gratis y sin anuncios:** Usa la herramienta sin distracciones, sin seguimiento invasivo de la privacidad ni muros de pago — sin anuncios, sin registros, sin limitaciones.
 - **👨🏻‍💻 Código abierto:** ¿Sabes programar? Ayuda a mejorar **{% $site.title %}** contribuyendo al proyecto en GitHub, o cópialo y crea tu propia versión.
+
+<sup>1</sup> _El soporte para revisión gramatical está limitado al inglés por ahora._
 
 ### Casos de uso
 
@@ -23,4 +36,4 @@
 
 ### Cómo funciona
 
-La funcionalidad de conteo la proporciona la biblioteca relacionada [tally-ts]($url.tallyTs.homepage). Consulta su documentación para obtener más información sobre cómo funciona el algoritmo de conteo.
+La funcionalidad de conteo la proporciona [tally-ts]($url.tallyTs.homepage), una librería interna para calcular estadísticas de texto. Consulta su documentación para más información sobre cómo funciona el algoritmo de conteo.

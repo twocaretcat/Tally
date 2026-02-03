@@ -88,7 +88,6 @@ const variants = [
  * Global configuration for screenshot generation.
  */
 export const SCREENSHOT = {
-	outDir: 'docs/images/theme/',
 	variants,
 	outputOptions,
 } as const satisfies ScreenshotConfig;

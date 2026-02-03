@@ -4,9 +4,10 @@ import {
 	type SocialPreviewId,
 } from '@config/social-preview.ts';
 import { getLocale } from '@i18n/index.ts';
-import { entriesOf, pathToAbsoluteUrl } from '@utils/index.ts';
+import type { WithChildren } from '@type/utils.ts';
+import { entriesOf } from '@utils/object.ts';
+import { pathToAbsoluteUrl } from '@utils/string.ts';
 import { getImage } from 'astro:assets';
-import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for generating social media preview meta tags.

@@ -8,7 +8,8 @@ import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Wortzähler' as const;
 const DESCRIPTION =
-	'Dein bevorzugter Wortzähler im Dunkelmodus — jetzt mit noch mehr Themes!' as const;
+	'Dein Lieblings-Wortzähler im Dunkelmodus, jetzt mit Grammatikprüfung!' as const;
+const AUTO_LABEL = 'Automatisch' as const;
 
 const messages: LocaleMessages = {
 	site: {
@@ -115,67 +116,83 @@ const messages: LocaleMessages = {
 			tooltip: 'Weitere Projekte von mir ansehen',
 		},
 	},
-	locales: {
-		title: 'Sprache',
-	},
-	options: {
-		title: 'Optionen',
-		map: {
-			warnOnLargeInputText: {
-				label: 'Bei großer Eingabe warnen',
-			},
-			rememberInputText: {
-				label: 'Eingegebenen Text merken',
-			},
-			enableDebugLogging: {
-				label: 'Debug-Logging aktivieren',
+	option: {
+		locale: {
+			title: 'Sprache',
+		},
+		general: {
+			title: 'Optionen',
+			map: {
+				rememberInputText: {
+					label: 'Eingegebenen Text merken',
+				},
+				warnOnLargeInputText: {
+					label: 'Bei großer Eingabe warnen',
+				},
+				enableLinting: {
+					label: 'Grammatikprüfung aktivieren',
+				},
+				enableDebugLogging: {
+					label: 'Debug-Logging aktivieren',
+				},
 			},
 		},
-	},
-	themes: {
-		title: 'Theme',
-		map: {
-			auto: {
-				label: 'Automatisch',
+		lintingRegion: {
+			title: 'Region für die Grammatikprüfung',
+			unsupportedWarning: {
+				tooltip: 'Die Grammatikprüfung ist für diese Sprache nicht verfügbar',
 			},
-			amoled: {
-				label: 'AMOLED',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
 			},
-			light: {
-				label: 'Hell',
-			},
-			dark: {
-				label: 'Dunkel',
-			},
-			teal: {
-				label: 'Türkis',
-			},
-			dusk: {
-				label: 'Dämmerung',
-			},
-			solarizedLight: {
-				label: 'Solarized Hell',
-			},
-			solarizedDark: {
-				label: 'Solarized Dunkel',
-			},
-			gruvboxLight: {
-				label: 'Gruvbox Hell',
-			},
-			gruvboxDark: {
-				label: 'Gruvbox Dunkel',
-			},
-			catppuccinLatte: {
-				label: 'Catppuccin Latte',
-			},
-			catppuccinMocha: {
-				label: 'Catppuccin Mocha',
-			},
-			nord: {
-				label: 'Nord',
-			},
-			dracula: {
-				label: 'Dracula',
+		},
+		theme: {
+			title: 'Theme',
+			map: {
+				auto: {
+					label: AUTO_LABEL,
+				},
+				amoled: {
+					label: 'AMOLED',
+				},
+				light: {
+					label: 'Hell',
+				},
+				dark: {
+					label: 'Dunkel',
+				},
+				teal: {
+					label: 'Türkis',
+				},
+				dusk: {
+					label: 'Dämmerung',
+				},
+				solarizedLight: {
+					label: 'Solarized Hell',
+				},
+				solarizedDark: {
+					label: 'Solarized Dunkel',
+				},
+				gruvboxLight: {
+					label: 'Gruvbox Hell',
+				},
+				gruvboxDark: {
+					label: 'Gruvbox Dunkel',
+				},
+				catppuccinLatte: {
+					label: 'Catppuccin Latte',
+				},
+				catppuccinMocha: {
+					label: 'Catppuccin Mocha',
+				},
+				nord: {
+					label: 'Nord',
+				},
+				dracula: {
+					label: 'Dracula',
+				},
 			},
 		},
 	},

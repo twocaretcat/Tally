@@ -54,8 +54,8 @@ assert(jsRequiredAlertEntry, "'js-required-alert' entry does not exist");
 	import { getBestMatchingLocale } from '@i18n/index.ts';
 	import { getRelativeLocaleUrl } from 'astro:i18n';
 
-	const detectedLocale = getBestMatchingLocale();
+	const localeId = getBestMatchingLocale();
 
 	// Forward query params to the destination page
-	window.location.href = `${getRelativeLocaleUrl(detectedLocale)}${location.search}`;
+	window.location.href = `${getRelativeLocaleUrl(localeId)}${location.search}`;
 </script>

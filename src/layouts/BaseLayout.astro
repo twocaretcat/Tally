@@ -3,12 +3,12 @@ import Head from '@components/app/Head.astro';
 import { LOCALE } from '@config/locale.ts';
 import { THEME } from '@config/theme.ts';
 import { getLocale } from '@i18n/index.ts';
+import type { WithChildren } from '@type/utils.ts';
 import type { ComponentProps } from 'astro/types';
 import '../styles/global.css';
 import '../styles/themes.css';
 import '../styles/tokens.css';
 import '../styles/utils.css';
-import type { WithChildren } from '../types.ts';
 
 /**
  * Props for the base HTML layout wrapper.
@@ -24,7 +24,7 @@ const props = Astro.props;
 ---
 
 <!doctype html>
-<html lang={currentLocaleId} {dir} data-theme={THEME.default.id}>
+<html lang={currentLocaleId} {dir} data-theme={THEME.defaultValue.id}>
 	<Head {...props}>
 		<slot name="head" />
 	</Head>

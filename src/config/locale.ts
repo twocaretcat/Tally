@@ -41,12 +41,12 @@ type LocaleMap = {
  * The complete locale configuration structure.
  *
  * @property id - The configuration identifier
- * @property default - The default locale ID
+ * @property defaultValue - The default locale ID
  * @property map - Map of all available locales
  */
 type LocaleConfig = {
 	id: 'locale';
-	default: LocaleId;
+	defaultValue: LocaleId;
 	map: LocaleMap;
 };
 
@@ -95,6 +95,6 @@ const localeMap: LocaleMap = {
  */
 export const LOCALE = {
 	id: 'locale',
-	default: 'en',
+	defaultValue: 'en',
 	map: localeMap,
 } as const satisfies LocaleConfig;

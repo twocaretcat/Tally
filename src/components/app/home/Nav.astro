@@ -2,15 +2,15 @@
 import ButtonLink from '@components/ui/ButtonLink.astro';
 import IoGroup from '@components/ui/IoGroup.astro';
 import { SITE } from '@config/site.ts';
-import { getLocaleMessages } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import {
 	CircleEllipsis,
 	Github,
 	HandCoins,
 	MessageSquareWarning,
 } from '@lucide/astro';
+import type { WithChildren } from '@type/utils.ts';
 import type { HTMLAttributes } from 'astro/types';
-import type { WithChildren } from '../../../types.ts';
 
 /**
  * Props for the navigation bar with external links.
@@ -19,7 +19,7 @@ import type { WithChildren } from '../../../types.ts';
  */
 type Props = WithChildren<false, HTMLAttributes<'nav'>>;
 
-const msg = getLocaleMessages(Astro).nav;
+const msg = getLocaleMessages(getLocale(Astro)).nav;
 
 const props = Astro.props;
 ---

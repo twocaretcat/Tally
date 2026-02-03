@@ -17,20 +17,25 @@ type WithLabel = {
 };
 
 /**
+ * An object containing a capitalized tooltip string.
+ */
+type WithTooltip = {
+	tooltip: Capitalize<string>;
+};
+
+/**
  * Localized strings for a button link component.
  *
  * @property label - The visible button text
  * @property tooltip - The tooltip text shown on hover
  */
-interface ButtonLink extends WithLabel {
-	tooltip: Capitalize<string>;
-}
+type ButtonLink = WithLabel & WithTooltip;
 
 /**
  * A map of output IDs to their localized labels.
  */
 type OutputMap = {
-	[id in OutputId]: WithLabel;
+	[id in OutputId]: WithLabel & Partial<WithLabel>;
 };
 
 /**
@@ -38,6 +43,13 @@ type OutputMap = {
  */
 type OptionMap = {
 	[id in OptionId]: WithLabel;
+};
+
+/**
+ * A map of option IDs to their localized labels.
+ */
+type LintingRegionMap = {
+	auto: WithLabel;
 };
 
 /**
@@ -88,11 +100,17 @@ export type LocaleMessages = {
 		sponsor: ButtonLink;
 		moreProjects: ButtonLink;
 	};
-	locales: WithTitle;
-	options: WithTitle & {
-		map: OptionMap;
-	};
-	themes: WithTitle & {
-		map: ThemeMap;
+	option: {
+		locale: WithTitle;
+		general: WithTitle & {
+			map: OptionMap;
+		};
+		lintingRegion: WithTitle & {
+			unsupportedWarning: WithTooltip;
+			map: LintingRegionMap;
+		};
+		theme: WithTitle & {
+			map: ThemeMap;
+		};
 	};
 };

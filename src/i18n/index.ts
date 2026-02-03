@@ -1,8 +1,8 @@
-import type { AstroGlobal } from 'astro';
 import { LOCALE, type LocaleId, type RegionId } from '@config/locale.ts';
-import { keysOf } from '@utils/index.ts';
-import type { LocaleMessages } from './types.ts';
+import { keysOf } from '@utils/object.ts';
+import type { AstroGlobal } from 'astro';
 import { assert, identity, objectify } from 'radashi';
+import type { LocaleMessages } from './types.ts';
 
 const localeIds = keysOf(LOCALE.map);
 
@@ -36,42 +36,51 @@ function loadModuleById(localeId: LocaleId) {
 }
 
 /**
- * Gets the current locale ID from the Astro context or document.
+ * Validates and narrows a locale identifier.
  *
- * @param astro - Optional Astro global context (server-side)
- * @returns The current locale ID
- * @throws {Error} If the locale is not supported
+ * @param localeId - Locale ID to validate.
+ * @returns The validated locale ID.
+ * @throws {Error} If the locale is missing or not supported.
  */
-export function getLocale(astro?: AstroGlobal): LocaleId {
-	if (astro) {
-		const localeId = astro.currentLocale;
-
-		if (!localeId || !LOCALE.map[localeId as LocaleId]) {
-			throw new Error(
-				`Expected locale to be one of ${localeIds}, but got '${localeId}'`,
-			);
-		}
-
-		return localeId as LocaleId;
+function validateLocale(localeId: string | undefined): LocaleId {
+	if (!localeId || !(localeId in LOCALE.map)) {
+		throw new Error(
+			`Expected locale to be one of ${localeIds}, but got '${localeId}'`,
+		);
 	}
 
-	return document.documentElement.lang as LocaleId;
+	return localeId as LocaleId;
 }
 
 /**
- * Gets translation strings for the current or specified locale.
+ * Gets the current locale ID from the Astro context or the document.
  *
- * @param arg - Optional Astro context or locale ID
- * @returns The locale messages object
+ * @param astro - Optional Astro global context (server-side).
+ * @returns The current locale ID.
+ * @throws {Error} If the locale cannot be determined or is unsupported.
  */
-export function getLocaleMessages(astro?: AstroGlobal): LocaleMessages;
-export function getLocaleMessages(localeId?: LocaleId): LocaleMessages;
-export function getLocaleMessages(
-	arg?: AstroGlobal | LocaleId,
-): LocaleMessages {
-	const localeId = typeof arg === 'string' ? arg : getLocale(arg);
+export function getLocale(astro?: AstroGlobal) {
+	if (astro) return validateLocale(astro.currentLocale);
 
-	return localeMessageMap[localeId] ?? localeMessageMap[LOCALE.default];
+	if (typeof document === 'undefined') {
+		throw new Error(
+			'Unable to determine locale. Either pass an Astro object or call this function on the client to get it from the document',
+		);
+	}
+
+	return validateLocale(document.documentElement.lang);
+}
+
+/**
+ * Retrieves translation messages for a locale.
+ *
+ * Falls back to the default locale if no messages are defined.
+ *
+ * @param localeId - Locale ID to retrieve messages for.
+ * @returns The locale messages object.
+ */
+export function getLocaleMessages(localeId: LocaleId): LocaleMessages {
+	return localeMessageMap[localeId] ?? localeMessageMap[LOCALE.defaultValue];
 }
 
 /**
@@ -167,6 +176,28 @@ export function getLocaleInfo(localeId: LocaleId, regionId?: RegionId) {
 }
 
 /**
+ * Retrieves the user's preferred locales from the browser.
+ *
+ * Normalizes each locale to its base language and optional region.
+ *
+ * @returns An array of preferred locales with language and region IDs.
+ */
+export function getPreferredLocales() {
+	const localeIds = navigator.languages || [navigator.language];
+
+	return localeIds.map((localeId) => {
+		const locale = new Intl.Locale(localeId);
+		const languageId = locale.minimize().language;
+		const regionId = locale.region;
+
+		return {
+			languageId,
+			regionId,
+		};
+	});
+}
+
+/**
  * Determines the best matching locale based on the user's browser language preferences.
  *
  * Iterates through the user's language preferences and returns the first supported
@@ -175,16 +206,14 @@ export function getLocaleInfo(localeId: LocaleId, regionId?: RegionId) {
  * @returns The best matching locale ID, or the default locale
  */
 export function getBestMatchingLocale() {
-	const userLocaleIds = navigator.languages || [navigator.language];
+	const { map } = LOCALE;
 
-	// Check each user language preference
-	for (const localeId of userLocaleIds) {
-		const preferredLangCode = new Intl.Locale(localeId).minimize().language;
-		// See if we have a match for just the language code
-		if (LOCALE.map[preferredLangCode as LocaleId]) {
-			return preferredLangCode as LocaleId;
+	// See if we have a match for just the language code
+	for (const { languageId } of getPreferredLocales()) {
+		if (languageId in map) {
+			return languageId as keyof typeof map;
 		}
 	}
 
-	return LOCALE.default;
+	return LOCALE.defaultValue;
 }

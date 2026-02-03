@@ -31,7 +31,7 @@ const optionMap = {
 		defaultValue: true,
 	},
 	enableLinting: {
-		defaultValue: false,
+		defaultValue: true,
 	},
 	enableDebugLogging: {
 		defaultValue: false,

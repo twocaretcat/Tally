@@ -60,11 +60,11 @@ Looking for an open-source alternative to Grammarly, QuillBot, or GrammarChecker
 
 | ![Screenshot of Tally's dark theme](docs/images/theme/dark.png) | ![Screenshot of Tally's light theme](docs/images/theme/light.png) |
 | --------------------------------------------------------------- | ----------------------------------------------------------------- |
-| _Dark theme_                                                    | _Light theme_                                                     |
+| _Dark theme - v4.15.0_                                          | _Light theme - v4.15.0_                                           |
 
 | ![Screenshot of Tally's teal theme](docs/images/theme/teal.png) | ![Screenshot of Tally's dusk theme](docs/images/theme/dusk.png) |
 | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| _Teal theme_                                                    | _Dusk theme_                                                    |
+| _Teal theme - v4.15.0_                                          | _Dusk theme - v4.15.0_                                          |
 
 ### How it Works
 
@@ -300,6 +300,7 @@ Projects used by this one:
 
 - **👤 [tally-ts](https://github.com/twocaretcat/tally-ts)**: A TypeScript word counting library. Used by **Tally** to compute counts
 - **👤 [astro-snapshot](https://github.com/twocaretcat/astro-snapshot)**: An Astro integration for generating screenshots of your pages automatically at build time. Used by **Tally** to generate social preview images
+- **🌐 [harper.js](https://writewithharper.com)**: An open-source grammar and style checking engine. Used by **Tally** to provide grammar suggestions
 
 ## 💕 Funding
 
